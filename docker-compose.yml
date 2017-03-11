@@ -7,9 +7,7 @@ app:
     - ADMIN_NICKNAME=Admin
     - ADMIN_EMAIL=admin@hey-community.com
     - ADMIN_PASSWORD=hey community
-    - WECHAT_APPID=your_wechatpa_app_id
-    - WECHAT_SECRET=your_wechatpa_app_secret
-    - WECHAT_TEMP_NOTICE_ID=your_wechatpa_temp_id
+    - MORE_ENV_PLEASE_REFER_TO=https://github.com/dev4living/HeyCommunity-backend/blob/master/.env.example
   links:
     - db:MYSQL
   volumes:
