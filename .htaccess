@@ -7,7 +7,7 @@
 
 
     ## WechatPA verify file
-    RewriteRule ^(MP_verify.*)$ backend/public/wx_verify_files/$1 [L]
+    # RewriteRule ^(MP_verify.*)$ backend/public/wx_verify_files/$1 [L]
 
 
 
