@@ -1,12 +1,23 @@
 @extends('layouts.default')
 
+@section('title')
+通知 - {{ $system->site_title }}
+@endsection
+
+@php
+$wxShareDisable = true;
+@endphp
+
 @section('mainBody')
-    <div id="section-mainbody" class="page-module-page">
+    <div id="section-mainbody" class="page-notice-index">
         <div class="container pt-4 pb-5">
             <div class="row">
                 <div class="col-md-9 m-np">
-                    <ul class="list-group media-list media-list-stream mb-2">
+                    <ul id="section-notice-list" class="list-group media-list media-list-stream mb-2">
                         <li class="list-group-item p-4">
+                            <div class="pull-right">
+                                <a href="javascript:postSubmit('{{ route('notice.check') }}', {page: {{ $notices->currentPage() }}})">当前页标记为已读</a>
+                            </div>
                             <h4 class="m-0">通知</h4>
                         </li>
 
@@ -23,7 +34,7 @@
                         @foreach($notices as $notice)
                             @switch($notice->entity_name)
                                 @case('TopicCommentReplay')
-                                    <li class="list-group-item media p-4">
+                                    <li class="list-group-item media p-4 {{ $notice->is_read ? 'read' : 'unread' }}">
                                         <span class="icon icon-flag text-muted mr-2"></span>
 
                                         <div class="media-body">
@@ -34,16 +45,24 @@
                                                 <br>
 
                                                 <div style="padding-left:2em; border-left:2px solid #ddd; margin:6px 0 4px; color:#777; font-size:12px;">
-                                                    {{ mb_substr(strip_tags($notice->entity->content), 0, 150) }} &nbsp;
+                                                    {{ mb_substr(strip_tags($notice->entity->parent->content), 0, 150) }} &nbsp;
                                                 </div>
                                                 {{ mb_substr(strip_tags($notice->entity->content), 0, 150) }} &nbsp;
+
+                                                <small class="pull-right">
+                                                    @if ($notice->is_read)
+                                                        <a class="text-muted">已读</a>
+                                                    @else
+                                                        <a class="text-muted" href="javascript:postSubmit('{{ route('notice.check') }}', {id: {{ $notice->id }}})">标记为已读</a>
+                                                    @endif
+                                                </small>
                                             </div>
                                         </div>
                                     </li>
                                 @break
 
                                 @case('TopicComment')
-                                    <li class="list-group-item media p-4">
+                                    <li class="list-group-item media p-4 {{ $notice->is_read ? 'read' : 'unread' }}">
                                         <span class="icon icon-flag text-muted mr-2"></span>
 
                                         <div class="media-body">
@@ -67,6 +86,14 @@
                                                 @else
                                                     {{ mb_substr(strip_tags($notice->entity->content), 0, 150) }}
                                                 @endif
+
+                                                <small class="pull-right">
+                                                    @if ($notice->is_read)
+                                                        <a class="text-muted">已读</a>
+                                                    @else
+                                                        <a class="text-muted" href="javascript:postSubmit('{{ route('notice.check') }}', {id: {{ $notice->id }}})">标记为已读</a>
+                                                    @endif
+                                                </small>
                                             </div>
                                         </div>
                                     </li>
@@ -238,6 +265,11 @@
                         </li>
                         -->
                     </ul>
+
+                    <!-- Pagination -->
+                    <nav id="section-pagination">
+                        {{ $notices->links() }}
+                    </nav>
                 </div>
 
                 <div class="col-md-3 m-np">

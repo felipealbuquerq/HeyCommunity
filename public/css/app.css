@@ -1,7 +1,6 @@
 #section-mainNav .navbar-brand .icon-back-btn {
-  position: absolute;
-  top: 10px;
-  margin-left: -4px;
+  position: relative;
+  top: -12px;
 }
 
 #section-mainNav #nav-btns {
@@ -162,6 +161,11 @@ img {
 
 #section-mainbody.page-user-uhome #section-body #nav-mainTabContent {
   margin-top: 16px;
+}
+
+#section-mainbody.page-notice-index #section-notice-list .list-group-item.read .icon,
+#section-mainbody.page-notice-index #section-notice-list .list-group-item.read .media-body {
+  opacity: 0.6;
 }
 
 #section-mainbody.page-topic-index {
