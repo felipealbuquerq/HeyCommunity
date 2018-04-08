@@ -16,7 +16,7 @@
     <title>@yield('title', $system->site_title . ' - ' . $system->site_subheading)</title>
 
     <link href='https://fonts.lug.ustc.edu.cn/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-    <link href="{{ asset('css/app.css') }}?v=180104" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('bower-assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bootstrap-application-theme/css/toolkit.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bootstrap-application-theme/css/application.css') }}" rel="stylesheet">
@@ -241,5 +241,10 @@
 
 <!-- Analytic code -->
 {!! $system->site_analytic_code !!}
+
+<!-- CNZZ tongji -->
+<div style="display:none">
+<script src="https://s19.cnzz.com/z_stat.php?id=1273106497&web_id=1273106497" language="JavaScript"></script>
+</div>
 </body>
 </html>
