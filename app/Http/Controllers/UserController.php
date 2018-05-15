@@ -143,7 +143,7 @@ class UserController extends Controller
         if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
             return redirect()->back();
         } else {
-            return back()->withInput()->withErrors(['fail' => '手机和密码不正确']);
+            return back()->withInput()->withErrors(['fail' => '手机号码或密码不正确']);
         }
     }
 
