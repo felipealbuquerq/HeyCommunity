@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     // Topic
     Route::group(['prefix' => 'topic'], function () {
         Route::get('/', 'TopicController@index')->name('admin.topic.index');
+        Route::post('destroy', 'TopicController@destroy')->name('admin.topic.destroy');
 
         Route::group(['prefix' => 'node'], function () {
             Route::get('/', 'TopicNodeController@index')->name('admin.topic.node.index');

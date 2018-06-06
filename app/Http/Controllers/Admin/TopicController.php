@@ -21,4 +21,19 @@ class TopicController extends Controller
 
         return view('admin.topic.index', compact('topics'));
     }
+
+    /**
+     * Topic destroy
+     */
+    public function destroy(Request $request)
+    {
+        $this->validate($request, [
+            'id'        =>      'required|integer',
+        ]);
+
+        Topic::destroy($request->id);
+        flash('操作成功');
+
+        return back();
+    }
 }

@@ -23,7 +23,7 @@ class NewsController extends Controller
     }
 
     /**
-     * News destory
+     * News destroy
      */
     public function destroy(Request $request)
     {
