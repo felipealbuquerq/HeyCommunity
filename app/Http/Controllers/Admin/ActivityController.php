@@ -19,7 +19,7 @@ class ActivityController extends Controller
             $activities = Activity::latest()->paginate();
         }
 
-        return view('admin.activities.index', compact('activities'));
+        return view('admin.activity.index', compact('activities'));
     }
 
     /**
