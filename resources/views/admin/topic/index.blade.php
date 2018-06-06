@@ -46,7 +46,7 @@
                                             @foreach ($topics as $topic)
                                                 <tr>
                                                     <td>{{ $topic->id }}</td>
-                                                    <td><a target="_blank" href="{{ route('topic.show', $topic->id) }}">{{ $topic->title }}</a></td>
+                                                    <td><a target="_blank" href="{{ route('topic.show', $topic->id) }}">{{ str_limit($topic->title, 45) }}</a></td>
                                                     <td>{{ $topic->author->nickname }}</td>
                                                     <td>
                                                         {{ $topic->thumb_up_num }}
@@ -79,6 +79,18 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function topicDestroy(title,id) {
+                var message = '是否要删除 "' + title + '" 这个话题';
+
+                if (confirm(message)) {
+                    var url = '{{ route('admin.topic.destroy') }}';
+                    postSubmit(url, {id: id});
+                }
+            }
+        </script>
+
     </div>
 </div>
 @stop

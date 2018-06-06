@@ -48,9 +48,9 @@
                                                         <td>{{ $activity->id }}</td>
                                                         <td><img src="{{ $activity->avatar }}" alt="活动缩略图" class="rounded" style="height:2.8em;"></td>
                                                         <td>
-                                                            <a target="_blank" href="{{ route('news.show', $activity->id) }}">{{ $activity->title }}</a>
+                                                            <a target="_blank" href="{{ route('activity.show', $activity->id) }}">{{ str_limit($activity->title, 40) }}</a>
                                                             <br>
-                                                            {{ $activity->intro }}
+                                                            {{ str_limit($activity->intro, 45) }}
                                                         </td>
                                                         <td>
                                                             {{ $activity->thumb_up_num }}
