@@ -27,18 +27,34 @@ class HomeController extends Controller
         $data['userTotalOfRecent7DayBefore'] = User::whereDate('created_at', '<', $dateStartOf7Day)->count();
         $data['userGrowthOfRecent7DayPercent'] = $this->makePercent($data['userTotalOfRecent7Day'], $data['userTotalOfRecent7DayBefore'], 2);
 
+        // 用户趋势数据
+        $data['userTrendData'] = [];
+        for ($i = 0; $i < 7; $i++) {
+            $day = Carbon::today()->subDays($i);
+            $dayOfEnd = Carbon::today()->subDays($i)->endOfDay();
+            $dayOfBefore7 = Carbon::today()->subDays($i)->subDays(7);
+            $dayOfBefore7End = Carbon::today()->subDays($i)->subDays(7)->endOfDay();
+
+            $data['userTrendData'][$i]['y'] = $day->format('md');
+            $data['userTrendData'][$i]['a'] = User::whereBetween('created_at', [$day, $dayOfEnd])->count();
+            $data['userTrendData'][$i]['b'] = User::whereBetween('created_at', [$dayOfBefore7, $dayOfBefore7End])->count();
+        }
+        $data['userTrendData'] = json_encode($data['userTrendData']);
+
+
         // 新闻
         $data['newsTotal'] = News::count();
         $data['newsTotalOfRecent7Day'] = News::whereDate('created_at', '>', $dateStartOf7Day)->count();
         $data['newsTotalOfRecent7DayBefore'] = News::whereDate('created_at', '<', $dateStartOf7Day)->count();
         $data['newsGrowthOfRecent7DayPercent'] = $this->makePercent($data['newsTotalOfRecent7Day'], $data['newsTotalOfRecent7DayBefore'], 2);
 
+        // 话题
         $data['topicTotal'] = Topic::count();
         $data['topicTotalOfRecent7Day'] = Topic::whereDate('created_at', '>', $dateStartOf7Day)->count();
         $data['topicTotalOfRecent7DayBefore'] = Topic::whereDate('created_at', '<', $dateStartOf7Day)->count();
         $data['topicGrowthOfRecent7DayPercent'] = $this->makePercent($data['topicTotalOfRecent7Day'], $data['topicTotalOfRecent7DayBefore'], 2);
 
-        //
+        // 活动
         $data['activityTotal'] = Activity::count();
         $data['activityTotalOfRecent7Day'] = Activity::whereDate('created_at', '>', $dateStartOf7Day)->count();
         $data['activityTotalOfRecent7DayBefore'] = Activity::whereDate('created_at', '<', $dateStartOf7Day)->count();

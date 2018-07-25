@@ -113,7 +113,13 @@
                         </li>
                     </ul>
 
-                    <div id="morris-area-example" style="height: 300px"></div>
+                    <script>
+                        $(document).ready(function() {
+                          window.userTrendData = JSON.parse('{!! $userTrendData !!}');
+                          $.Dashboard.createAreaChart('morris-area-user-trend', 0, 0, window.userTrendData, 'y', ['a', 'b'], ['本周', '上一周'], ['#3292e0', '#bdbdbd']);
+                        });
+                    </script>
+                    <div id="morris-area-user-trend" style="height: 300px"></div>
                 </div>
             </div>
         </div>
