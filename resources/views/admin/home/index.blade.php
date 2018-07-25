@@ -62,7 +62,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 hide">
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <h4 class="m-t-0">Revenue</h4>
@@ -127,7 +127,7 @@
     </div>
     <!-- end row -->
 
-    <div class="row">
+    <div class="row hide">
         <div class="col-md-4">
             <div class="panel">
                 <div class="panel-body">
