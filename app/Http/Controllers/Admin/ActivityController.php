@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Topic;
-use Illuminate\Http\Request;
+use App\Activity;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class TopicController extends Controller
+class ActivityController extends Controller
 {
     /**
-     * Topic list and search
+     * Activities list and search
      */
     public function index(Request $request)
     {
         if ($request->has('q')) {
-            $topics = Topic::where('title', 'like', '%'. $request->q . '%')->paginate();
+            $activities = Activity::where('title', 'like', '%' . $request->q . '%')->paginate();
         } else {
-            $topics = Topic::latest()->paginate();
+            $activities = Activity::latest()->paginate();
         }
 
-        return view('admin.topic.index', compact('topics'));
+        return view('admin.activity.index', compact('activities'));
     }
 
     /**
-     * Topic destroy
+     * Activities delete
      */
     public function destroy(Request $request)
     {
@@ -31,7 +31,7 @@ class TopicController extends Controller
             'id'        =>      'required|integer',
         ]);
 
-        Topic::destroy($request->id);
+        Activity::destroy($request->id);
         flash('操作成功');
 
         return back();

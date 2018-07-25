@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Topic;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\News;
+use Illuminate\Http\Request;
 
-class TopicController extends Controller
+class NewsController extends Controller
 {
     /**
-     * Topic list and search
+     * News list and search
      */
     public function index(Request $request)
     {
         if ($request->has('q')) {
-            $topics = Topic::where('title', 'like', '%'. $request->q . '%')->paginate();
+            $news = News::where('title', 'like', '%' . $request->q . '%')->paginate();
         } else {
-            $topics = Topic::latest()->paginate();
+            $news = News::latest()->paginate();
         }
 
-        return view('admin.topic.index', compact('topics'));
+        return view('admin.news.index', compact('news'));
     }
 
     /**
-     * Topic destroy
+     * News destroy
      */
     public function destroy(Request $request)
     {
@@ -31,7 +31,7 @@ class TopicController extends Controller
             'id'        =>      'required|integer',
         ]);
 
-        Topic::destroy($request->id);
+        News::destroy($request->id);
         flash('操作成功');
 
         return back();

@@ -14,6 +14,7 @@ class UserTableSeeder extends Seeder
     {
         $defaultUser = [
             'nickname'      =>      'HC',
+            'is_super_admin'=>      true,
             'bio'           =>      $faker->sentence(),
             'gender'        =>      1,
             'phone'         =>      '12312341234',

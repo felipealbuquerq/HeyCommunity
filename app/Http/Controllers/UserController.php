@@ -15,15 +15,6 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
-     * Construct
-     */
-    public function __construct()
-    {
-        $this->middleware('auth', ['only' => ['logout']]);
-        $this->middleware('guest', ['only' => ['login', 'loginHandler', 'signup', 'signupHandler']]);
-    }
-
-    /**
      *  Login
      */
     public function login()
@@ -152,7 +143,7 @@ class UserController extends Controller
         if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
             return redirect()->back();
         } else {
-            return back()->withInput()->withErrors(['fail' => '手机和密码不正确']);
+            return back()->withInput()->withErrors(['fail' => '手机号码或密码不正确']);
         }
     }
 

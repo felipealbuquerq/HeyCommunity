@@ -20,6 +20,16 @@ Route::group([], function () {
 
 
 //
+// Site
+Route::group([], function () {
+    Route::get('about', 'SiteController@about')->name('site.about');
+    Route::get('help', 'SiteController@help')->name('site.help');
+    Route::get('terms', 'SiteController@terms')->name('site.terms');
+    Route::get('privacy', 'SiteController@privacy')->name('site.privacy');
+});
+
+
+//
 // Other
 Route::group([], function () {
     Route::post('simditor-upload-images', 'UploadController@simditorUploadImages')->name('upload.simditor-upload-images');
@@ -65,7 +75,7 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
 
 //
 // Notice
-Route::group(['prefix' => 'notice', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+Route::group(['prefix' => 'notice', 'middleware' => ['wechat.oauth', 'auth.wechat', 'auth']], function () {
     Route::get('/', 'NoticeController@index')->name('notice.index');
     Route::post('check', 'NoticeController@check')->name('notice.check');
 });

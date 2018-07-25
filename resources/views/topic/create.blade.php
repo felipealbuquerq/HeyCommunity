@@ -20,7 +20,7 @@
             </nav>
 
             <div class="row">
-                <div class="col-4 d-block d-md-none m-np">
+                <div class="col-md-4 d-block d-md-none m-np">
                     <div class="card m-nb-y m-nb-r mb-3">
                         <div class="card-body">
                             欢迎你在这里分享你知识与见解，或者有什么问题也可以在此与社区的朋友们一起交流讨论 ~
@@ -97,7 +97,7 @@
                     </div>
                 </div>
 
-                <div class="col-4 d-block d-md-none m-np">
+                <div class="col-md-4 d-block d-md-none m-np">
                     <div class="mt-3">
                         @include('layouts._tail')
                     </div>

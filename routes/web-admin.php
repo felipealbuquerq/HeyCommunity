@@ -9,11 +9,19 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
         Route::get('/', 'HomeController@index')->name('admin.home.index');
     });
 
+    //
+    // News
+    Route::group(['prefix' => 'news'], function () {
+        Route::get('/', 'NewsController@index')->name('admin.news.index');
+        Route::post('destroy', 'NewsController@destroy')->name('admin.news.destroy');
+
+    });
 
     //
     // Topic
     Route::group(['prefix' => 'topic'], function () {
         Route::get('/', 'TopicController@index')->name('admin.topic.index');
+        Route::post('destroy', 'TopicController@destroy')->name('admin.topic.destroy');
 
         Route::group(['prefix' => 'node'], function () {
             Route::get('/', 'TopicNodeController@index')->name('admin.topic.node.index');
@@ -25,6 +33,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
         });
     });
 
+    //
+    // activities
+    Route::group(['prefix' => 'activity'], function () {
+        Route::get('/', 'ActivityController@index')->name('admin.activity.index');
+        Route::post('destroy', 'ActivityController@destroy')->name('admin.activity.destroy');
+    });
 
     //
     // System
