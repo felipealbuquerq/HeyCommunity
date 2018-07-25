@@ -116,7 +116,7 @@
                     <script>
                         $(document).ready(function() {
                           window.userTrendData = JSON.parse('{!! $userTrendData !!}');
-                          $.Dashboard.createAreaChart('morris-area-user-trend', 0, 0, window.userTrendData, 'y', ['a', 'b'], ['本周', '上一周'], ['#3292e0', '#bdbdbd']);
+                          $.Dashboard.createAreaChart('morris-area-user-trend', 0, 0, window.userTrendData, 'y', ['a', 'b'], ['本周', '上周'], ['#3292e0', '#bdbdbd']);
                         });
                     </script>
                     <div id="morris-area-user-trend" style="height: 300px"></div>
