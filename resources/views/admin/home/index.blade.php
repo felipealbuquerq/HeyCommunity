@@ -3,7 +3,7 @@
 @section('mainBody')
 <div class="">
 <div class="page-header-title">
-    <h4 class="page-title">Dashboard</h4>
+    <h4 class="page-title">仪表盘</h4>
 </div>
 </div>
 
@@ -15,11 +15,11 @@
         <div class="col-sm-6 col-lg-3">
             <div class="panel text-center">
                 <div class="panel-heading">
-                    <h4 class="panel-title text-muted font-light">Total Subscription</h4>
+                    <h4 class="panel-title text-muted font-light">用户统计</h4>
                 </div>
                 <div class="panel-body p-t-10">
-                    <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-down-bold-circle-outline text-danger m-r-10"></i><b>8952</b></h2>
-                    <p class="text-muted m-b-0 m-t-20"><b>48%</b> From Last 24 Hours</p>
+                    <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-up-bold-circle-outline text-primary m-r-10"></i><b>{{ $userTotal }}</b></h2>
+                    <p class="text-muted m-b-0 m-t-20">最近 7 天增长 <b>{{ $userTotalOfRecent7Day }} <small>/ {{ $userGrowthOfRecent7DayPercent }}%</small></b></p>
                 </div>
             </div>
         </div>
@@ -27,11 +27,11 @@
         <div class="col-sm-6 col-lg-3">
             <div class="panel text-center">
                 <div class="panel-heading">
-                    <h4 class="panel-title text-muted font-light">Order Status</h4>
+                    <h4 class="panel-title text-muted font-light">新闻统计</h4>
                 </div>
                 <div class="panel-body p-t-10">
-                    <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-up-bold-circle-outline text-primary m-r-10"></i><b>6521</b></h2>
-                    <p class="text-muted m-b-0 m-t-20"><b>42%</b> Orders in Last 10 months</p>
+                    <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-up-bold-circle-outline text-primary m-r-10"></i><b>{{ $newsTotal }}</b></h2>
+                    <p class="text-muted m-b-0 m-t-20">最近 7 天增长 <b>{{ $newsTotalOfRecent7Day }} <small>/ {{ $newsGrowthOfRecent7DayPercent }}%</small></b></p>
                 </div>
             </div>
         </div>
@@ -39,11 +39,11 @@
         <div class="col-sm-6 col-lg-3">
             <div class="panel text-center">
                 <div class="panel-heading">
-                    <h4 class="panel-title text-muted font-light">Unique Visitors</h4>
+                    <h4 class="panel-title text-muted font-light">话题统计</h4>
                 </div>
                 <div class="panel-body p-t-10">
-                    <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-up-bold-circle-outline text-primary m-r-10"></i><b>452</b></h2>
-                    <p class="text-muted m-b-0 m-t-20"><b>22%</b> From Last 24 Hours</p>
+                    <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-up-bold-circle-outline text-primary m-r-10"></i><b>{{ $topicTotal }}</b></h2>
+                    <p class="text-muted m-b-0 m-t-20">最近 7 天增长 <b>{{ $topicTotalOfRecent7Day }} <small>/ {{ $topicGrowthOfRecent7DayPercent }}%</small></b></p>
                 </div>
             </div>
         </div>
@@ -51,11 +51,11 @@
         <div class="col-sm-6 col-lg-3">
             <div class="panel text-center">
                 <div class="panel-heading">
-                    <h4 class="panel-title text-muted font-light">Monthly Earnings</h4>
+                    <h4 class="panel-title text-muted font-light">活动统计</h4>
                 </div>
                 <div class="panel-body p-t-10">
-                    <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-down-bold-circle-outline text-danger m-r-10"></i><b>5621</b></h2>
-                    <p class="text-muted m-b-0 m-t-20"><b>35%</b> From Last 1 Month</p>
+                    <h2 class="m-t-0 m-b-15"><i class="mdi mdi-arrow-up-bold-circle-outline text-primary m-r-10"></i><b>{{ $activityTotal }}</b></h2>
+                    <p class="text-muted m-b-0 m-t-20">最近 7 天增长 <b>{{ $activityTotalOfRecent7Day }} <small>/ {{ $activityGrowthOfRecent7DayPercent }}%</small></b></p>
                 </div>
             </div>
         </div>
@@ -93,23 +93,23 @@
         <div class="col-sm-6">
             <div class="panel panel-primary">
                 <div class="panel-body">
-                    <h4 class="m-t-0">Email Sent</h4>
+                    <h4 class="m-t-0">用户趋势</h4>
 
                     <ul class="list-inline widget-chart m-t-20 text-center">
                         <li>
                             <i class="mdi mdi-arrow-up-bold-circle-outline text-primary"></i>
-                            <h4 class=""><b>3654</b></h4>
-                            <p class="text-muted m-b-0">Marketplace</p>
-                        </li>
-                        <li>
-                            <i class="mdi mdi-arrow-down-bold-circle-outline text-danger"></i>
-                            <h4 class=""><b>954</b></h4>
-                            <p class="text-muted m-b-0">Last week</p>
+                            <h4 class=""><b>{{ $userTotal }}</b></h4>
+                            <p class="text-muted m-b-0">总数</p>
                         </li>
                         <li>
                             <i class="mdi mdi-arrow-up-bold-circle-outline text-primary"></i>
-                            <h4 class=""><b>8462</b></h4>
-                            <p class="text-muted m-b-0">Last Month</p>
+                            <h4 class=""><b>{{ $userTotalOfRecent7Day }}</b></h4>
+                            <p class="text-muted m-b-0">最近 7 天</p>
+                        </li>
+                        <li>
+                            <i class="mdi mdi-arrow-up-bold-circle-outline text-primary"></i>
+                            <h4 class=""><b>{{ $userTotalOfRecent30Day }}</b></h4>
+                            <p class="text-muted m-b-0">最近 30 天</p>
                         </li>
                     </ul>
 
