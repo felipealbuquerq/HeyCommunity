@@ -52,7 +52,11 @@
                                                             <br>
                                                             {{ $user->bio }}
                                                         </td>
-                                                        <td>{{ $user->gender == 1 ? '男' : '女' }}</td>
+                                                        @if ($user->gender)
+                                                            <td>{{ $user->gender == 1 ? '男' : '女' }}</td>
+                                                        @else
+                                                            <td>-</td>
+                                                        @endif
                                                         <td>{{ $user->created_at }}</td>
                                                         <td>-</td>
                                                     </tr>
