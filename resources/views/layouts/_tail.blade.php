@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="text-nowrap text-overflow">
             &copy; 2018 {{ $system->site_title }}
-            <small>免费开源的社交软件</small>
+            <small>创享美好生活</small>
         </div>
 
         <div>
