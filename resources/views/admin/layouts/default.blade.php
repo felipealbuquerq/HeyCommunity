@@ -137,11 +137,20 @@
                     <li>
                         <a href="{{ route('admin.home.index') }}" class="waves-effect">
                             <i class="mdi mdi-home"></i>
-                            <span>首页<span class="badge badge-primary pull-right">1</span></span>
+                            <span>首页</span>
                         </a>
                     </li>
 
-
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect">
+                            <i class="mdi mdi-comment-text"></i>
+                            <span>用户管理</span>
+                            <span class="pull-right"><i class="mdi mdi-plus"></i></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('admin.user.index') }}">用户列表</a></li>
+                        </ul>
+                    </li>
 
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect">
