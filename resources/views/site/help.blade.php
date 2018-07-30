@@ -18,7 +18,10 @@
                             <h4 class="card-title">帮助</h4>
 
                             <div class="mt-3">
-                                暂无内容
+                                <p>
+                                    在本网站的使用过程中遇到任何疑问或问题，您可以发送电子邮件到 hi@hey-ganzhou.com <br>
+                                    我们非常愿意帮忙您 ~
+                                </p>
                             </div>
                         </div>
                     </div>
