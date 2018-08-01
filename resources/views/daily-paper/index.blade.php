@@ -8,10 +8,49 @@
 今日赣州实时的新闻与资讯
 @endsection
 
+@section('dateSelector')
+        <div class="input-group">
+            <span class="d-none d-md-block">
+                <a class="btn btn-secondary" href="{{ route('daily.index') }}">刷新</a> &nbsp;&nbsp;
+            </span>
+
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-secondary btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @if (request('day'))
+                        往日: {{ request('day') }}
+                    @else
+                        今日
+                    @endif
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item {{ request('day') ? '' : 'active' }}" href="{{ route('daily.index') }}">今日</a>
+
+                    @foreach (range(1, 6) as $index)
+                        @php
+                            $day = \Carbon\Carbon::today()->subDays($index)->format('Y-m-d');
+                        @endphp
+                        <a class="dropdown-item {{ request('day') == $day ? 'active' : '' }}" href="{{ route('daily.index', ['day' => $day]) }}">
+                            {{ $day }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="d-block d-md-none" style="position:absolute; right:15px; top:0px;">
+                <a class="btn btn-secondary" href="{{ route('daily.index') }}">刷新</a>
+            </div>
+        </div>
+
+@endsection
+
 @section('mainBody')
     <div id="section-mainbody" class="page-daily-paper-index">
         <div class="container pt-2">
             <div class="row">
+                <div class="col-sm-12 mt-3 d-block d-md-none">
+                    @yield('dateSelector')
+                </div>
+
                 <div class="col-md-8">
                     <div class="row items-masonry">
                         @if ($dailies->count())
@@ -74,7 +113,10 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3 mt-4 m-np">
+                    <div class="d-none d-md-block">
+                        @yield('dateSelector')
+                    </div>
 
                     <div class="mt-4 m-np">
                         @include('layouts._tail')
