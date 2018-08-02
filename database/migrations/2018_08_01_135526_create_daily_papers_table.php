@@ -18,7 +18,7 @@ class CreateDailyPapersTable extends Migration
             $table->string('entity_type')->comment('实例类型');
             $table->integer('entity_id')->index()->commment('实例 ID');
 
-            $table->string('remark')->comment('评注');
+            $table->string('remark')->nullable()->comment('评注');
 
             $table->timestamps();
             $table->softDeletes();

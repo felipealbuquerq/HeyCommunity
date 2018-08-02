@@ -46,6 +46,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     });
 
     //
+    // Daily Paper
+    Route::resource('daily-paper', 'DailyPaperController', ['as' => 'admin']);
+
+    //
     // System
     Route::group(['prefix' => 'system'], function () {
         Route::get('edit', 'SystemController@edit')->name('admin.system.edit');
