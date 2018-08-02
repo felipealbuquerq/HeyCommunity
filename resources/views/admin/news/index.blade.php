@@ -50,7 +50,7 @@
                                                         <td>{{ $new->created_at }}</td>
                                                         <td>
                                                             <a class="btn btn-xs btn-danger" onclick="destroy('{{ $new->title }}', {{ $new->id }})" title="删除"><i class="fa fa-trash-o"></i></a>
-                                                            <a class="btn btn-xs btn-primary" onclick="presentDailyPaper('{{ $new->title }}', {{ $new->id }})" title="转发到 Daily Paper"><i class="fa fa-send"></i></a>
+                                                            <button {{ $new->inDailyPaper ? 'disabled' : '' }} class="btn btn-xs btn-primary" onclick="presentDailyPaper('{{ $new->title }}', {{ $new->id }})" title="转发到 Daily Paper"><i class="fa fa-send"></i></button>
                                                         </td>
                                                     </tr>
                                                 @endforeach
