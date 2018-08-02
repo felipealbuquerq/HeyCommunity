@@ -52,6 +52,14 @@
                 </div>
 
                 <div class="col-md-8">
+                    @if ($dailies->isEmpty())
+                        <div class="card mt-4">
+                            <div class="card-body">
+                                这里是空的，先看看其他日期的内容吧 ~
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="row items-masonry">
                         @if ($dailies->count())
                             <div id="component-topic-list" class="list-group">
@@ -102,12 +110,6 @@
                                         </div>
                                     @endif
                                 @endforeach
-                            </div>
-                        @else
-                            <div class="card">
-                                <div class="card-body">
-                                    暂无数据
-                                </div>
                             </div>
                         @endif
                     </div>
