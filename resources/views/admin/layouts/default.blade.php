@@ -154,7 +154,7 @@
 
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect">
-                            <i class="mdi mdi-comment-text"></i>
+                            <i class="mdi mdi-account-multiple"></i>
                             <span>用户管理</span>
                             <span class="pull-right"><i class="mdi mdi-plus"></i></span>
                         </a>
@@ -165,7 +165,7 @@
 
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect">
-                            <i class="mdi mdi-comment-text"></i>
+                            <i class="mdi mdi-newspaper"></i>
                             <span>新闻管理</span>
                             <span class="pull-right"><i class="mdi mdi-plus"></i></span>
                         </a>
@@ -187,7 +187,7 @@
                     </li>
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect">
-                            <i class="mdi mdi-comment-text"></i>
+                            <i class="mdi mdi-gnome"></i>
                             <span>活动管理</span>
                             <span class="pull-right"><i class="mdi mdi-plus"></i></span>
                         </a>
