@@ -143,6 +143,17 @@
 
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect">
+                            <i class="mdi mdi-book"></i>
+                            <span>今日管理</span>
+                            <span class="pull-right"><i class="mdi mdi-plus"></i></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('admin.daily-paper.index') }}">今日列表</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect">
                             <i class="mdi mdi-comment-text"></i>
                             <span>用户管理</span>
                             <span class="pull-right"><i class="mdi mdi-plus"></i></span>

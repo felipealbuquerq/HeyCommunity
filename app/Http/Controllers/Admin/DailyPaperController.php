@@ -15,7 +15,9 @@ class DailyPaperController extends Controller
      */
     public function index()
     {
-        //
+        $dailyPapers = DailyPaper::latest()->paginate();
+
+        return view('admin.daily-paper.index', compact('dailyPapers'));
     }
 
     /**
@@ -97,6 +99,14 @@ class DailyPaperController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dailyPaper = DailyPaper::findOrFail($id);
+
+        if ($dailyPaper->delete()) {
+            flash('操作成功');
+        } else {
+            flash('操作失败')->error();
+        }
+
+        return back();
     }
 }
