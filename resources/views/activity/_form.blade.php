@@ -53,7 +53,7 @@ if (!isset($activity)) {
         </div>
 
         @if (!$errors->has('start_time'))
-            <div class="text-dark">格式如: {{ date('Y-m-d H:i') }}</div>
+            <div class="text-dark">格式如: {{ date('Y-m-d H:i:s', \Carbon\Carbon::today()->addHours(10)->timestamp) }}</div>
         @endif
         <div class="text-danger">{{ $errors->first('start_time') }}</div>
         <div class="text-danger">{{ $errors->first('end_time') }}</div>
@@ -85,7 +85,7 @@ if (!isset($activity)) {
 </div>
 
 <div class="form-group row">
-    <label for="input-redirect_url" class="col-sm-2 col-form-label">报名&详情页</label>
+    <label for="input-redirect_url" class="col-sm-2 col-form-label">外链页面</label>
     <div class="col-sm-10">
         <input name="redirect_url" type="text" class="form-control" id="input-redirect_url" value="{{ old('redirect_url', formValue($activity, 'redirect_url')) }}">
 
