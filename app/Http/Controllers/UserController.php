@@ -226,15 +226,16 @@ class UserController extends Controller
      */
     public function profileUpdate(Request $request)
     {
+        $user = Auth::user();
+
         $this->validate($request, [
             'nickname'      =>  'required|string',
             'gender'        =>  'required|integer',
-            'phone'         =>  'required|string',
-            'email'         =>  'required|string',
-            'bio'           =>  'required|string',
+            'phone'         =>  'nullable|string|unique:users,phone,' . $user->id,
+            'email'         =>  'nullable|string|unique:users,email,' . $user->id,
+            'bio'           =>  'nullable|string',
         ]);
 
-        $user = Auth::user();
         $user->nickname = $request->nickname;
         $user->gender = $request->gender;
         $user->phone = $request->phone;
