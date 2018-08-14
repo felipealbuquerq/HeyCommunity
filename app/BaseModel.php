@@ -23,6 +23,14 @@ class BaseModel extends Model
     }
 
     /**
+     * Sort Order
+     */
+    public function scopeSortOrder($query)
+    {
+        return $query->orderBy('sort', 'asc')->oldest();
+    }
+
+    /**
      * Mine Scope
      */
     public function scopeMine($query)

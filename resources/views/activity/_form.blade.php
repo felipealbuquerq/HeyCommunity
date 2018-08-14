@@ -14,6 +14,37 @@ if (!isset($activity)) {
 </div>
 
 <div class="form-group row">
+    <label class="col-sm-2 col-form-label">活动从属</label>
+    <div class="col-sm-5">
+        <select class="form-control" id="input-category_id" name="category_id">
+            <option>请选择分类</option>
+            @php
+                $categories = \App\ActivityCategory::sortOrder()->get();
+            @endphp
+            @foreach ($categories as $category)
+                <option value="{{ $category->id }}" {{ old('category_id', formValue($activity, 'category_id')) == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+            @endforeach
+        </select>
+
+        <div class="text-danger">{{ $errors->first('category_id') }}</div>
+    </div>
+
+    <div class="col-sm-5">
+        <select class="form-control" id="input-area_id" name="area_id">
+            <option>请选择区域</option>
+            @php
+                $areas = \App\ActivityArea::sortOrder()->get();
+            @endphp
+            @foreach ($areas as $area)
+                <option value="{{ $area->id }}" {{ old('area_id', formValue($activity, 'area_id')) == $area->id ? 'selected' : '' }}>{{ $area->name }}</option>
+            @endforeach
+        </select>
+
+        <div class="text-danger">{{ $errors->first('area_id') }}</div>
+    </div>
+</div>
+
+<div class="form-group row">
     <label class="col-sm-2 col-form-label">活动时间</label>
     <div class="col-sm-5">
         <input name="start_time" type="text" class="form-control" id="input-start_time" value="{{ old('start_time', formValue($activity, 'start_time')) }}" placeholder="开始时间">
