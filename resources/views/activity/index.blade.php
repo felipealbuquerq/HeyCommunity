@@ -16,8 +16,6 @@
         <div class="row">
             <div class="col-12">
                 <div style="z-index:99; position:absolute; right:15px;">
-                    <a class="btn btn-secondary " href="{{ route('activity.index') }}">最近</a>
-                    &nbsp;&nbsp;
                     <a class="btn btn-secondary" href="{{ route('activity.index') }}">刷新</a>
                 </div>
 
