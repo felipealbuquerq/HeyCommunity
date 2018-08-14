@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\ActivityArea;
 use App\ActivityCategory;
+use App\Http\Requests\ActivityRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Activity;
 use Auth;
@@ -54,24 +56,8 @@ class ActivityController extends Controller
     /**
      * Store Activity
      */
-    public function store(Request $request)
+    public function store(ActivityRequest $request)
     {
-        $this->validate($request, [
-            'title'         =>  'required|string',
-            'intro'         =>  'required|string',
-            'content'       =>  'required|string',
-            'avatar'        =>  'required|image',
-            'category_id'   =>  'required|integer',
-            'area_id'       =>  'required|integer',
-            'start_time'    =>  'required|string',
-            'end_time'      =>  'required|string',
-            'local'         =>  'required|string',
-            'redirect_url'  =>  'required|string',
-        ], [
-            'category_id.integer'       =>  '请选择活动分类',
-            'area_id.integer'           =>  '请选择活动地区',
-        ]);
-
         $avatarUrl  = $request->file('avatar')->store('uploads/activity/avatar');
 
         if ($avatarUrl) {
@@ -79,6 +65,8 @@ class ActivityController extends Controller
             $activity->user_id = Auth::id();
             $activity->avatar = $avatarUrl;
             $activity->fill($request->only(['title', 'intro', 'content', 'category_id', 'area_id', 'start_time', 'end_time', 'local', 'redirect_url']));
+            $activity->start_time = Carbon::parse($request->start_time);
+            $activity->end_time = Carbon::parse($request->end_time);
 
             if ($activity->save()) {
                 return redirect()->route('activity.show', $activity->id);
@@ -102,27 +90,13 @@ class ActivityController extends Controller
     /**
      * Update Activity
      */
-    public function update(Request $request, $id)
+    public function update(ActivityRequest $request, $id)
     {
-        $this->validate($request, [
-            'title'         =>  'required|string',
-            'intro'         =>  'required|string',
-            'content'       =>  'required|string',
-            'avatar'        =>  'image',
-            'category_id'   =>  'required|integer',
-            'area_id'       =>  'required|integer',
-            'start_time'    =>  'required|string',
-            'end_time'      =>  'required|string',
-            'local'         =>  'required|string',
-            'redirect_url'  =>  'required|string',
-        ], [
-            'category_id.integer'       =>  '请选择活动分类',
-            'area_id.integer'           =>  '请选择活动地区',
-        ]);
-
         $activity = Activity::findOrFail($id);
 
         $activity->fill($request->only(['title', 'intro', 'content', 'category_id', 'area_id', 'start_time', 'end_time', 'local', 'redirect_url']));
+        $activity->start_time = Carbon::parse($request->start_time);
+        $activity->end_time = Carbon::parse($request->end_time);
 
         if ($request->avatar) {
             $avatarUrl  = $request->file('avatar')->store('uploads/activity/avatar');
