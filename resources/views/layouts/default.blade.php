@@ -70,6 +70,9 @@
                 <a class="nav-link {{ setNavActive('/') }}" href="{{ url('/') }}">首页</a>
             </li>
             -->
+            <li class="nav-item {{ setNavActive('daily*') }}">
+                <a class="nav-link" href="{{ route('daily.index') }}">今日</a>
+            </li>
             <li class="nav-item {{ setNavActive('news*') }}">
                 <a class="nav-link" href="{{ route('news.index') }}">新闻</a>
             </li>

@@ -60,8 +60,10 @@
                                                         {{ $topic->read_num }}
                                                     </td>
                                                     <td>{{ $topic->created_at }}</td>
-                                                    <td><a class="btn btn-xs btn-danger" onclick="topicDestroy('{{ $topic->title }}', {{ $topic->id }})" title="删除"><i class="fa fa-trash-o"></i></a></td>
-
+                                                    <td>
+                                                        <a class="btn btn-xs btn-danger" onclick="destroy('{{ $topic->title }}', {{ $topic->id }})" title="删除"><i class="fa fa-trash-o"></i></a>
+                                                        <button {{ $topic->inDailyPaper ? 'disabled' : '' }} class="btn btn-xs btn-primary" onclick="presentDailyPaper('{{ $topic->title }}', {{ $topic->id }})" title="转发到 Daily Paper"><i class="fa fa-send"></i></button>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         @endif
@@ -81,7 +83,7 @@
         </div>
 
         <script>
-            function topicDestroy(title,id) {
+            function destroy(title,id) {
                 var message = '是否要删除 "' + title + '" 这个话题';
 
                 if (confirm(message)) {
@@ -89,8 +91,19 @@
                     postSubmit(url, {id: id});
                 }
             }
-        </script>
 
+            function presentDailyPaper(title, id) {
+              var message = '是否要把 "' + title + '" 转发到 Daily Paper';
+
+              if (confirm(message)) {
+                var url = '{{ route('admin.daily-paper.store') }}';
+                postSubmit(url, {
+                  id: id,
+                  type: '{{ addslashes(\App\Topic::class) }}'
+                });
+              }
+            }
+        </script>
     </div>
 </div>
 @stop

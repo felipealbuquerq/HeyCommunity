@@ -23,6 +23,6 @@ try {
     $wechatJsConfig = $wechatJs->config(array('onMenuShareTimeline', 'onMenuShareAppMessage'));
     view()->share('wechatJsConfig', $wechatJsConfig);
 } catch (Exception $e) {
-    Log::alert($e->getMessage());
+    // Log::alert($e->getMessage());
     view()->share('wechatJsConfig', '{}');
 }

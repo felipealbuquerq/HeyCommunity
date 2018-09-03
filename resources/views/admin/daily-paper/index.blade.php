@@ -1,19 +1,12 @@
 @extends('admin.layouts.default')
 
 @section('search')
-    <form class="navbar-form pull-left" role="search" action="{{ route('admin.news.index') }}">
-        <div class="form-group">
-            <input type="hidden" name="type" value="news">
-            <input type="text" name="q" class="form-control search-bar" placeholder="搜索" value="{{ Request::get('q') }}">
-        </div>
-        <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-    </form>
 @endsection
 
 @section('mainBody')
     <div class="">
         <div class="page-header-title">
-            <h4 class="page-title">新闻列表</h4>
+            <h4 class="page-title">今日列表</h4>
         </div>
     </div>
 
@@ -30,27 +23,34 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
+                                                <th>日期</th>
+                                                <th>类型</th>
                                                 <th>标题</th>
-                                                <th>来源</th>
                                                 <th>发布时间</th>
                                                 <th>操作</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @if ($news->isEmpty())
+                                            @if ($dailyPapers->isEmpty())
                                                 <tr>
                                                     <td colspan="5">无数据</td>
                                                 </tr>
                                             @else
-                                                @foreach ($news as $new)
+                                                @foreach ($dailyPapers as $dailyPaper)
                                                     <tr>
-                                                        <td>{{ $new->id }}</td>
-                                                        <td><a target="_blank" href="{{ route('news.show', $new->id) }}">{{ $new->title }}</a></td>
-                                                        <td>{{ $new->origin }}</td>
-                                                        <td>{{ $new->created_at }}</td>
+                                                        <td>{{ $dailyPaper->id }}</td>
+                                                        <td>{{ $dailyPaper->date->format('Y/m/d') }}</td>
+                                                        <td>{{ $dailyPaper->type_name }}</td>
+                                                        @if ($dailyPaper->entity_type == \App\News::class)
+                                                            <td><a target="_blank" href="{{ route('news.show', $dailyPaper->id) }}">{{ $dailyPaper->entity->title }}</a></td>
+                                                        @elseif ($dailyPaper->entity_type == \App\Topic::class)
+                                                            <td><a target="_blank" href="{{ route('topic.show', $dailyPaper->id) }}">{{ $dailyPaper->entity->title }}</a></td>
+                                                        @elseif ($dailyPaper->entity_type == \App\Activity::class)
+                                                            <td><a target="_blank" href="{{ route('activity.show', $dailyPaper->id) }}">{{ $dailyPaper->entity->title }}</a></td>
+                                                        @endif
+                                                        <td>{{ $dailyPaper->created_at }}</td>
                                                         <td>
-                                                            <a class="btn btn-xs btn-danger" onclick="destroy('{{ $new->title }}', {{ $new->id }})" title="删除"><i class="fa fa-trash-o"></i></a>
-                                                            <button {{ $new->inDailyPaper ? 'disabled' : '' }} class="btn btn-xs btn-primary" onclick="presentDailyPaper('{{ $new->title }}', {{ $new->id }})" title="转发到 Daily Paper"><i class="fa fa-send"></i></button>
+                                                            <a class="btn btn-xs btn-danger" onclick="destroy('{{ $dailyPaper->title }}', {{ $dailyPaper->id }})" title="删除"><i class="fa fa-trash-o"></i></a>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -60,7 +60,7 @@
 
                                         <!-- Pagination -->
                                         <nav id="section-pagination">
-                                            {{ $news->links() }}
+                                            {{ $dailyPapers->links() }}
                                         </nav>
                                     </div>
                                 </div>
@@ -73,24 +73,14 @@
 
         <script>
             function destroy(title, id) {
-                var message = '是否要删除 "' + title + '" 这条新闻';
+                var message = '是否要删除 "' + title + '" 这条数据';
 
                 if (confirm(message)) {
-                    var url = '{{ route('admin.news.destroy') }}';
-                    postSubmit(url, {id: id});
+                    var url = '{{ route('admin.daily-paper.destroy', ['id' => null]) }}/' + id;
+                    postSubmit(url, {
+                      _method: 'DELETE',
+                    });
                 }
-            }
-
-            function presentDailyPaper(title, id) {
-              var message = '是否要把 "' + title + '" 转发到 Daily Paper';
-
-              if (confirm(message)) {
-                var url = '{{ route('admin.daily-paper.store') }}';
-                postSubmit(url, {
-                  id: id,
-                  type: '{{ addslashes(\App\News::class) }}'
-                });
-              }
             }
         </script>
     </div>

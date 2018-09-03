@@ -16,7 +16,7 @@
   line-height: 1.4;
 }
 .modal-header .close {
-  margin-top: 4px;
+  padding-top: 1.4rem;
 }
 strong {
   font-weight: bold;
