@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\PoYangLakeCyclingApplyData;
+use EasyWeChat\Payment\Order;
 use Illuminate\Http\Request;
 use Auth;
+use EasyWeChat\Foundation\Application;
 
 class PoYangLakeCyclingController extends Controller
 {
@@ -111,12 +113,28 @@ class PoYangLakeCyclingController extends Controller
     public function payment()
     {
         $applyData = PoYangLakeCyclingApplyData::where('user_id', Auth::id())->first();
-        if ($applyData->is_payment_apply_fee && $applyData->is_payment_deposit) {
+        if ($applyData && $applyData->is_payment_apply_fee && $applyData->is_payment_deposit) {
             flash('您已完成缴费')->error();
             return redirect()->route('poyang-lake-cycling.apply-successful');
         }
 
-        return view('poyang-lake-cycling.payment');
+        $wechat = app('wechat');
+
+        $orderAttr = [
+            'trade_type'       => 'JSAPI',
+            'body'             => '报名费',
+            'detail'           => '赛事报名费用',
+            'out_trade_no'     => Auth::id(),
+            'total_fee'        => 50,
+            'openid'           => Auth::user()->wx_open_id,
+            'notify_url'       => url('/pay/notify'),
+        ];
+
+        $order = new Order($orderAttr);
+        $result = $wechat->payment->prepare($order);
+        $assign['config'] = $wechat->payment->configForJSSDKPayment($result->prepay_id);
+
+        return view('poyang-lake-cycling.payment', $assign);
     }
 
     /**

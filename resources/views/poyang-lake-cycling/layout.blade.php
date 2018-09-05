@@ -131,7 +131,7 @@
 
 
 <!-- wechat -->
-@yield('_wechat')
+@yield('wechat_payment')
 
 <!-- script -->
 @yield('script')
