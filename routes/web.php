@@ -140,5 +140,19 @@ Route::group(['prefix' => 'daily', 'middleware' => ['wechat.oauth', 'auth.wechat
 
 
 //
+// poyang lake cycling
+Route::group(['prefix' => 'poyang-lake-cycling', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+    Route::get('/', 'PoYangLakeCyclingController@index')->name('poyang-lake-cycling.index');
+
+    Route::middleware(['wechat.oauth', 'auth.wechat'])->group(function() {
+        Route::get('apply', 'PoYangLakeCyclingController@apply')->name('poyang-lake-cycling.apply');
+        Route::post('apply', 'PoYangLakeCyclingController@applyHandle')->name('poyang-lake-cycling.apply-handle');
+        Route::get('payment', 'PoYangLakeCyclingController@payment')->name('poyang-lake-cycling.payment');
+        Route::get('apply-successful', 'PoYangLakeCyclingController@applySuccessful')->name('poyang-lake-cycling.apply-successful');
+    });
+});
+
+
+//
 // web admin routes
 include_once 'web-admin.php';
