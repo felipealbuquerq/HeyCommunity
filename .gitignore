@@ -16,3 +16,4 @@ yarn-error.log
 .ngrok.*
 public/uploads
 public/bower-assets
+config/wechat-pay-cert
