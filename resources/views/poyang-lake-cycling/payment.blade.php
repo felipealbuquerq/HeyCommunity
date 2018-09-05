@@ -59,6 +59,7 @@
 <script>
     $(document).ready(function() {
       wx.ready(function() {
+        wx.config({!! $wechatJs->config([]) !!});
         wx.chooseWXPay({
           timestamp: "{{ $config['timestamp'] }}",
           nonceStr: "{{ $config['nonceStr'] }}",

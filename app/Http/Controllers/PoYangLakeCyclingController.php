@@ -132,6 +132,8 @@ class PoYangLakeCyclingController extends Controller
 
         $order = new Order($orderAttr);
         $result = $wechat->payment->prepare($order);
+
+        $assign['wechatJs'] = $wechat->js;
         $assign['config'] = $wechat->payment->configForJSSDKPayment($result->prepay_id);
 
         return view('poyang-lake-cycling.payment', $assign);
