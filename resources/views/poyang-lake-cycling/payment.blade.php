@@ -67,7 +67,11 @@
           signType: "{{ $config['signType'] }}",
           paySign: "{{ $config['paySign'] }}",
           success: function (res) {
+            console.log('success', res);
             // 支付成功后的回调函数
+          },
+          fail: function (res) {
+            console.log('fail', res);
           }
         });
       });
