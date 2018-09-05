@@ -9,11 +9,33 @@ use Auth;
 class PoYangLakeCyclingController extends Controller
 {
     /**
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (strpos($request->header('user_agent'), 'MicroMessenger') == false) {
+                return redirect()->route('poyang-lake-cycling.wechat');
+            }
+
+            return $next($request);
+        })->except(['index', 'wechat']);
+    }
+
+    /**
      * Index Page
      */
     public function index()
     {
         return view('poyang-lake-cycling.index');
+    }
+
+    /**
+     * Only In Wechat Browser Page
+     */
+    public function wechat()
+    {
+        return view('poyang-lake-cycling.wechat');
     }
 
     /**
