@@ -57,9 +57,9 @@
 @section('wechat_payment')
 <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
 <script>
-    $(document).ready(function() {
+  wx.config({!! $wechatJs->config([]) !!});
       wx.ready(function() {
-        wx.config({!! $wechatJs->config([]) !!});
+
         wx.chooseWXPay({
           timestamp: "{{ $config['timestamp'] }}",
           nonceStr: "{{ $config['nonceStr'] }}",
@@ -75,6 +75,5 @@
           }
         });
       });
-    });
 </script>
 @stop
