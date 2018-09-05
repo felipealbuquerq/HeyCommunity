@@ -125,7 +125,7 @@ class PoYangLakeCyclingController extends Controller
             'body'             => '报名费',
             'detail'           => '赛事报名费用',
             'out_trade_no'     => Auth::id(),
-            'total_fee'        => 50,
+            'total_fee'        => 5000,
             'openid'           => Auth::user()->wx_open_id,
             'notify_url'       => url('/pay/notify'),
         ];
