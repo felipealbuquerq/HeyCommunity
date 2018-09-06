@@ -15,7 +15,7 @@
         }
     </style>
     <div id="section-mainbody" class="page-news-index">
-        <div class="container pt-4">
+        <div class="container" style="margin-top:40px;">
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="h4 text-center">

@@ -9,7 +9,7 @@
 
 @section('mainBody')
     <div id="section-mainbody" class="page-news-index">
-        <div class="container pt-4">
+        <div class="container" style="margin-top:40px;">
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="h4 text-center">
@@ -17,7 +17,7 @@
                     </h1>
 
                     <p class="mt-4 text-center">
-                        恭喜<b>{{ $applyData->name }}</b>，您已成功报名 [<em>{{ \App\PoYangLakeCyclingApplyData::$groups[$applyData->group_id] }}</em>] 组
+                        恭喜<b>{{ $applyData->name }}</b>，您已成功报名 [<b>{{ \App\PoYangLakeCyclingApplyData::$groups[$applyData->group_id] }}</b>] 组
                         <br>
                         遵守赛事规则，祝您取得好成绩
                     </p>
