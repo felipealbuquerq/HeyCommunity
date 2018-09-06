@@ -149,7 +149,7 @@ Route::group(['prefix' => 'poyang-lake-cycling', 'middleware' => ['wechat.oauth'
         Route::get('apply', 'PoYangLakeCyclingController@apply')->name('poyang-lake-cycling.apply');
         Route::post('apply', 'PoYangLakeCyclingController@applyHandle')->name('poyang-lake-cycling.apply-handle');
         Route::get('payment', 'PoYangLakeCyclingController@payment')->name('poyang-lake-cycling.payment');
-        Route::get('pay-notify', 'PoYangLakeCyclingController@payNotifiy')->name('poyang-lake-cycling.pay-notify');
+        Route::get('pay-notify', 'PoYangLakeCyclingController@payNotify')->name('poyang-lake-cycling.pay-notify');
         Route::post('pay-apply-fee', 'PoYangLakeCyclingController@payApplyFee')->name('poyang-lake-cycling.pay-apply-fee');
         Route::post('pay-deposit', 'PoYangLakeCyclingController@payDeposit')->name('poyang-lake-cycling.pay-deposit');
         Route::get('apply-successful', 'PoYangLakeCyclingController@applySuccessful')->name('poyang-lake-cycling.apply-successful');
