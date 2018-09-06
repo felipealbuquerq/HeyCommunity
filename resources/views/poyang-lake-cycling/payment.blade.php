@@ -29,9 +29,16 @@
                             <p class="card-text">
                                 报名费含：竞赛保险、竞赛号码牌、竞赛号码布、纪念品；
                             </p>
-                            <button onclick="postSubmit('{{ route('poyang-lake-cycling.pay-apply-fee') }}')" class="btn btn-primary">
-                                <i class="fa fa-weixin"></i> 使用微信进行支付
-                            </button>
+
+                            @if ($applyData && $applyData->is_payment_apply_fee)
+                                <button class="btn btn-default" disabled="disabled">
+                                    已支付
+                                </button>
+                            @else
+                                <button onclick="postSubmit('{{ route('poyang-lake-cycling.pay-apply-fee') }}')" class="btn btn-primary">
+                                    <i class="fa fa-weixin"></i> 使用微信支付报名费
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -46,9 +53,16 @@
                             <p class="card-text">
                                 计时芯片押金将在赛后自动原路退回到您的微信钱包或银行卡中。
                             </p>
-                            <button onclick="postSubmit('{{ route('poyang-lake-cycling.pay-deposit') }}')" class="btn btn-primary">
-                                <i class="fa fa-weixin"></i> 使用微信进行支付
-                            </button>
+
+                            @if ($applyData && $applyData->is_payment_deposit)
+                                <button class="btn btn-default" disabled="disabled">
+                                    已支付
+                                </button>
+                            @else
+                                <button onclick="postSubmit('{{ route('poyang-lake-cycling.pay-deposit') }}')" class="btn btn-primary">
+                                    <i class="fa fa-weixin"></i> 使用微信支付押金
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -75,6 +89,7 @@
           },
           fail: function (res) {
             alert('支付失败: ' + res);
+            window.location.assign('{{ route("poyang-lake-cycling.payment") }}');
           }
         });
       });

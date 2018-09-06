@@ -118,7 +118,7 @@ class PoYangLakeCyclingController extends Controller
             return redirect()->route('poyang-lake-cycling.apply-successful');
         }
 
-        return view('poyang-lake-cycling.payment');
+        return view('poyang-lake-cycling.payment', compact('applyData'));
     }
 
     /**
@@ -147,6 +147,7 @@ class PoYangLakeCyclingController extends Controller
         $order = new Order($orderAttr);
         $result = $wechat->payment->prepare($order);
 
+        $assign['applyData'] = $applyData;
         $assign['wechatJs'] = $wechat->js;
         $assign['wechatPayConfig'] = $wechat->payment->configForJSSDKPayment($result->prepay_id);
 
@@ -179,6 +180,7 @@ class PoYangLakeCyclingController extends Controller
         $order = new Order($orderAttr);
         $result = $wechat->payment->prepare($order);
 
+        $assign['applyData'] = $applyData;
         $assign['wechatJs'] = $wechat->js;
         $assign['wechatPayConfig'] = $wechat->payment->configForJSSDKPayment($result->prepay_id);
 
