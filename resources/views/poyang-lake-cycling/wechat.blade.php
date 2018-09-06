@@ -15,10 +15,12 @@
                     <h1 class="h4 mt-4">
                         请使用微信打开该页面
                     </h1>
-                    <p class="text-muted">请使用微信扫描下方二维码进行报名或查询报名状态</p>
-                    <br>
+                    <p class="text-muted mt-2">
+                        请使用微信扫描下方二维码进行报名或查询报名状态
+                    </p>
 
-                    TODO: 生成二维码
+                    <br>
+                    <img class="rounded img-fluid" src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate(route('poyang-lake-cycling.index'))) !!} ">
                 </div>
             </div>
         </div>
