@@ -86,15 +86,18 @@
 
 <div class="container" style="margin-top:30px; margin-bottom:20px;">
     <div class="row">
-        <div class="col-sm-12 text-center">
+        <div class="col-sm-12">
             <hr>
-            <span style="color:red">♥</span> <a href="https://www.hey-ganzhou.com" target="_blank">HEY赣州</a>
-            &nbsp;&nbsp;
-            power by <a href="https://www.protobia.net" target="_blank">ProtobiaTech</a>
 
             <div>
-                联系 Email: rod@protobia.tech <br>
-                联系电话: 17600719763 <br>
+                如果您在报名过程中有任何疑问或问题，请通过以下方式向我们寻求帮助 <br>
+                17600719763 / rod@protobia.tech
+            </div>
+
+            <div class="mt-2">
+                &copy; 2018 <a href="https://www.hey-ganzhou.com" target="_blank">HEY赣州</a>
+                <span style="">♥</span> &nbsp;
+                Power by <a href="https://www.protobia.net" target="_blank">ProtobiaTech</a>
             </div>
         </div>
     </div>

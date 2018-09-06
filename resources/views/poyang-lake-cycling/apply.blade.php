@@ -13,8 +13,11 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="h4 mt-4 text-center">
-                        报名参赛 <small>(1/4)</small>
+                        填写报名信息 <small>(1/3)</small>
                     </h1>
+                    <p class="text-center">
+                        请如实填写以下报名信息，不正确的信息将会影响您的比赛和意外保险保障。
+                    </p>
 
                     <form class="mt-4" action="{{ route('poyang-lake-cycling.apply-handle') }}" method="post">
                         {{ csrf_field() }}

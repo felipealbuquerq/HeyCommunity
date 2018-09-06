@@ -116,6 +116,9 @@ class PoYangLakeCyclingController extends Controller
         if ($applyData && $applyData->is_payment_apply_fee && $applyData->is_payment_deposit) {
             flash('您已完成缴费')->error();
             return redirect()->route('poyang-lake-cycling.apply-successful');
+        } elseif (!$applyData) {
+            flash('请先提交报名信息')->error();
+            return redirect()->route('poyang-lake-cycling.apply');
         }
 
         return view('poyang-lake-cycling.payment', compact('applyData'));
@@ -230,6 +233,12 @@ class PoYangLakeCyclingController extends Controller
      */
     public function applySuccessful()
     {
-        return view('poyang-lake-cycling.apply-successful');
+        $applyData = PoYangLakeCyclingApplyData::where('user_id', Auth::id())->first();
+
+        if ($applyData && $applyData->is_payment_deposit && $applyData->is_payment_apply_fee) {
+            return view('poyang-lake-cycling.apply-successful', compact('applyData'));
+        } else {
+            return redirect()->route('poyang-lake-cycling.index');
+        }
     }
 }

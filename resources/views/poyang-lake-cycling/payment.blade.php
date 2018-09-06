@@ -13,21 +13,23 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="h4 mt-4 text-center">
-                        缴费 <small>(2/4)</small>
+                        缴纳报名费和押金 <small>(2/3)</small>
                     </h1>
-                    <br>
-                    <br>
+                    <p class="text-center">
+                        使用微信支付报名费和计时芯片押金，合计 150 元。 <br>
+                        缴费后可能稍有延迟，请稍等片刻后<a href="{{ route('poyang-lake-cycling.payment') }}">刷新页面</a>，如 10 分钟后<a href="{{ route('poyang-lake-cycling.payment') }}">刷新页面</a>仍未显示已支付请联系我们。
+                    </p>
                 </div>
 
                 <div class="col-sm-4 offset-sm-2">
-                    <div class="card">
+                    <div class="card mt-4">
                         <div class="card-header">
                             报名费
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">报名费 50 元</h5>
                             <p class="card-text">
-                                报名费含：竞赛保险、竞赛号码牌、竞赛号码布、纪念品；
+                                报名费含：竞赛保险、竞赛号码牌、竞赛号码布、纪念品。
                             </p>
 
                             @if ($applyData && $applyData->is_payment_apply_fee)
@@ -44,7 +46,7 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <div class="card">
+                    <div class="card mt-4">
                         <div class="card-header">
                             计时芯片押金
                         </div>
