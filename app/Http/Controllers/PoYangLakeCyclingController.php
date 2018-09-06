@@ -6,7 +6,7 @@ use App\PoYangLakeCyclingApplyData;
 use EasyWeChat\Payment\Order;
 use Illuminate\Http\Request;
 use Auth;
-use EasyWeChat\Foundation\Application;
+use Log;
 
 class PoYangLakeCyclingController extends Controller
 {
@@ -122,6 +122,34 @@ class PoYangLakeCyclingController extends Controller
     }
 
     /**
+     * Pay Notify
+     */
+    public function payNotify(Request $request)
+    {
+        $this->validate($request, [
+            'user_id'       =>  'required|integer',
+            'type'          =>  'required|string',
+        ]);
+
+        Log::debug('Wechat Pay Debug: ', ['request' => $request]);
+        $app = app('wechat');
+        $response = $app->payment->handleNotify(function($notify, $successful){
+            if ($successful) {
+                $notifyData = json_decode($notify, true);
+                Log::debug('Wechat Pay Debug: ', ['notifyData' => $notifyData]);
+
+                // TODO change data
+            }
+
+            Log::debug('Wechat Pay Debug: ', ['notify' => $notify]);
+            Log::debug('Wechat Pay Debug: ', ['notify' => $successful]);
+        });
+
+        return $response;
+
+    }
+
+    /**
      * Pay Apply Fee
      */
     public function payApplyFee()
@@ -141,7 +169,7 @@ class PoYangLakeCyclingController extends Controller
             'out_trade_no'     => 'PLC-APPLY-FEE' . '-U' . Auth::id(),
             'total_fee'        => PoYangLakeCyclingApplyData::APPLY_FEE_NUMBER,
             'openid'           => Auth::user()->wx_open_id,
-            'notify_url'       => url('/pay/notify'),
+            'notify_url'       => route('poyang-lake-cycling.pay-notify', ['user_id' => Auth::id(), 'type' => 'apply_fee']),
         ];
 
         $order = new Order($orderAttr);
@@ -174,7 +202,7 @@ class PoYangLakeCyclingController extends Controller
             'out_trade_no'     => 'PLC-DEPOSIT' . '-U' . Auth::id(),
             'total_fee'        => PoYangLakeCyclingApplyData::DEPOSIT_NUMBER,
             'openid'           => Auth::user()->wx_open_id,
-            'notify_url'       => url('/pay/notify'),
+            'notify_url'       => route('poyang-lake-cycling.pay-notify', ['user_id' => Auth::id(), 'type' => 'deposit']),
         ];
 
         $order = new Order($orderAttr);
