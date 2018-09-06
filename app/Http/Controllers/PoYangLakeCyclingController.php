@@ -122,10 +122,10 @@ class PoYangLakeCyclingController extends Controller
 
         $orderAttr = [
             'trade_type'       => 'JSAPI',
-            'body'             => '报名费',
+            'body'             => '阳明湖第四届业余自行车邀请赛报名费',
             'detail'           => '赛事报名费用',
-            'out_trade_no'     => Auth::id(),
-            'total_fee'        => 5000,
+            'out_trade_no'     => date('Y-m-d') . '-U' . Auth::id() . '-' . time(),
+            'total_fee'        => 1,
             'openid'           => Auth::user()->wx_open_id,
             'notify_url'       => url('/pay/notify'),
         ];
