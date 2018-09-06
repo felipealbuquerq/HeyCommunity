@@ -21,7 +21,7 @@ class PoYangLakeCyclingController extends Controller
             }
 
             return $next($request);
-        })->except(['index', 'wechat']);
+        })->except(['index', 'wechat', 'payNotify']);
     }
 
     /**
@@ -126,11 +126,6 @@ class PoYangLakeCyclingController extends Controller
      */
     public function payNotify(Request $request)
     {
-        $this->validate($request, [
-            'user_id'       =>  'required|integer',
-            'type'          =>  'required|string',
-        ]);
-
         Log::debug('Wechat Pay Debug: ', ['request' => $request]);
         $app = app('wechat');
         $response = $app->payment->handleNotify(function($notify, $successful){
