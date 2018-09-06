@@ -129,7 +129,6 @@ class PoYangLakeCyclingController extends Controller
         $applyData = PoYangLakeCyclingApplyData::where('user_id', Auth::id())->first();
         if ($applyData && $applyData->is_payment_apply_fee) {
             flash('您已缴纳该费用，请不要重复缴费')->error();
-
             return redirect()->route('poyang-lake-cycling.payment');
         }
 
@@ -141,6 +140,38 @@ class PoYangLakeCyclingController extends Controller
             'detail'           => '赛事报名费用',
             'out_trade_no'     => 'PLC-APPLY-FEE' . '-U' . Auth::id(),
             'total_fee'        => PoYangLakeCyclingApplyData::APPLY_FEE_NUMBER,
+            'openid'           => Auth::user()->wx_open_id,
+            'notify_url'       => url('/pay/notify'),
+        ];
+
+        $order = new Order($orderAttr);
+        $result = $wechat->payment->prepare($order);
+
+        $assign['wechatJs'] = $wechat->js;
+        $assign['wechatPayConfig'] = $wechat->payment->configForJSSDKPayment($result->prepay_id);
+
+        return view('poyang-lake-cycling.payment', $assign);
+    }
+
+    /**
+     * Pay Apply Fee
+     */
+    public function payDeposit()
+    {
+        $applyData = PoYangLakeCyclingApplyData::where('user_id', Auth::id())->first();
+        if ($applyData && $applyData->is_payment_deposit) {
+            flash('您已缴纳该费用，请不要重复缴费')->error();
+            return redirect()->route('poyang-lake-cycling.payment');
+        }
+
+        $wechat = app('wechat');
+
+        $orderAttr = [
+            'trade_type'       => 'JSAPI',
+            'body'             => '阳明湖第四届业余自行车邀请赛押金',
+            'detail'           => '计时芯片押金',
+            'out_trade_no'     => 'PLC-DEPOSIT' . '-U' . Auth::id(),
+            'total_fee'        => PoYangLakeCyclingApplyData::DEPOSIT_NUMBER,
             'openid'           => Auth::user()->wx_open_id,
             'notify_url'       => url('/pay/notify'),
         ];

@@ -29,7 +29,9 @@
                             <p class="card-text">
                                 报名费含：竞赛保险、竞赛号码牌、竞赛号码布、纪念品；
                             </p>
-                            <button onclick="postSubmit('{{ route('poyang-lake-cycling.pay-apply-fee') }}')" class="btn btn-primary"><i class="fa fa-weixin"></i> 使用微信进行支付</button>
+                            <button onclick="postSubmit('{{ route('poyang-lake-cycling.pay-apply-fee') }}')" class="btn btn-primary">
+                                <i class="fa fa-weixin"></i> 使用微信进行支付
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -44,7 +46,9 @@
                             <p class="card-text">
                                 计时芯片押金将在赛后自动原路退回到您的微信钱包或银行卡中。
                             </p>
-                            <a href="#" class="btn btn-primary"><i class="fa fa-weixin"></i> 使用微信进行支付</a>
+                            <button onclick="postSubmit('{{ route('poyang-lake-cycling.pay-deposit') }}')" class="btn btn-primary">
+                                <i class="fa fa-weixin"></i> 使用微信进行支付
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -52,7 +56,6 @@
         </div>
     </div>
 @stop
-
 
 @section('wechat_payment')
 @if (isset($wechatJs) && isset($wechatPayConfig))
@@ -68,7 +71,7 @@
           signType: "{{ $wechatPayConfig['signType'] }}",
           paySign: "{{ $wechatPayConfig['paySign'] }}",
           success: function (res) {
-            window.location.reload();
+            window.location.assign('{{ route("poyang-lake-cycling.payment") }}');
           },
           fail: function (res) {
             alert('支付失败: ' + res);
