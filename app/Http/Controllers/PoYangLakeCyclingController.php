@@ -133,7 +133,20 @@ class PoYangLakeCyclingController extends Controller
                 $notifyData = json_decode($notify, true);
                 Log::debug('Wechat Pay Debug: ', ['notifyData' => $notifyData]);
 
-                // TODO change data
+                // change data
+                $applyData = PoYangLakeCyclingApplyData::whereHas('user', function ($query) use ($notifyData) {
+                    $query->where('wx_open_id', $notifyData['openid']);
+                })->first();
+
+                if ($applyData) {
+                    if (str_is('*APPLY_FEE*', $notifyData['out_trade_no'])) {
+                        $applyData->is_payment_apply_fee = true;
+                    } elseif (str_is('*DEPOSIT*', $notifyData['out_trade_no'])) {
+                        $applyData->is_payment_deposit = true;
+                    }
+
+                    $applyData->save();
+                }
             }
 
             Log::debug('Wechat Pay Debug: ', ['notify' => $notify]);

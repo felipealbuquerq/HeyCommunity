@@ -33,4 +33,12 @@ class PoYangLakeCyclingApplyData extends BaseModel
         1       =>  '审核通过',
         2       =>  '审核未通过',
     ];
+
+    /**
+     * Related User
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
