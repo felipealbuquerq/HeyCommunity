@@ -139,7 +139,7 @@ class PoYangLakeCyclingController extends Controller
                 })->first();
 
                 if ($applyData) {
-                    if (str_is('*APPLY_FEE*', $notifyData['out_trade_no'])) {
+                    if (str_is('*APPLY-FEE*', $notifyData['out_trade_no'])) {
                         $applyData->is_payment_apply_fee = true;
                     } elseif (str_is('*DEPOSIT*', $notifyData['out_trade_no'])) {
                         $applyData->is_payment_deposit = true;
@@ -174,8 +174,8 @@ class PoYangLakeCyclingController extends Controller
             'trade_type'       => 'JSAPI',
             'body'             => '阳明湖第四届业余自行车邀请赛报名费',
             'detail'           => '赛事报名费用',
-            // 'out_trade_no'     => 'PLC-APPLY-FEE' . '-U' . Auth::id(),
-            'out_trade_no'     => 'PLC-APPLY-FEE' . '-U' . Auth::id() . '-' . time(),
+            'out_trade_no'     => 'PLC-APPLY-FEE' . '-U' . Auth::id(),
+            // 'out_trade_no'     => 'PLC-APPLY-FEE' . '-U' . Auth::id() . '-' . time(),
             'total_fee'        => PoYangLakeCyclingApplyData::APPLY_FEE_NUMBER,
             'openid'           => Auth::user()->wx_open_id,
             'notify_url'       => route('poyang-lake-cycling.pay-notify'),
@@ -208,8 +208,8 @@ class PoYangLakeCyclingController extends Controller
             'trade_type'       => 'JSAPI',
             'body'             => '阳明湖第四届业余自行车邀请赛押金',
             'detail'           => '计时芯片押金',
-            // 'out_trade_no'     => 'PLC-DEPOSIT' . '-U' . Auth::id(),
-            'out_trade_no'     => 'PLC-DEPOSIT' . '-U' . Auth::id() . '-' . time(),
+            'out_trade_no'     => 'PLC-DEPOSIT' . '-U' . Auth::id(),
+            // 'out_trade_no'     => 'PLC-DEPOSIT' . '-U' . Auth::id() . '-' . time(),
             'total_fee'        => PoYangLakeCyclingApplyData::DEPOSIT_NUMBER,
             'openid'           => Auth::user()->wx_open_id,
             'notify_url'       => route('poyang-lake-cycling.pay-notify'),
