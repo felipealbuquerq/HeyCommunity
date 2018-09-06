@@ -170,7 +170,7 @@ class PoYangLakeCyclingController extends Controller
             'out_trade_no'     => 'PLC-APPLY-FEE' . '-U' . Auth::id() . '-' . time(),
             'total_fee'        => PoYangLakeCyclingApplyData::APPLY_FEE_NUMBER,
             'openid'           => Auth::user()->wx_open_id,
-            'notify_url'       => route('poyang-lake-cycling.pay-notify', ['user_id' => Auth::id(), 'type' => 'apply_fee']),
+            'notify_url'       => route('poyang-lake-cycling.pay-notify'),
         ];
 
         $order = new Order($orderAttr);
@@ -204,7 +204,7 @@ class PoYangLakeCyclingController extends Controller
             'out_trade_no'     => 'PLC-DEPOSIT' . '-U' . Auth::id() . '-' . time(),
             'total_fee'        => PoYangLakeCyclingApplyData::DEPOSIT_NUMBER,
             'openid'           => Auth::user()->wx_open_id,
-            'notify_url'       => route('poyang-lake-cycling.pay-notify', ['user_id' => Auth::id(), 'type' => 'deposit']),
+            'notify_url'       => route('poyang-lake-cycling.pay-notify'),
         ];
 
         $order = new Order($orderAttr);
