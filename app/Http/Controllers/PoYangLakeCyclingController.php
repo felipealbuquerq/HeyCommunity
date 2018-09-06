@@ -21,7 +21,7 @@ class PoYangLakeCyclingController extends Controller
             }
 
             return $next($request);
-        })->except(['index', 'wechat', 'payNotify']);
+        })->except(['index', 'wechat', 'payNotify', 'applyData']);
     }
 
     /**
@@ -30,6 +30,21 @@ class PoYangLakeCyclingController extends Controller
     public function index()
     {
         return view('poyang-lake-cycling.index');
+    }
+
+    /**
+     * Apply Data
+     */
+    public function applyData()
+    {
+        $user = Auth::user();
+        if (!$user->is_super_admin) {
+            abort(403, '无权访问此页面');
+        }
+
+        $applyData = PoYangLakeCyclingApplyData::latest()->paginate();
+
+        return view('poyang-lake-cycling.apply-data', compact('applyData'));
     }
 
     /**
