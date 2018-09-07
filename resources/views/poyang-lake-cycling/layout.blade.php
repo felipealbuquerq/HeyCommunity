@@ -39,7 +39,7 @@
 <!-- Nav -->
 <nav id="section-mainNav" class="navbar navbar-expand-md fixed-top navbar-dark bg-primary app-navbar">
     <a class="navbar-brand" href="{{ route('poyang-lake-cycling.index') }}">
-        2018环鄱赛（上犹站）业余自行车赛
+        2018环鄱赛上犹站业余自行车赛
     </a>
 
     <button class="navbar-toggler navbar-toggler-right d-md-none"

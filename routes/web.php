@@ -143,6 +143,7 @@ Route::group(['prefix' => 'daily', 'middleware' => ['wechat.oauth', 'auth.wechat
 // poyang lake cycling
 Route::group(['prefix' => 'poyang-lake-cycling'], function () {
     Route::get('/', 'PoYangLakeCyclingController@index')->name('poyang-lake-cycling.index');
+    Route::get('regulation', 'PoYangLakeCyclingController@index')->name('poyang-lake-cycling.regulation');
     Route::get('apply-data', 'PoYangLakeCyclingController@applyData')->name('poyang-lake-cycling.apply-data');
     Route::get('wechat', 'PoYangLakeCyclingController@wechat')->name('poyang-lake-cycling.wechat');
     Route::any('pay-notify', 'PoYangLakeCyclingController@payNotify')->name('poyang-lake-cycling.pay-notify');
