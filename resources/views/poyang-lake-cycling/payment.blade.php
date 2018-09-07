@@ -16,7 +16,7 @@
                         缴纳报名费和押金 <small>(2/3)</small>
                     </h1>
                     <p class="text-center">
-                        使用微信支付报名费和计时芯片押金，合计 150 元。 <br>
+                        使用微信支付报名费 50 元，
                         缴费后可能稍有延迟，请稍等片刻后<a href="{{ route('poyang-lake-cycling.payment') }}">刷新页面</a>，如 10 分钟后<a href="{{ route('poyang-lake-cycling.payment') }}">刷新页面</a>仍未显示已支付请联系我们。
                     </p>
                 </div>
@@ -53,18 +53,8 @@
                         <div class="card-body">
                             <h5 class="card-title">计时芯片押金 100 元</h5>
                             <p class="card-text">
-                                计时芯片押金将在赛后自动原路退回到您的微信钱包或银行卡中。
+                                所有参赛选手在报到领取号码布、号码牌时，需领取计时芯片，并缴纳芯片押金100元，赛后凭芯片退还押金
                             </p>
-
-                            @if ($applyData && $applyData->is_payment_deposit)
-                                <button class="btn btn-default" disabled="disabled">
-                                    已支付
-                                </button>
-                            @else
-                                <button onclick="postSubmit('{{ route('poyang-lake-cycling.pay-deposit') }}')" class="btn btn-primary">
-                                    <i class="fa fa-weixin"></i> 使用微信支付押金
-                                </button>
-                            @endif
                         </div>
                     </div>
                 </div>

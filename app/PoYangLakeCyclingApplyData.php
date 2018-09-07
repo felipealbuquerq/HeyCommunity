@@ -5,7 +5,8 @@ namespace App;
 class PoYangLakeCyclingApplyData extends BaseModel
 {
     const APPLY_FEE_NUMBER = 1;
-    const DEPOSIT_NUMBER = 2;
+    // const APPLY_FEE_NUMBER = 5000;
+    const DEPOSIT_NUMBER = 15000;
 
     /**
      * Genders
