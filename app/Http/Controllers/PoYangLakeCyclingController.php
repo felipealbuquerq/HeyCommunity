@@ -21,7 +21,7 @@ class PoYangLakeCyclingController extends Controller
             }
 
             return $next($request);
-        })->except(['index', 'wechat', 'payNotify', 'applyData']);
+        })->except(['index', 'wechat', 'payNotify', 'applyData', 'regulation']);
     }
 
     /**
@@ -30,6 +30,14 @@ class PoYangLakeCyclingController extends Controller
     public function index()
     {
         return view('poyang-lake-cycling.index');
+    }
+
+    /**
+     * Regulation Page
+     */
+    public function regulation()
+    {
+        return view('poyang-lake-cycling.regulation');
     }
 
     /**
