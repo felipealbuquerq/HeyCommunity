@@ -84,8 +84,6 @@
 
                                 <div class="text-muted">
                                     请按性别/年龄/车型选择正确的组别 <br>
-                                    青年 xxxxx 壮年 xxx <br>
-                                    女性仅能报业余山地女子组
                                 </div>
                                 <div class="text-danger">{{ $errors->first('group_id') }}</div>
                             </div>
