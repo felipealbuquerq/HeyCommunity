@@ -47,7 +47,7 @@
                     </table>
 
                     <div>
-                        {{ $topics->links() }}
+                        {{ $applyData->links() }}
                     </div>
                 </div>
             </div>
