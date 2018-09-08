@@ -46,7 +46,7 @@ class PoYangLakeCyclingController extends Controller
     public function applyData()
     {
         $user = Auth::user();
-        if (!$user->is_super_admin) {
+        if (!$user && !$user->is_super_admin) {
             abort(403, '无权访问此页面');
         }
 

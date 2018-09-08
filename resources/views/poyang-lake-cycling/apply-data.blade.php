@@ -45,6 +45,10 @@
                             </tr>
                         @endforeach
                     </table>
+
+                    <div>
+                        {{ $topics->links() }}
+                    </div>
                 </div>
             </div>
         </div>
