@@ -10,11 +10,16 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     });
 
     //
+    // User
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', 'UserController@index')->name('admin.user.index');
+    });
+
+    //
     // News
     Route::group(['prefix' => 'news'], function () {
         Route::get('/', 'NewsController@index')->name('admin.news.index');
         Route::post('destroy', 'NewsController@destroy')->name('admin.news.destroy');
-
     });
 
     //
@@ -39,6 +44,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
         Route::get('/', 'ActivityController@index')->name('admin.activity.index');
         Route::post('destroy', 'ActivityController@destroy')->name('admin.activity.destroy');
     });
+
+    //
+    // Daily Paper
+    Route::resource('daily-paper', 'DailyPaperController', ['as' => 'admin']);
 
     //
     // System

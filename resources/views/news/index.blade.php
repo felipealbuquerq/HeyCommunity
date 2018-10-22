@@ -60,7 +60,9 @@
     <script src="{{ asset('bower-assets/masonry-layout/dist/masonry.pkgd.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-          $('.items-masonry').masonry({itemSelector: '.item-masonry'})
+          setTimeout(function() {
+            $('.items-masonry').masonry({itemSelector: '.item-masonry'})
+          }, 10);
         });
     </script>
 @stop

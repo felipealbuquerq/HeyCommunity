@@ -62,7 +62,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6 hide">
             <div class="panel panel-primary">
                 <div class="panel-body">
                     <h4 class="m-t-0">Revenue</h4>
@@ -113,7 +113,13 @@
                         </li>
                     </ul>
 
-                    <div id="morris-area-example" style="height: 300px"></div>
+                    <script>
+                        $(document).ready(function() {
+                          window.userTrendData = JSON.parse('{!! $userTrendData !!}');
+                          $.Dashboard.createAreaChart('morris-area-user-trend', 0, 0, window.userTrendData, 'y', ['a', 'b'], ['本周', '上周'], ['#3292e0', '#bdbdbd']);
+                        });
+                    </script>
+                    <div id="morris-area-user-trend" style="height: 300px"></div>
                 </div>
             </div>
         </div>
@@ -121,7 +127,7 @@
     </div>
     <!-- end row -->
 
-    <div class="row">
+    <div class="row hide">
         <div class="col-md-4">
             <div class="panel">
                 <div class="panel-body">

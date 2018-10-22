@@ -23,7 +23,10 @@
 
     <!-- Pagination -->
     <nav id="section-pagination">
-        {{ $activities->links() }}
+        {{ $activities->appends([
+            'category_id'   =>  request('category_id'),
+            'area_id'       =>  request('area_id'),
+        ])->links() }}
     </nav>
 @else
     <div class="card">

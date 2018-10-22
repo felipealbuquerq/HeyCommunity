@@ -131,5 +131,12 @@ Route::group(['prefix' => 'activity', 'middleware' => ['wechat.oauth', 'auth.wec
 
 
 //
+// Activity
+Route::group(['prefix' => 'daily', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+    Route::get('/', 'DailyPaperController@index')->name('daily.index');
+});
+
+
+//
 // web admin routes
 include_once 'web-admin.php';

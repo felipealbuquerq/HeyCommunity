@@ -1,9 +1,9 @@
 @extends('admin.layouts.default')
 
 @section('search')
-    <form class="navbar-form pull-left" role="search" action="{{ route('admin.news.index') }}">
+    <form class="navbar-form pull-left" role="search" action="{{ route('admin.user.index') }}">
         <div class="form-group">
-            <input type="hidden" name="type" value="news">
+            <input type="hidden" name="type" value="user">
             <input type="text" name="q" class="form-control search-bar" placeholder="搜索" value="{{ Request::get('q') }}">
         </div>
         <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
@@ -13,7 +13,7 @@
 @section('mainBody')
     <div class="">
         <div class="page-header-title">
-            <h4 class="page-title">新闻列表</h4>
+            <h4 class="page-title">用户列表</h4>
         </div>
     </div>
 
@@ -30,28 +30,35 @@
                                             <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>标题</th>
-                                                <th>来源</th>
-                                                <th>发布时间</th>
+                                                <td>头像</td>
+                                                <th>昵称 / 签名</th>
+                                                <th>性别</th>
+                                                <th>注册时间</th>
                                                 <th>操作</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @if ($news->isEmpty())
+                                            @if ($users->isEmpty())
                                                 <tr>
                                                     <td colspan="5">无数据</td>
                                                 </tr>
                                             @else
-                                                @foreach ($news as $new)
+                                                @foreach ($users as $user)
                                                     <tr>
-                                                        <td>{{ $new->id }}</td>
-                                                        <td><a target="_blank" href="{{ route('news.show', $new->id) }}">{{ $new->title }}</a></td>
-                                                        <td>{{ $new->origin }}</td>
-                                                        <td>{{ $new->created_at }}</td>
+                                                        <td>{{ $user->id }}</td>
+                                                        <td><img style="height:40px;" src="{{ $user->avatar }}"></td>
                                                         <td>
-                                                            <a class="btn btn-xs btn-danger" onclick="destroy('{{ $new->title }}', {{ $new->id }})" title="删除"><i class="fa fa-trash-o"></i></a>
-                                                            <button {{ $new->inDailyPaper ? 'disabled' : '' }} class="btn btn-xs btn-primary" onclick="presentDailyPaper('{{ $new->title }}', {{ $new->id }})" title="转发到 Daily Paper"><i class="fa fa-send"></i></button>
+                                                            {{ $user->nickname }}
+                                                            <br>
+                                                            {{ $user->bio }}
                                                         </td>
+                                                        @if ($user->gender)
+                                                            <td>{{ $user->gender == 1 ? '男' : '女' }}</td>
+                                                        @else
+                                                            <td>-</td>
+                                                        @endif
+                                                        <td>{{ $user->created_at }}</td>
+                                                        <td>-</td>
                                                     </tr>
                                                 @endforeach
                                             @endif
@@ -60,7 +67,7 @@
 
                                         <!-- Pagination -->
                                         <nav id="section-pagination">
-                                            {{ $news->links() }}
+                                            {{ $users->links() }}
                                         </nav>
                                     </div>
                                 </div>
@@ -70,28 +77,5 @@
                 </div>
             </div>
         </div>
-
-        <script>
-            function destroy(title, id) {
-                var message = '是否要删除 "' + title + '" 这条新闻';
-
-                if (confirm(message)) {
-                    var url = '{{ route('admin.news.destroy') }}';
-                    postSubmit(url, {id: id});
-                }
-            }
-
-            function presentDailyPaper(title, id) {
-              var message = '是否要把 "' + title + '" 转发到 Daily Paper';
-
-              if (confirm(message)) {
-                var url = '{{ route('admin.daily-paper.store') }}';
-                postSubmit(url, {
-                  id: id,
-                  type: '{{ addslashes(\App\News::class) }}'
-                });
-              }
-            }
-        </script>
     </div>
 @stop

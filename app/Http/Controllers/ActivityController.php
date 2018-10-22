@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ActivityArea;
+use App\ActivityCategory;
+use App\Http\Requests\ActivityRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Activity;
 use Auth;
@@ -11,12 +15,24 @@ class ActivityController extends Controller
     /**
      * Activity List Page
      */
-    public function index()
+    public function index(Request $request)
     {
-        $exhibits = Activity::inRandomOrder()->limit(3)->get();
-        $activities = Activity::latest()->paginate(12);
+        $this->validate($request, [
+            'category_id'       =>  'integer',
+            'area_id'           =>  'integer',
+        ]);
 
-        return view('activity.index', compact('activities', 'exhibits'));
+        $categories = ActivityCategory::sortOrder()->get();
+        $areas = ActivityArea::sortOrder()->get();
+
+        $exhibits = Activity::inRandomOrder()->limit(3)->get();
+
+        $activitiesQuery = Activity::latest();
+        if ($request->category_id) $activitiesQuery->where('category_id', $request->category_id);
+        if ($request->area_id) $activitiesQuery->where('area_id', $request->area_id);
+        $activities = $activitiesQuery->paginate(12);
+
+        return view('activity.index', compact('activities', 'exhibits', 'categories', 'areas'));
     }
 
     /**
@@ -40,26 +56,17 @@ class ActivityController extends Controller
     /**
      * Store Activity
      */
-    public function store(Request $request)
+    public function store(ActivityRequest $request)
     {
-        $this->validate($request, [
-            'title'         =>  'required|string',
-            'intro'         =>  'required|string',
-            'content'       =>  'required|string',
-            'avatar'        =>  'required|image',
-            'start_time'    =>  'required|string',
-            'end_time'      =>  'required|string',
-            'local'         =>  'required|string',
-            'redirect_url'  =>  'required|string',
-        ]);
-
         $avatarUrl  = $request->file('avatar')->store('uploads/activity/avatar');
 
         if ($avatarUrl) {
             $activity = new Activity();
             $activity->user_id = Auth::id();
             $activity->avatar = $avatarUrl;
-            $activity->fill($request->only(['title', 'intro', 'content', 'start_time', 'end_time', 'local', 'redirect_url']));
+            $activity->fill($request->only(['title', 'intro', 'content', 'category_id', 'area_id', 'start_time', 'end_time', 'local', 'redirect_url']));
+            $activity->start_time = Carbon::parse($request->start_time);
+            $activity->end_time = Carbon::parse($request->end_time);
 
             if ($activity->save()) {
                 return redirect()->route('activity.show', $activity->id);
@@ -83,22 +90,13 @@ class ActivityController extends Controller
     /**
      * Update Activity
      */
-    public function update(Request $request, $id)
+    public function update(ActivityRequest $request, $id)
     {
-        $this->validate($request, [
-            'title'         =>  'required|string',
-            'intro'         =>  'required|string',
-            'content'       =>  'required|string',
-            'avatar'        =>  'image',
-            'start_time'    =>  'required|string',
-            'end_time'      =>  'required|string',
-            'local'         =>  'required|string',
-            'redirect_url'  =>  'required|string',
-        ]);
-
         $activity = Activity::findOrFail($id);
 
-        $activity->fill($request->only(['title', 'intro', 'content', 'start_time', 'end_time', 'local', 'redirect_url']));
+        $activity->fill($request->only(['title', 'intro', 'content', 'category_id', 'area_id', 'start_time', 'end_time', 'local', 'redirect_url']));
+        $activity->start_time = Carbon::parse($request->start_time);
+        $activity->end_time = Carbon::parse($request->end_time);
 
         if ($request->avatar) {
             $avatarUrl  = $request->file('avatar')->store('uploads/activity/avatar');
