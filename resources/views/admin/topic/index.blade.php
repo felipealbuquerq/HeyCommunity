@@ -1,5 +1,15 @@
 @extends('admin.layouts.default')
 
+@section('search')
+    <form class="navbar-form pull-left" role="search" action="{{ route('admin.topic.index') }}">
+        <div class="form-group">
+            <input type="hidden" name="type" value="topics">
+            <input type="text" name="q" class="form-control search-bar" placeholder="搜索" value="{{ Request::get('q') }}">
+        </div>
+        <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
+    </form>
+@endsection
+
 @section('mainBody')
 <div class="">
     <div class="page-header-title">
@@ -16,7 +26,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="table-responsive">
-                                    <table class="table">
+                                    <table class="table" id="section-datatable">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -24,13 +34,19 @@
                                                 <th>作者</th>
                                                 <th>TU TB F C R</th>
                                                 <th>发布时间</th>
+                                                <th>操作</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($topics as $topic)
+                                        @if ($topics->isEmpty())
+                                            <tr>
+                                                <td colspan="5">无数据</td>
+                                            </tr>
+                                        @else
+                                            @foreach ($topics as $topic)
                                                 <tr>
                                                     <td>{{ $topic->id }}</td>
-                                                    <td><a target="_blank" href="{{ route('topic.show', $topic->id) }}">{{ $topic->title }}</a></td>
+                                                    <td><a target="_blank" href="{{ route('topic.show', $topic->id) }}">{{ str_limit($topic->title, 45) }}</a></td>
                                                     <td>{{ $topic->author->nickname }}</td>
                                                     <td>
                                                         {{ $topic->thumb_up_num }}
@@ -44,8 +60,13 @@
                                                         {{ $topic->read_num }}
                                                     </td>
                                                     <td>{{ $topic->created_at }}</td>
+                                                    <td>
+                                                        <a class="btn btn-xs btn-danger" onclick="destroy('{{ $topic->title }}', {{ $topic->id }})" title="删除"><i class="fa fa-trash-o"></i></a>
+                                                        <button {{ $topic->inDailyPaper ? 'disabled' : '' }} class="btn btn-xs btn-primary" onclick="presentDailyPaper('{{ $topic->title }}', {{ $topic->id }})" title="转发到 Daily Paper"><i class="fa fa-send"></i></button>
+                                                    </td>
                                                 </tr>
                                             @endforeach
+                                        @endif
                                         </tbody>
                                     </table>
 
@@ -60,6 +81,29 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            function destroy(title,id) {
+                var message = '是否要删除 "' + title + '" 这个话题';
+
+                if (confirm(message)) {
+                    var url = '{{ route('admin.topic.destroy') }}';
+                    postSubmit(url, {id: id});
+                }
+            }
+
+            function presentDailyPaper(title, id) {
+              var message = '是否要把 "' + title + '" 转发到 Daily Paper';
+
+              if (confirm(message)) {
+                var url = '{{ route('admin.daily-paper.store') }}';
+                postSubmit(url, {
+                  id: id,
+                  type: '{{ addslashes(\App\Topic::class) }}'
+                });
+              }
+            }
+        </script>
     </div>
 </div>
 @stop
