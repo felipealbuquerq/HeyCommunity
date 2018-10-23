@@ -21,7 +21,7 @@
     <link href="{{ asset('assets/bootstrap-application-theme/css/toolkit.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bootstrap-application-theme/css/application.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/bootstrap-application-theme/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}?v=180104"></script>
 
     <style>
         /* note: this is a hack for ios iframe for bootstrap themes shopify page */
@@ -70,6 +70,9 @@
                 <a class="nav-link {{ setNavActive('/') }}" href="{{ url('/') }}">首页</a>
             </li>
             -->
+            <li class="nav-item {{ setNavActive('daily*') }}">
+                <a class="nav-link" href="{{ route('daily.index') }}">今日</a>
+            </li>
             <li class="nav-item {{ setNavActive('news*') }}">
                 <a class="nav-link" href="{{ route('news.index') }}">新闻</a>
             </li>
@@ -192,5 +195,10 @@
 
 <!-- Analytic code -->
 {!! $system->site_analytic_code !!}
+
+<!-- CNZZ tongji -->
+<div style="display:none">
+<script src="https://s19.cnzz.com/z_stat.php?id=1273106497&web_id=1273106497" language="JavaScript"></script>
+</div>
 </body>
 </html>

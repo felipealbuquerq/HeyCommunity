@@ -225,7 +225,7 @@ body {
   font-size: 20px;
   color: #fff;
   background-color: #3097D1;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#216a94), to(#3097D1));
+  background-image: -webkit-linear-gradient(top, #216a94, #3097D1);
   background-image: linear-gradient(to bottom, #216a94, #3097D1); }
   .docs-header h1 {
     margin-bottom: 5px;
@@ -409,5 +409,4 @@ body {
   max-width: 500px; }
 
 .docs-example .modal-content {
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important; }
+  box-shadow: none !important; }

@@ -64,7 +64,10 @@
                                                             {{ $activity->read_num }}
                                                         </td>
                                                         <td>{{ $activity->created_at }}</td>
-                                                        <td><a class="btn btn-xs btn-danger" onclick="activityDestroy('{{ $activity->title }}', {{ $activity->id }})" title="删除"><i class="fa fa-trash-o"></i></a></td>
+                                                        <td>
+                                                            <a class="btn btn-xs btn-danger" onclick="destroy('{{ $activity->title }}', {{ $activity->id }})" title="删除"><i class="fa fa-trash-o"></i></a>
+                                                            <button {{ $activity->inDailyPaper ? 'disabled' : '' }} class="btn btn-xs btn-primary" onclick="presentDailyPaper('{{ $activity->title }}', {{ $activity->id }})" title="转发到 Daily Paper"><i class="fa fa-send"></i></button>
+                                                        </td>
                                                     </tr>
                                                 @endforeach
                                                 @endif
@@ -85,13 +88,25 @@
         </div>
 
         <script>
-            function activityDestroy(title,id) {
+            function destroy(title,id) {
                 var message = '是否要删除 "' + title + '"这个活动';
 
                 if (confirm(message)) {
                     var url = '{{ route('admin.activity.destroy') }}';
                     postSubmit(url, {id: id});
                 }
+            }
+
+            function presentDailyPaper(title, id) {
+              var message = '是否要把 "' + title + '" 转发到 Daily Paper';
+
+              if (confirm(message)) {
+                var url = '{{ route('admin.daily-paper.store') }}';
+                postSubmit(url, {
+                  id: id,
+                  type: '{{ addslashes(\App\Activity::class) }}'
+                });
+              }
             }
         </script>
     </div>
