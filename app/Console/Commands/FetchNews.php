@@ -38,8 +38,7 @@ class FetchNews extends Command
      */
     public function handle()
     {
-        $api = 'http://jisunews.market.alicloudapi.com/news/search?keyword=中国';
-        $api = env('FETCH_NEWS_API', $api);
+        $api = env('FETCH_NEWS_API');
         $headers = ['Authorization' => 'APPCODE ' . env('FETCH_NEWS_APPCODE', 'null')];
 
         $client = new \GuzzleHttp\Client();
@@ -53,22 +52,21 @@ class FetchNews extends Command
             return false;
         }
 
-
         if ($response->getStatusCode() == 200) {
             $content = $response->getBody()->getContents();
-            $data = json_decode($content)->result->list;
+            $data = json_decode($content)->showapi_res_body->pagebean->contentlist;
 
             foreach ($data as $index => $news) {
                 $newsData = [
-                    'origin'        =>  $news->src,
-                    'category'      =>  $news->category,
+                    'origin'        =>  $news->source,
+                    'category'      =>  $news->channelName,
                     'title'         =>  $news->title,
-                    'content'       =>  $news->content,
-                    'avatar'        =>  $news->pic,
-                    'gallery'       =>  $news->gallery,
-                    'url'           =>  $news->url,
-                    'weburl'        =>  $news->weburl,
-                    'time'          =>  $news->time,
+                    'content'       =>  $news->html,
+                    'avatar'        =>  $news->havePic ? $news->imageurls[0]->url : '',
+                    'gallery'       =>  json_encode($news->imageurls),
+                    'url'           =>  $news->link,
+                    'weburl'        =>  $news->link,
+                    'time'          =>  $news->pubDate,
                 ];
 
                 News::updateOrCreate($newsData);
