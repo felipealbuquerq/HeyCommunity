@@ -10,8 +10,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="/images/icon.png">
-    <link rel="apple-touch-startup-image" href="/images/splash.png">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/icon.png') }}">
+    <link rel="apple-touch-startup-image" href="{{ asset('images/splash.png') }}">
 
     <title>@yield('title', $system->site_title . ' - ' . $system->site_subheading)</title>
 
