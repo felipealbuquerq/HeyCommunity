@@ -1,4 +1,4 @@
-<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js" type="text/javascript" charset="utf-8"></script>
 @if (empty($wxShareDisable) || !$wxShareDisable)
     <script type="text/javascript" charset="utf-8">
       var shareTitle = "{{ trim($__env->yieldContent('title', $system->site_title . ' - ' . $system->site_subheading)) }}";
