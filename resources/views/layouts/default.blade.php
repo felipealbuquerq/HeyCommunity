@@ -188,7 +188,7 @@
 
 
 <!-- wechat -->
-@yield('_wechat')
+@include('layouts._wechat')
 
 <!-- script -->
 @yield('script')
