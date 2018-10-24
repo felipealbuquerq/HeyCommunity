@@ -186,11 +186,10 @@
     }
 </script>
 
-
-<!-- wechat -->
+<!-- Wechat -->
 @include('layouts._wechat')
 
-<!-- script -->
+<!-- Script -->
 @yield('script')
 
 <!-- Analytic code -->
