@@ -67,31 +67,3 @@
         </div>
     </div>
 @stop
-
-
-@section('script')
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/simditor/simditor.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/simditor/simditor-fullscreen.css') }}" />
-    <script type="text/javascript" src="{{ asset('assets/simditor/module.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/simditor/hotkeys.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/simditor/uploader.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/simditor/simditor.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/simditor/simditor-fullscreen.js') }}"></script>
-    <script>
-        var editor = new Simditor({
-            textarea: $('.simditor-editor'),
-            toolbar: ['title', 'bold', 'italic', 'underline', 'ol', 'ul', 'hr', 'indent', 'blockquote', 'link', 'image', 'fullscreen'],
-            pasteImage: true,
-            cleanPaste: true,
-            upload: {
-                url: '{{ route('upload.simditor-upload-images') }}',
-                params: {
-                    _token: '{{ csrf_token() }}',
-                },
-                fileKey: 'files',
-                connectionCount: 3,
-                leaveConfirm: '图片正在上传，你确定要离开？'
-            },
-        });
-    </script>
-@endsection
