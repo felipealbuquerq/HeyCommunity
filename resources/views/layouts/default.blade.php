@@ -39,6 +39,7 @@
 
 <!-- Nav -->
 <nav id="section-mainNav" class="navbar navbar-expand-md fixed-top navbar-dark bg-primary app-navbar">
+<div class="container">
     @if (Route::is(getBackToIndexRoute()))
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ $system->site_title }} <sup>&beta;</sup>
@@ -140,6 +141,7 @@
             @endif
         </ul>
     </div>
+</div>
 </nav>
 
 
