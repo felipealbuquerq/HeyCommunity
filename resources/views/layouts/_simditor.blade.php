@@ -1,15 +1,19 @@
 @section('script')
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/simditor/simditor.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/simditor/simditor-fullscreen.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/simditor/simditor-html.css') }}" />
+
     <script type="text/javascript" src="{{ asset('assets/simditor/module.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/simditor/hotkeys.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/simditor/uploader.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/simditor/simditor.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/simditor/simditor-fullscreen.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/simditor/beautify-html.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/simditor/simditor-html.js') }}"></script>
     <script>
       var editor = new Simditor({
         textarea: $('.simditor-editor'),
-        toolbar: ['title', 'bold', 'italic', 'underline', 'ol', 'ul', 'hr', 'indent', 'blockquote', 'link', 'image', 'fullscreen'],
+        toolbar: ['title', 'bold', 'underline', 'fontScale', 'color', 'alignment', 'indent', 'ol', 'table', 'link', 'image', 'html', 'fullscreen'],
         pasteImage: true,
         upload: {
           url: '{{ route('upload.simditor-upload-images') }}',
