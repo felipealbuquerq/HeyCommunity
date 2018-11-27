@@ -138,5 +138,13 @@ Route::group(['prefix' => 'daily', 'middleware' => ['wechat.oauth', 'auth.wechat
 
 
 //
+// Columns
+Route::group(['prefix' => 'column', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+    Route::get('{id}', 'ColumnController@show')->name('column.show')->where('id', '[0-9]+');
+    Route::get('{domain}', 'ColumnistController@show')->name('columnist.show')->where('domain', '^\w\S+');
+});
+
+
+//
 // web admin routes
 include_once 'web-admin.php';

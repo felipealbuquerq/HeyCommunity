@@ -17,6 +17,14 @@ class BaseModel extends Model
     /**
      * Relation User
      */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
+    /**
+     * Relation User
+     */
     public function author()
     {
         return $this->belongsTo('App\User', 'user_id');
