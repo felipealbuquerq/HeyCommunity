@@ -9,6 +9,6 @@ class Columnist extends BaseModel
      */
     public function columns()
     {
-        return $this->hasMany('App\Column', 'columnist_id', 'id');
+        return $this->hasMany('App\Column', 'columnist_id', 'id')->latest();
     }
 }

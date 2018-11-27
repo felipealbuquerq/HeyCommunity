@@ -1,9 +1,7 @@
 <div class="card card-profile mb-4">
     <div class="card-header" style="background-image: url('{{ asset($columnist->user->profile_bg_img) }}');"></div>
     <div class="card-body text-center">
-        <a href="{{ route('user.uhome', $columnist->user->id)  }}">
-            <img class="card-profile-img" src="{{ asset($columnist->user->avatar) }}">
-        </a>
+        <img class="card-profile-img" src="{{ asset($columnist->user->avatar) }}">
 
         <h6 class="card-title">
             @if (Request::route()->getName() == 'columnist.show')
