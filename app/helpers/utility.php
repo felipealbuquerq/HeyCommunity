@@ -70,7 +70,7 @@ function getBackToIndexRoute()
     if (in_array($routeRootName, $controllerNames)) {
         return $routeRootName . '.index';
     } else {
-        return $routeName;
+        return $routeName ?: 'home';
     }
 }
 
