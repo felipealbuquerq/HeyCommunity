@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    用户协议 - {{ $system->site_title }}
+    {{ $column->title }} - {{ $columnist->title }} 专栏
 @endsection
 
 @section('mainBody')

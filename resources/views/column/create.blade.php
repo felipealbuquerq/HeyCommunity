@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-    用户协议 - {{ $system->site_title }}
+    发布一篇新专栏文章 - {{ $system->site_title }}
 @endsection
 
 @section('mainBody')
