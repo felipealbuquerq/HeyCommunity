@@ -31,7 +31,6 @@
                             </div>
 
                             <div class="footer mt-3">
-                                <span>{{ $column->created_at }}</span>
                                 <div class="pull-right d-none d-md-block">
                                     <div class="topic-info text-muted">
                                         {{ $column->favorite_num }} 收藏
@@ -44,6 +43,14 @@
                                         &nbsp;/&nbsp;
                                         {{ $column->read_num }} 阅读
                                     </div>
+                                </div>
+
+                                <div>
+                                    @if ($column->user_id == Auth::id())
+                                        <a href="{{ route('column.edit', $column->id) }}">编辑</a>
+                                        &nbsp;<span class="text-muted">|</span>&nbsp;
+                                    @endif
+                                    {{ $column->created_at }}
                                 </div>
                             </div>
                         </div>
