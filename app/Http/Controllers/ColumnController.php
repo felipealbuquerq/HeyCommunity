@@ -102,4 +102,23 @@ class ColumnController extends Controller
             return back()->withInput();
         }
     }
+
+    /**
+     * Destroy Column
+     */
+    public function destroy($id)
+    {
+        $column = Column::findOrFail($id);
+
+        if ($column->delete()) {
+            $column->author->article_num = $column->author->columns()->count();
+            $column->author->save();
+
+            flash('删除成功')->success();
+            return redirect()->route('columnist.show', $column->author->domain);
+        } else {
+            flash('删除失败')->error();
+            return back();
+        }
+    }
 }

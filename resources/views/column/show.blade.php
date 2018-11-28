@@ -46,9 +46,10 @@
                                 </div>
 
                                 <div>
-                                    @if ($column->user_id == Auth::id())
-                                        <a href="{{ route('column.edit', $column->id) }}">编辑</a>
-                                        &nbsp;<span class="text-muted">|</span>&nbsp;
+                                    @if ($column->user_id = Auth::id())
+                                        <a class="btn btn-link p-0 border-0 mr-2" href="{{ route('column.edit', $column->id) }}">编辑</a>
+                                        <button class="btn btn-link p-0 border-0 mr-2" onclick="confirmPostSubmit('是否要删除该文章', '{{ route("column.destroy", $column->id) }}')">删除</button>
+                                        <span class="text-muted">|</span>&nbsp;
                                     @endif
                                     {{ $column->created_at }}
                                 </div>
