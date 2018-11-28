@@ -17,6 +17,9 @@ class ColumnController extends Controller
         $column = Column::findOrFail($id);
         $columnist = $column->author;
 
+        $column->increment('read_num');
+        $columnist->increment('read_num');
+
         return view('column.show', compact('column', 'columnist'));
     }
 
@@ -50,6 +53,9 @@ class ColumnController extends Controller
         ]);
 
         if ($column) {
+            $columnist->article_num = $columnist->columns()->count();
+            $columnist->save();
+
             flash('发布成功')->success();
             return redirect()->route('column.show', $column->id);
         } else {
@@ -86,6 +92,9 @@ class ColumnController extends Controller
 
 
         if ($column->save()) {
+            $column->author->article_num = $column->author->columns()->count();
+            $column->author->save();
+
             flash('更新成功')->success();
             return redirect()->route('column.show', $column->id);
         } else {

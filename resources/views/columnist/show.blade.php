@@ -27,6 +27,13 @@
                         </p>
                     </div>
 
+                    @if ($columnist->columns()->count() < 1)
+                        <div class="card">
+                            <div class="card-body">
+                                暂无专栏文章
+                            </div>
+                        </div>
+                    @endif
                     <div class="list-group list-group-flush">
                         @foreach ($columnist->columns()->paginate(6) as $column)
                             <a href="{{ route('column.show', $column->id) }}" class="list-group-item list-group-item-action flex-column align-items-start">
