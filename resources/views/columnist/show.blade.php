@@ -34,7 +34,9 @@
                                     <h5 class="mb-1">{{ $column->title }}</h5>
                                     <small class="text-muted">{{ $column->created_at->diffForHumans() }}</small>
                                 </div>
-                                <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                                <p class="mb-1">
+                                    {{ mb_substr(strip_tags($column->content), 0, 120) }}
+                                </p>
                                 <small>
                                     {{ $column->read_num }} 阅读 /
                                     {{ $column->comment_num }} 评论 /

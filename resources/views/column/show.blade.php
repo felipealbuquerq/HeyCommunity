@@ -24,7 +24,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title"><a href="{{ route('column.show', $column->id) }}">{{ $column->title }}</a></h4>
+                            <h4 class="card-title"><span>{{ $column->title }}</span></h4>
 
                             <div class="card-text">
                                 {!! ($column->content) !!}
