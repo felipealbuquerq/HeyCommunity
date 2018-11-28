@@ -9,7 +9,7 @@
         <div class="container pt-4">
             <div class="row">
                 <div class="col-lg-3 col-md-3 m-np">
-                    @if (Auth::check() && Auth::id() == $columnist->user_id)
+                    @if (Gate::allows('auth.ownOrAdmin', $columnist))
                         <a href="{{ route('column.create', $columnist->domain) }}" class="btn btn-block btn-primary mb-3"><i class="fa fa-edit"></i> 新专栏文章</a>
                     @endif
 

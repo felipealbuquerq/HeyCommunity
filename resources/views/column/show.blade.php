@@ -46,7 +46,7 @@
                                 </div>
 
                                 <div>
-                                    @if ($column->user_id = Auth::id())
+                                    @if (Gate::allows('auth.ownOrAdmin', $column))
                                         <a class="btn btn-link p-0 border-0 mr-2" href="{{ route('column.edit', $column->id) }}">编辑</a>
                                         <button class="btn btn-link p-0 border-0 mr-2" onclick="confirmPostSubmit('是否要删除该文章', '{{ route("column.destroy", $column->id) }}')">删除</button>
                                         <span class="text-muted">|</span>&nbsp;

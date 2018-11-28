@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Gate;
 use App\Column;
 use App\Columnist;
 use Illuminate\Http\Request;
@@ -30,6 +31,11 @@ class ColumnController extends Controller
     {
         $columnist = Columnist::where('domain', $domain)->firstOrFail();
 
+        // gate
+        if (!Gate::allows('auth.ownOrAdmin', $columnist)) {
+            return back();
+        }
+
         return view('column.create', compact('columnist'));
     }
 
@@ -45,8 +51,13 @@ class ColumnController extends Controller
 
         $columnist = Columnist::where('domain', $domain)->firstOrFail();
 
+        // gate
+        if (!Gate::allows('auth.ownOrAdmin', $columnist)) {
+            return back();
+        }
+
         $column = Column::create([
-            'user_id'           =>  Auth::id(),
+            'user_id'           =>  $columnist->user_id,
             'columnist_id'      =>  $columnist->id,
             'title'             =>  $request->title,
             'content'           =>  $request->content,
@@ -72,6 +83,11 @@ class ColumnController extends Controller
         $column = Column::findOrFail($id);
         $columnist = $column->author;
 
+        // gate
+        if (!Gate::allows('auth.ownOrAdmin', $column)) {
+            return back();
+        }
+
         return view('column.edit', compact('column', 'columnist'));
     }
 
@@ -86,6 +102,11 @@ class ColumnController extends Controller
         ]);
 
         $column = Column::findOrFail($id);
+
+        // gate
+        if (!Gate::allows('auth.ownOrAdmin', $column)) {
+            return back();
+        }
 
         $column->title = $request->title;
         $column->content = $request->content;
@@ -109,6 +130,11 @@ class ColumnController extends Controller
     public function destroy($id)
     {
         $column = Column::findOrFail($id);
+
+        // gate
+        if (!Gate::allows('auth.ownOrAdmin', $column)) {
+            return back();
+        }
 
         if ($column->delete()) {
             $column->author->article_num = $column->author->columns()->count();
