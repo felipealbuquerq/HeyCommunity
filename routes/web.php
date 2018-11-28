@@ -141,6 +141,8 @@ Route::group(['prefix' => 'daily', 'middleware' => ['wechat.oauth', 'auth.wechat
 // Columns
 Route::group(['prefix' => 'column', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
     Route::get('{id}', 'ColumnController@show')->name('column.show')->where('id', '[0-9]+');
+    Route::get('{id}/edit', 'ColumnController@edit')->name('column.edit')->where('id', '[0-9]+');
+    Route::post('{id}/update', 'ColumnController@update')->name('column.update')->where('id', '[0-9]+');
     Route::get('{domain}/create', 'ColumnController@create')->name('column.create')->where('domain', '^\w\S+');
     Route::post('{domain}', 'ColumnController@store')->name('column.store')->where('domain', '^\w\S+');
     Route::get('{domain}', 'ColumnistController@show')->name('columnist.show')->where('domain', '^\w\S+');
