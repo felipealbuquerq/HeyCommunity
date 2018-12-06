@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="text-nowrap text-overflow">
             &copy; 2018 {{ $system->site_title }}
-            <small>创享美好生活</small>
+            <small>发现和创造美好</small>
         </div>
 
         <div>
