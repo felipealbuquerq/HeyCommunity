@@ -90,6 +90,19 @@ Route::group(['prefix' => 'news', 'middleware' => ['wechat.oauth', 'auth.wechat'
 
 
 //
+// Post
+Route::group(['prefix' => 'post', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+    Route::get('/', 'PostController@index')->name('post.index');
+    Route::get('/{id}', 'PostController@show')->name('post.show')->where('id', '[0-9]+');
+
+    Route::get('create', 'PostController@create')->name('post.create');
+    Route::post('store', 'PostController@store')->name('post.store');
+    Route::get('edit/{id}', 'PostController@edit')->name('post.edit')->where('id', '[0-9]+');
+    Route::post('update/{id}', 'PostController@update')->name('post.update')->where('id', '[0-9]+');
+});
+
+
+//
 // Topic
 Route::group(['prefix' => 'topic', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
     Route::get('/', 'TopicController@index')->name('topic.index');

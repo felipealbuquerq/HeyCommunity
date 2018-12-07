@@ -75,8 +75,8 @@
             <li class="nav-item {{ setNavActive('daily*') }}">
                 <a class="nav-link" href="{{ route('daily.index') }}">今日</a>
             </li>
-            <li class="nav-item {{ setNavActive('news*') }}">
-                <a class="nav-link" href="{{ route('news.index') }}">新闻</a>
+            <li class="nav-item {{ setNavActive('post*') }}">
+                <a class="nav-link" href="{{ route('post.index') }}">资讯</a>
             </li>
             <li class="nav-item {{ setNavActive('topic*') }}">
                 <a class="nav-link" href="{{ route('topic.index') }}">话题</a>
