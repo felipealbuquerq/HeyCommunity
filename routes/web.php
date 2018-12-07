@@ -9,10 +9,10 @@ include_once 'web-view-share.php';
 // Home
 Route::group([], function () {
     Route::get('home', function () {
-        return redirect()->route('news.index');
+        return redirect()->route('post.index');
     })->name('home');
     Route::get('/', function () {
-        return redirect()->route('news.index');
+        return redirect()->route('post.index');
     })->name('index');
 
     // Route::get('/', 'HomeController@index')->name('home.index');
