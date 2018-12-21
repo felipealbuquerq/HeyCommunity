@@ -22,7 +22,7 @@
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <h6 class="card-subtitle mb-2 text-muted">
                                 <span class="post-origin">
-                                    {{ $post->user ? $post->user->nickname : '' }}
+                                    {{ $post->user ? $post->user->nickname : '佚名' }}
                                 </span>
 
                                 <span class="pull-right post-date">

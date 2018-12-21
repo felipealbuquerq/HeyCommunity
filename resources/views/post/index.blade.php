@@ -16,8 +16,9 @@
                 <ul class="list-group">
                     @foreach($posts as $post)
                         <li class="list-group-item">
+                            <small class="text-muted d-inline d-md-none">{{ $post->created_at->format('m-d') }} &nbsp;</small>
                             <a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a>
-                            <small class="pull-right text-muted">{{ $post->created_at }}</small>
+                            <small class="pull-right text-muted d-none d-md-inline">{{ $post->created_at->format('Y-m-d') }}</small>
                         </li>
                     @endforeach
                 </ul>
@@ -37,6 +38,10 @@
             </div>
 
             <div class="col-md-3 mt-4 m-np">
+                @if (Auth::check() && Auth::user()->is_super_admin)
+                    <a class="btn btn-primary btn-block text-white mb-3" href="{{ route('post.create') }}">发布资讯</a>
+                @endif
+
                 @include('layouts._tail')
             </div>
         </div>
