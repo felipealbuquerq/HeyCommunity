@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -47,11 +48,18 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title'         =>      'required|string',
-            'content'       =>      'required|string|min:10',
+            'type_id'       =>      [
+                'required',
+                Rule::in(array_keys(Post::$typeIds)),
+            ],
+            'origin_url'    =>      'nullable|url',
+            'content'       =>      'nullable|string|min:3',
         ]);
 
         $post = new Post();
         $post->title = $request->title;
+        $post->type_id = $request->type_id;
+        $post->origin_url = $request->origin_url;
         $post->content = clean($request->content);
 
         if ($post->save()) {
@@ -81,12 +89,17 @@ class PostController extends Controller
     {
         $this->validate($request, [
             'title'         =>      'required|string',
-            'content'       =>      'required|string|min:10',
+            'type_id'       =>      [
+                'required',
+                Rule::in(array_keys(Post::$typeIds)),
+            ],
+            'origin_url'    =>      'nullable|url',
+            'content'       =>      'nullable|string|min:3',
         ]);
 
         $post = Post::findOrFail($id);
 
-        if ($post->update($request->only(['title', 'content']))) {
+        if ($post->update($request->only(['title', 'content', 'type_id', 'origin_url']))) {
             return redirect()->route('post.show', $post->id);
         } else {
             return back()->withInput();

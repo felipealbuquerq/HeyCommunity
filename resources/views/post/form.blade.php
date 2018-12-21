@@ -59,9 +59,28 @@
                                 </div>
 
                                 <div class="form-group row">
+                                    <label for="input-origin_url" class="col-sm-2 col-form-label">来源</label>
+                                    <div class="col-sm-10">
+                                        <div class="input-group">
+                                            <select name="type_id" class="custom-select">
+                                                @foreach(\App\Post::$typeIds as $typeKey => $typeValue)
+                                                    <option value="{{ $typeKey }}" {{ $typeKey == $post->type_id ? 'selected' : '' }}>{{ $typeValue }}</option>
+                                                @endforeach
+                                            </select>
+                                            <input name="origin_url" type="text" class="form-control" id="input-origin_url"
+                                                   placeholder="选填, 来源网址, 示例 https://www.hey-ganzhou.com/some-page"
+                                                   style="flex-grow:3;"
+                                                   value="{{ old('origin_url', $post->origin_url) }}">
+                                        </div>
+
+                                        <div class="text-danger">{{ $errors->first('origin_url') }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="input-content" class="col-sm-2 col-form-label">内容</label>
                                     <div class="col-sm-10">
-                                        <textarea required name="content" class="form-control simditor-editor" id="input-content" rows="8">{{ old('content', $post->content) }}</textarea>
+                                        <textarea name="content" class="form-control simditor-editor" id="input-content" rows="8">{{ old('content', $post->content) }}</textarea>
 
                                         <div class="text-danger">{{ $errors->first('content') }}</div>
 

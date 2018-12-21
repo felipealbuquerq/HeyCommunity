@@ -31,7 +31,11 @@
                             </h6>
 
                             <div class="card-text">
-                                {!! $post->content !!}
+                                @if($post->content)
+                                    {!! $post->content !!}
+                                @else
+                                    无内容
+                                @endif
                             </div>
 
                             <br class="m-inline">
@@ -44,6 +48,10 @@
                 </div>
 
                 <div class="col-md-3 m-np">
+                    @if (Auth::check() && Auth::user()->is_super_admin)
+                        <a class="btn btn-primary btn-block d-none d-md-block text-white mb-3" href="{{ route('post.edit', $post->id) }}">更新此资讯</a>
+                    @endif
+
                     @include('layouts._tail')
                 </div>
             </div>
