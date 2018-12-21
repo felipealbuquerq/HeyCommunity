@@ -12,7 +12,7 @@
 <div id="section-mainbody" class="page-post-index">
     <div class="container pt-2">
         <div class="row">
-            <div class="col-md-9 mt-4">
+            <div class="col-md-9 mt-4 m-np">
                 <ul class="list-group">
                     @foreach($posts as $post)
                         <li class="list-group-item">
@@ -39,7 +39,7 @@
 
             <div class="col-md-3 mt-4 m-np">
                 @if (Auth::check() && Auth::user()->is_super_admin)
-                    <a class="btn btn-primary btn-block text-white mb-3" href="{{ route('post.create') }}">发布资讯</a>
+                    <a class="btn btn-primary btn-block d-none d-md-block text-white mb-3" href="{{ route('post.create') }}">发布资讯</a>
                 @endif
 
                 @include('layouts._tail')
