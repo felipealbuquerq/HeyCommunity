@@ -95,10 +95,12 @@ Route::group(['prefix' => 'post', 'middleware' => ['wechat.oauth', 'auth.wechat'
     Route::get('/', 'PostController@index')->name('post.index');
     Route::get('/{id}', 'PostController@show')->name('post.show')->where('id', '[0-9]+');
 
-    Route::get('create', 'PostController@create')->name('post.create');
-    Route::post('store', 'PostController@store')->name('post.store');
-    Route::get('edit/{id}', 'PostController@edit')->name('post.edit')->where('id', '[0-9]+');
-    Route::post('update/{id}', 'PostController@update')->name('post.update')->where('id', '[0-9]+');
+    Route::middleware(['auth'])->group(function() {
+        Route::get('create', 'PostController@create')->name('post.create');
+        Route::post('store', 'PostController@store')->name('post.store');
+        Route::get('edit/{id}', 'PostController@edit')->name('post.edit')->where('id', '[0-9]+');
+        Route::post('update/{id}', 'PostController@update')->name('post.update')->where('id', '[0-9]+');
+    });
 });
 
 
