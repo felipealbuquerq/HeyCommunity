@@ -63,6 +63,7 @@ function getBackToIndexRoute()
 
     $controllerNames = [
         'news',
+        'post',
         'topic',
         'activity',
     ];
