@@ -42,6 +42,8 @@
                     <a class="btn btn-primary btn-block d-none d-md-block text-white mb-3" href="{{ route('post.create') }}">发布资讯</a>
                 @endif
 
+                <button class="btn btn-secondary btn-block d-none d-md-block text-white mb-3" onclick="alert('邮件订阅暂未上线，敬请期待')">邮件订阅周刊</button>
+
                 @include('layouts._tail')
             </div>
         </div>
