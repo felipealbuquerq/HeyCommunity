@@ -54,11 +54,11 @@
               signType: "{{ $wechatPayConfig['signType'] }}",
               paySign: "{{ $wechatPayConfig['paySign'] }}",
               success: function (res) {
-                window.location.assign('{{ route("poyang-lake-cycling.payment") }}');
+                window.location.assign('{{ route("bike-meeting.apply-successful") }}');
               },
               fail: function (res) {
                 alert('支付失败: ' + res);
-                window.location.assign('{{ route("poyang-lake-cycling.payment") }}');
+                window.location.assign('{{ route("bike-meeting.payment") }}');
               }
             });
           });

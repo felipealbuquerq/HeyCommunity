@@ -12,8 +12,9 @@
         <div class="container pt-4">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 class="h4 mt-4 text-center">
-                        年会报名及缴费
+                    <h1 class="h4 mt-2 text-center">
+                        上犹自行车运动协会年会 <br>
+                        <small>年会报名及缴费</small>
                     </h1>
 
                     <form class="mt-4" action="{{ route('bike-meeting.payment') }}" method="post">
@@ -65,11 +66,11 @@
               signType: "{{ $wechatPayConfig['signType'] }}",
               paySign: "{{ $wechatPayConfig['paySign'] }}",
               success: function (res) {
-                window.location.assign('{{ route("poyang-lake-cycling.payment") }}');
+                window.location.assign('{{ route("bike-meeting.apply-successful") }}');
               },
               fail: function (res) {
                 alert('支付失败: ' + res);
-                window.location.assign('{{ route("poyang-lake-cycling.payment") }}');
+                window.location.assign('{{ route("bike-meeting.payment") }}');
               }
             });
           });
