@@ -17,7 +17,7 @@ class BikeMeetingController extends Controller
     {
         $this->middleware(function ($request, $next) {
             if (strpos($request->header('user_agent'), 'MicroMessenger') == false) {
-                return redirect()->route('poyang-lake-cycling.wechat');
+                return redirect()->route('bike-meeting.wechat');
             }
 
             return $next($request);
