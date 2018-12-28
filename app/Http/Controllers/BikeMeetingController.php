@@ -18,7 +18,7 @@ class BikeMeetingController extends Controller
     {
         $this->middleware(function ($request, $next) {
             if (strpos($request->header('user_agent'), 'MicroMessenger') == false) {
-                return redirect()->route('bike-meeting.wechat');
+                // return redirect()->route('bike-meeting.wechat');
             }
 
             return $next($request);
@@ -30,7 +30,7 @@ class BikeMeetingController extends Controller
      */
     public function apply()
     {
-        $applyData = BikeMeeting::where('user_id', Auth::id())->first();
+        $applyData = new BikeMeeting();
 
         return view('bike-meeting.apply', compact('applyData'));
     }
