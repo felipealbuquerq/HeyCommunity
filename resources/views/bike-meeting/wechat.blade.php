@@ -1,7 +1,7 @@
 @extends('bike-meeting.layout')
 
 @section('title')
-    报名
+    请使用微信扫码打开页面
 @endsection
 
 @section('description')

@@ -1,7 +1,7 @@
 @extends('bike-meeting.layout')
 
 @section('title')
-    报名
+    报名结果
 @endsection
 
 @section('description')

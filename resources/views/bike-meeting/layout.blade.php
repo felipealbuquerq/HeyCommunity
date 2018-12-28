@@ -97,6 +97,9 @@
 <!-- script -->
 @yield('script')
 
+<!-- Wechat -->
+@include('layouts._wechat')
+
 <!-- Analytic code -->
 {!! $system->site_analytic_code !!}
 </body>

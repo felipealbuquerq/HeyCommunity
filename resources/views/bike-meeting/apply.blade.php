@@ -1,7 +1,7 @@
 @extends('bike-meeting.layout')
 
 @section('title')
-    报名
+    上犹自行车运动协会年会报名
 @endsection
 
 @section('description')
