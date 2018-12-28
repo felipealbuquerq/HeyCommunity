@@ -86,7 +86,7 @@ class BikeMeetingController extends Controller
             'trade_type'       => 'JSAPI',
             'body'             => '上犹自行车运动协会年会报名费',
             'detail'           => '年会报名费用',
-            'out_trade_no'     => 'BIKE-MEETING' . '-U' . Auth::id() . '-' . time(),
+            'out_trade_no'     => 'BikeMt' . '-U' . Auth::id() . '-' . time(),
             'total_fee'        => BikeMeeting::APPLY_FEE_NUMBER,
             'openid'           => Auth::user()->wx_open_id,
             'notify_url'       => route('bike-meeting.pay-notify'),
