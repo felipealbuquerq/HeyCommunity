@@ -13,5 +13,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         'poyang-lake-cycling/pay-notify',
+        'bike-meeting/pay-notify',
     ];
 }
