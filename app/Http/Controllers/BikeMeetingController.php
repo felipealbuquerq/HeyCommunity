@@ -30,7 +30,9 @@ class BikeMeetingController extends Controller
      */
     public function apply()
     {
-        return view('bike-meeting.apply');
+        $applyData = BikeMeeting::where('user_id', Auth::id())->first();
+
+        return view('bike-meeting.apply', compact('applyData'));
     }
 
     /**
@@ -39,6 +41,10 @@ class BikeMeetingController extends Controller
     public function applySuccessful()
     {
         $applyData = BikeMeeting::where('user_id', Auth::id())->first();
+
+        if (!$applyData) {
+            return redirect()->route('bike-meeting.index');
+        }
 
         return view('bike-meeting.apply-successful', compact('applyData'));
     }
