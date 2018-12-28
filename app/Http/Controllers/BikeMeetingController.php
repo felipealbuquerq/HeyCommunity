@@ -151,4 +151,19 @@ class BikeMeetingController extends Controller
     {
         return view('bike-meeting.wechat');
     }
+
+    /**
+     * Apply Data
+     */
+    public function applyData()
+    {
+        $user = Auth::user();
+        if (!$user && !$user->is_super_admin) {
+            abort(403, '无权访问此页面');
+        }
+
+        $applyData = BikeMeeting::latest()->paginate();
+
+        return view('bike-meeting.apply-data', compact('applyData'));
+    }
 }
