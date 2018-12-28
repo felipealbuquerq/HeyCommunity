@@ -184,7 +184,7 @@ Route::group(['prefix' => 'bike-meeting'], function () {
 
     Route::middleware(['wechat.oauth', 'auth.wechat'])->group(function() {
         Route::get('apply', 'BikeMeetingController@apply')->name('bike-meeting.apply');
-        Route::post('payment', 'BikeMeetingController@payment')->name('bike-meeting.payment');
+        Route::any('payment', 'BikeMeetingController@payment')->name('bike-meeting.payment');
     });
 });
 

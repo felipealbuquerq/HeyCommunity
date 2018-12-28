@@ -60,17 +60,16 @@ class BikeMeetingController extends Controller
      */
     public function payment(Request $request)
     {
-        $this->validate($request, [
-            'nickname'      =>  'required|string',
-            'phone'         =>  'required',
-        ]);
 
         $applyData = BikeMeeting::where('user_id', Auth::id())->first();
 
-        if ($applyData && $applyData->is_payment) {
-            flash('您已缴纳该费用，请不要重复缴费')->error();
-            return redirect()->route('bike-meeting.index');
-        } else {
+        // 报名
+        if (!$applyData) {
+            $this->validate($request, [
+                'nickname'      =>  'required|string',
+                'phone'         =>  'required',
+            ]);
+
             $bikeMeeting = new BikeMeeting();
             $bikeMeeting->user_id   =   Auth::id();
             $bikeMeeting->nickname  =   $request->nickname;
@@ -80,6 +79,13 @@ class BikeMeetingController extends Controller
             $applyData = $bikeMeeting;
         }
 
+        // 成功报名并缴费
+        if ($applyData && $applyData->is_payment) {
+            flash('您已缴纳该费用，请不要重复缴费')->error();
+            return redirect()->route('bike-meeting.index');
+        }
+
+        // 缴费
         $wechat = app('wechat');
 
         $orderAttr = [
