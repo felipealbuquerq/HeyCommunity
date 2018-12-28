@@ -33,6 +33,7 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->nickname }}</td>
                                 <td>{{ $item->phone }}</td>
+                                <td>{{ $item->is_payment ? 'Y' : 'N' }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                             </tr>
