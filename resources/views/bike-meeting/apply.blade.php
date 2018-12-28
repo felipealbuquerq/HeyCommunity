@@ -20,10 +20,10 @@
                         {{ csrf_field() }}
 
                         <div class="form-group row">
-                            <label for="input-nickname" class="col-sm-2 col-form-label">姓名与昵称</label>
+                            <label for="input-nickname" class="col-sm-2 col-form-label">姓名或昵称</label>
 
                             <div class="col-sm-10">
-                                <input required name="nickname" type="text" class="form-control" id="input-nickname" value="{{ old('nickname') }}">
+                                <input required name="nickname" type="text" class="form-control" id="input-nickname" value="{{ old('nickname', $applyData->nickname) }}">
 
                                 <div class="text-danger">{{ $errors->first('nickname') }}</div>
                             </div>
@@ -33,7 +33,7 @@
                             <label for="input-phone" class="col-sm-2 col-form-label">手机号</label>
 
                             <div class="col-sm-10">
-                                <input required name="phone" type="text" class="form-control" id="input-phone" value="{{ old('phone') }}">
+                                <input required name="phone" type="text" class="form-control" id="input-phone" value="{{ old('phone', $applyData->phone) }}">
 
                                 <div class="text-danger">{{ $errors->first('phone') }}</div>
                             </div>
