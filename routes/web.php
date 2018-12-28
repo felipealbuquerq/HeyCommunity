@@ -175,11 +175,24 @@ Route::group(['prefix' => 'poyang-lake-cycling'], function () {
 
 
 //
+// bike meeting
+Route::group(['prefix' => 'bike-meeting'], function () {
+    Route::get('/', 'BikeMeetingController@index')->name('bike-meeting.index');
+    Route::get('payment', 'BikeMeetingController@payment')->name('bike-meeting.payment');
+    Route::get('wechat', 'BikeMeetingController@wechat')->name('bike-meeting.wechat');
+    Route::any('pay-notify', 'BikeMeetingController@payNotify')->name('bike-meeting.pay-notify');
+
+    Route::middleware(['wechat.oauth', 'auth.wechat'])->group(function() {
+    });
+});
+
+
+//
 // Columns
 Route::group(['prefix' => 'column', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
     Route::get('/', 'ColumnistController@index')->name('columnist.index');
 
-    Route::get('{id}', 'ColumnController@show')->name('column.show')->where('id', '[0-9]+');
+    Route::get('{id}', 'ColumnController@show')->name('column.show')->where('id', '[0poyang-lake-cycling-9]+');
     Route::get('{id}/edit', 'ColumnController@edit')->name('column.edit')->where('id', '[0-9]+');
     Route::post('{id}/update', 'ColumnController@update')->name('column.update')->where('id', '[0-9]+');
     Route::post('{id}/destroy', 'ColumnController@destroy')->name('column.destroy')->where('id', '[0-9]+');
