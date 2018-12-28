@@ -34,11 +34,25 @@ class BikeMeetingController extends Controller
     }
 
     /**
+     * Apply Page
+     */
+    public function applySuccessful()
+    {
+        $applyData = BikeMeeting::where('user_id', Auth::id())->first();
+
+        return view('bike-meeting.apply-successful', compact('applyData'));
+    }
+
+    /**
      * Index Page
      */
     public function index()
     {
-        return view('bike-meeting.index');
+        if (Auth::check()) {
+            $applyData = BikeMeeting::where('user_id', Auth::id())->first();
+        }
+
+        return view('bike-meeting.index', compact('applyData'));
     }
 
     /**
@@ -85,7 +99,7 @@ class BikeMeetingController extends Controller
         $assign['wechatJs'] = $wechat->js;
         $assign['wechatPayConfig'] = $wechat->payment->configForJSSDKPayment($result->prepay_id);
 
-        return view('poyang-lake-cycling.payment', $assign);
+        return view('bike-meeting.apply-successful', $assign);
     }
 
     /**

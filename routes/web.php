@@ -179,6 +179,7 @@ Route::group(['prefix' => 'poyang-lake-cycling'], function () {
 Route::group(['prefix' => 'bike-meeting'], function () {
     Route::get('/', 'BikeMeetingController@index')->name('bike-meeting.index');
     Route::get('wechat', 'BikeMeetingController@wechat')->name('bike-meeting.wechat');
+    Route::get('apply-successful', 'BikeMeetingController@applySuccessful')->name('bike-meeting.apply-successful');
     Route::any('pay-notify', 'BikeMeetingController@payNotify')->name('bike-meeting.pay-notify');
 
     Route::middleware(['wechat.oauth', 'auth.wechat'])->group(function() {

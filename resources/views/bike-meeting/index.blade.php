@@ -46,7 +46,14 @@
                     </p>
 
                     <br>
-                    <a class="btn btn-warning btn-block" href="{{ route('bike-meeting.apply') }}">立即报名</a>
+
+                    @if ($applyData && $applyData->is_payment)
+                        <a class="btn btn-warning btn-block" href="{{ route('bike-meeting.apply-successful') }}">您已成功报名并缴费</a>
+                    @elseif ($applyData && !$applyData->is_payment)
+                        <a class="btn btn-warning btn-block" href="{{ route('bike-meeting.payment') }}">立即缴费完成报名</a>
+                    @else
+                        <a class="btn btn-warning btn-block" href="{{ route('bike-meeting.apply') }}">立即报名</a>
+                    @endif
                 </div>
             </div>
         </div>
