@@ -46,7 +46,7 @@
                     </p>
 
                     <br>
-                    <a class="btn btn-warning btn-block" href="{{ route('bike-meeting.payment') }}">立即报名</a>
+                    <a class="btn btn-warning btn-block" href="{{ route('bike-meeting.apply') }}">立即报名</a>
                 </div>
             </div>
         </div>

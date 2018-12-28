@@ -9,7 +9,7 @@ class BikeMeeting extends Model
     /**
      * 报名费
      */
-    const APPLE_FEE_NUMBER = 10000;
+    const APPLY_FEE_NUMBER = 10000;
 
     /**
      * Related User

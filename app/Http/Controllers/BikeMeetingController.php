@@ -7,6 +7,7 @@ use EasyWeChat\Payment\Order;
 use Illuminate\Http\Request;
 use Auth;
 use Log;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class BikeMeetingController extends Controller
 {
@@ -17,11 +18,19 @@ class BikeMeetingController extends Controller
     {
         $this->middleware(function ($request, $next) {
             if (strpos($request->header('user_agent'), 'MicroMessenger') == false) {
-                return redirect()->route('bike-meeting.wechat');
+                // return redirect()->route('bike-meeting.wechat');
             }
 
             return $next($request);
         })->except(['index', 'wechat', 'payNotify']);
+    }
+
+    /**
+     * Apply Page
+     */
+    public function apply()
+    {
+        return view('bike-meeting.apply');
     }
 
     /**
@@ -35,12 +44,26 @@ class BikeMeetingController extends Controller
     /**
      * Payment
      */
-    public function payment()
+    public function payment(Request $request)
     {
+        $this->validate($request, [
+            'nickname'      =>  'required|string',
+            'phone'         =>  'required',
+        ]);
+
         $applyData = BikeMeeting::where('user_id', Auth::id())->first();
+
         if ($applyData && $applyData->is_payment) {
             flash('您已缴纳该费用，请不要重复缴费')->error();
             return redirect()->route('bike-meeting.index');
+        } else {
+            $bikeMeeting = new BikeMeeting();
+            $bikeMeeting->user_id   =   Auth::id();
+            $bikeMeeting->nickname  =   $request->nickname;
+            $bikeMeeting->phone     =   $request->phone;
+            $bikeMeeting->save();
+
+            $applyData = $bikeMeeting;
         }
 
         $wechat = app('wechat');
