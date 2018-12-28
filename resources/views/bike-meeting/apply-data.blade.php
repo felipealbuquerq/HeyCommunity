@@ -30,11 +30,11 @@
 
                         @foreach ($applyData as $item)
                             <tr>
-                                <th>{{ $item->id }}</th>
-                                <th>{{ $item->nickname }}</th>
-                                <th>{{ $item->phone }}</th>
-                                <th>{{ $item->created_at }}</th>
-                                <th>{{ $item->updated_at }}</th>
+                                <td>{{ $item->id }}</td>
+                                <td>{{ $item->nickname }}</td>
+                                <td>{{ $item->phone }}</td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>{{ $item->updated_at }}</td>
                             </tr>
                         @endforeach
                     </table>
