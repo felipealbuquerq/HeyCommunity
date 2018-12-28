@@ -50,3 +50,29 @@
         </div>
     </div>
 @stop
+
+@section('wechat_payment')
+    @if (isset($wechatJs) && isset($wechatPayConfig))
+        <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+          wx.config({!! $wechatJs->config([]) !!});
+          wx.ready(function() {
+
+            wx.chooseWXPay({
+              timestamp: "{{ $wechatPayConfig['timestamp'] }}",
+              nonceStr: "{{ $wechatPayConfig['nonceStr'] }}",
+              package: "{{ $wechatPayConfig['package'] }}",
+              signType: "{{ $wechatPayConfig['signType'] }}",
+              paySign: "{{ $wechatPayConfig['paySign'] }}",
+              success: function (res) {
+                window.location.assign('{{ route("poyang-lake-cycling.payment") }}');
+              },
+              fail: function (res) {
+                alert('支付失败: ' + res);
+                window.location.assign('{{ route("poyang-lake-cycling.payment") }}');
+              }
+            });
+          });
+        </script>
+    @endif
+@endsection

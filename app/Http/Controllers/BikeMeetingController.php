@@ -105,7 +105,7 @@ class BikeMeetingController extends Controller
         $assign['wechatJs'] = $wechat->js;
         $assign['wechatPayConfig'] = $wechat->payment->configForJSSDKPayment($result->prepay_id);
 
-        return view('bike-meeting.apply-successful', $assign);
+        return view('bike-meeting.apply', $assign);
     }
 
     /**
