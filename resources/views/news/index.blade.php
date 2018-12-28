@@ -59,10 +59,12 @@
 
     <script src="{{ asset('bower-assets/masonry-layout/dist/masonry.pkgd.min.js') }}"></script>
     <script>
-        $(document).ready(function() {
-          setTimeout(function() {
-            $('.items-masonry').masonry({itemSelector: '.item-masonry'})
-          }, 10);
-        });
+        @unless (strpos(Agent::getUserAgent(), 'MicroMessenger') !== false)
+            $(document).ready(function() {
+              setTimeout(function() {
+                $('.items-masonry').masonry({itemSelector: '.item-masonry'})
+              }, 288);
+            });
+        @endunless
     </script>
 @stop

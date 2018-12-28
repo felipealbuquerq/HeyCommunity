@@ -27,9 +27,12 @@ class Kernel extends ConsoleKernel
         // fetch news
         if (env('FETCH_NEWS_ENABLE')) {
             $schedule->command('fetch:news')
-                ->dailyAt('7:00')
+                ->dailyAt('6:30')
+                ->dailyAt('8:30')
                 ->dailyAt('11:30')
                 ->dailyAt('15:30')
+                ->dailyAt('19:30')
+                ->dailyAt('21:30')
                 ->appendOutputTo(storage_path('logs/fetch-news.log'));
         }
     }

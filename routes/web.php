@@ -9,10 +9,10 @@ include_once 'web-view-share.php';
 // Home
 Route::group([], function () {
     Route::get('home', function () {
-        return redirect()->route('news.index');
+        return redirect()->route('post.index');
     })->name('home');
     Route::get('/', function () {
-        return redirect()->route('news.index');
+        return redirect()->route('post.index');
     })->name('index');
 
     // Route::get('/', 'HomeController@index')->name('home.index');
@@ -92,6 +92,21 @@ Route::group(['prefix' => 'news', 'middleware' => ['wechat.oauth', 'auth.wechat'
 
 
 //
+// Post
+Route::group(['prefix' => 'post', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+    Route::get('/', 'PostController@index')->name('post.index');
+    Route::get('/{id}', 'PostController@show')->name('post.show')->where('id', '[0-9]+');
+
+    Route::middleware(['auth'])->group(function() {
+        Route::get('create', 'PostController@create')->name('post.create');
+        Route::post('store', 'PostController@store')->name('post.store');
+        Route::get('edit/{id}', 'PostController@edit')->name('post.edit')->where('id', '[0-9]+');
+        Route::post('update/{id}', 'PostController@update')->name('post.update')->where('id', '[0-9]+');
+    });
+});
+
+
+//
 // Topic
 Route::group(['prefix' => 'topic', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
     Route::get('/', 'TopicController@index')->name('topic.index');
@@ -156,6 +171,22 @@ Route::group(['prefix' => 'poyang-lake-cycling'], function () {
         Route::post('pay-deposit', 'PoYangLakeCyclingController@payDeposit')->name('poyang-lake-cycling.pay-deposit');
         Route::get('apply-successful', 'PoYangLakeCyclingController@applySuccessful')->name('poyang-lake-cycling.apply-successful');
     });
+});
+
+
+//
+// Columns
+Route::group(['prefix' => 'column', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+    Route::get('/', 'ColumnistController@index')->name('columnist.index');
+
+    Route::get('{id}', 'ColumnController@show')->name('column.show')->where('id', '[0-9]+');
+    Route::get('{id}/edit', 'ColumnController@edit')->name('column.edit')->where('id', '[0-9]+');
+    Route::post('{id}/update', 'ColumnController@update')->name('column.update')->where('id', '[0-9]+');
+    Route::post('{id}/destroy', 'ColumnController@destroy')->name('column.destroy')->where('id', '[0-9]+');
+
+    Route::get('{domain}/create', 'ColumnController@create')->name('column.create')->where('domain', '^\w\S+');
+    Route::post('{domain}', 'ColumnController@store')->name('column.store')->where('domain', '^\w\S+');
+    Route::get('{domain}', 'ColumnistController@show')->name('columnist.show')->where('domain', '^\w\S+');
 });
 
 

@@ -10,8 +10,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon" href="/images/icon.png">
-    <link rel="apple-touch-startup-image" href="/images/splash.png">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/icon.png') }}">
+    <link rel="apple-touch-startup-image" href="{{ asset('images/splash.png') }}">
 
     <title>@yield('title', $system->site_title . ' - ' . $system->site_subheading)</title>
 
@@ -21,7 +22,7 @@
     <link href="{{ asset('assets/bootstrap-application-theme/css/toolkit.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bootstrap-application-theme/css/application.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/bootstrap-application-theme/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}?v=180104"></script>
 
     <style>
         /* note: this is a hack for ios iframe for bootstrap themes shopify page */
@@ -38,6 +39,7 @@
 
 <!-- Nav -->
 <nav id="section-mainNav" class="navbar navbar-expand-md fixed-top navbar-dark bg-primary app-navbar">
+<div class="container">
     @if (Route::is(getBackToIndexRoute()))
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ $system->site_title }} <sup>&beta;</sup>
@@ -73,8 +75,8 @@
             <li class="nav-item {{ setNavActive('daily*') }}">
                 <a class="nav-link" href="{{ route('daily.index') }}">今日</a>
             </li>
-            <li class="nav-item {{ setNavActive('news*') }}">
-                <a class="nav-link" href="{{ route('news.index') }}">新闻</a>
+            <li class="nav-item {{ setNavActive('post*') }}">
+                <a class="nav-link" href="{{ route('post.index') }}">资讯</a>
             </li>
             <li class="nav-item {{ setNavActive('topic*') }}">
                 <a class="nav-link" href="{{ route('topic.index') }}">话题</a>
@@ -139,6 +141,7 @@
             @endif
         </ul>
     </div>
+</div>
 </nav>
 
 
@@ -186,14 +189,18 @@
     }
 </script>
 
+<!-- Wechat -->
+@include('layouts._wechat')
 
-<!-- wechat -->
-@yield('_wechat')
-
-<!-- script -->
+<!-- Script -->
 @yield('script')
 
 <!-- Analytic code -->
 {!! $system->site_analytic_code !!}
+
+<!-- CNZZ tongji -->
+<div style="display:none">
+<script src="https://s19.cnzz.com/z_stat.php?id=1273106497&web_id=1273106497" language="JavaScript"></script>
+</div>
 </body>
 </html>

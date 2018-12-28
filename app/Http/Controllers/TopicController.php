@@ -24,13 +24,18 @@ class TopicController extends Controller
         if ($request->node) {
             $node = TopicNode::where(['name' => $request->node])->first();
 
-            if ($node->parent) {
-                $nodeIds = [$node->id];
-            } else {
-                $nodeIds = $node->childNodes()->pluck('id');
-            }
+            if ($node) {
+                if ($node->parent) {
+                    $nodeIds = [$node->id];
+                } else {
+                    $nodeIds = $node->childNodes()->pluck('id');
+                }
 
-            $query->whereIn('node_id', $nodeIds);
+                $query->whereIn('node_id', $nodeIds);
+            } else {
+                flash('节点不存在，返回话题首页')->error();
+                return redirect()->route('topic.index');
+            }
         }
 
         // filter
@@ -158,7 +163,7 @@ class TopicController extends Controller
         $rootNodes = TopicNode::roots()->with('childNodes')->get();
         $topic = Topic::findOrFail($id);
 
-        if (Gate::allows('update-within-time', $topic)) {
+        if (true || Gate::allows('update-within-time', $topic)) {
             return view('topic.edit', compact('rootNodes', 'topic'));
         } else {
             return back();
@@ -178,7 +183,7 @@ class TopicController extends Controller
 
         $topic = Topic::findOrFail($id);
 
-        if (Gate::allows('update-within-time', $topic)) {
+        if (true || Gate::allows('update-within-time', $topic)) {
             $topic->update($request->only(['title', 'node_id', 'content']));
 
             return redirect()->route('topic.show', $topic->id);

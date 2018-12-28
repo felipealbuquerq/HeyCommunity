@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -26,6 +27,19 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        //
+        Gate::define('auth.ownOrAdmin', function ($entity, $user = null) {
+            if (!$user) $user = Auth::user();
+
+            if ($user) {
+                if ($user->id == $entity->user_id || isSuperAdmin()) {
+                    return true;
+                }
+            }
+
+            flash('你无权做此操作')->error();
+            return false;
+        });
 
         //
         // base update and edit
