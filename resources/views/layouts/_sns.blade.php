@@ -1,4 +1,4 @@
-<div class="card mb-4 hidden-md-down">
+<div class="card mt-3">
     <div class="card-body">
         <h6 class="mb-3">关注我们</h6>
         <p>
