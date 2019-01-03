@@ -110,3 +110,5 @@ if (!isset($activity)) {
         <div class="text-danger">{{ $errors->first('content') }}</div>
     </div>
 </div>
+
+@include('layouts._simditor')
