@@ -1,3 +1,5 @@
+@include('layouts._sns')
+
 <div class="card card-link-list">
     <div class="card-body">
         <div class="text-nowrap text-overflow">
