@@ -45,6 +45,8 @@
                 </div>
 
                 <div class="d-none d-md-block">
+                    @include('layouts._sns', ['class' => 'mb-3'])
+
                     @include('layouts._tail')
                 </div>
             </div>

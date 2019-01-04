@@ -53,6 +53,8 @@
 
                 <button class="btn btn-secondary btn-block d-none d-md-block text-white mb-3" onclick="alert('邮件订阅暂未上线，敬请期待')">邮件订阅周刊</button>
 
+                @include('layouts._sns', ['class' => 'mb-3 d-none d-md-block'])
+
                 @include('layouts._tail')
             </div>
         </div>
