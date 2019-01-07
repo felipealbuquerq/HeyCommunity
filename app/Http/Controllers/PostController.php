@@ -25,7 +25,13 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        return view('post.show', compact('post'));
+        $view = 'post.show';
+
+        if ($post->type_id == 2) {
+            $view = 'post.iframe-show';
+        }
+
+        return view($view, compact('post'));
     }
 
     /**
