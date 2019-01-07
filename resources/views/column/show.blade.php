@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <h4 class="card-title"><span>{{ $column->title }}</span></h4>
 
-                            <div class="card-text img-in-content">
+                            <div class="card-text">
                                 {!! ($column->content) !!}
                             </div>
 

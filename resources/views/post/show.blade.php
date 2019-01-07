@@ -30,7 +30,7 @@
                                 </span>
                             </h6>
 
-                            <div class="card-text img-in-content">
+                            <div class="card-text">
                                 @if($post->content)
                                     {!! $post->content !!}
                                 @else
