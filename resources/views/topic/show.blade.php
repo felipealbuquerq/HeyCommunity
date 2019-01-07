@@ -85,7 +85,7 @@
                                 <a class="d-inline-block d-md-none" href="{{ route('user.uhome', $topic->author->id) }}">{{ $topic->author->nickname }}</a>
                                 <span class="pull-right date">{{ $topic->created_at }}</span>
                             </h6>
-                            <div class="card-text">
+                            <div class="card-text img-in-content">
                                 {!! ($topic->content) !!}
                             </div>
 
