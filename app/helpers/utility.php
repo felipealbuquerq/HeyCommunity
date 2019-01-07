@@ -63,12 +63,15 @@ function getBackToIndexRoute()
 
     $controllerNames = [
         'news',
+        'column',
         'post',
         'topic',
         'activity',
     ];
 
     if (in_array($routeRootName, $controllerNames)) {
+        if ($routeRootName == 'column') return 'columnist.index';
+
         return $routeRootName . '.index';
     } else {
         return $routeName ?: 'home';
