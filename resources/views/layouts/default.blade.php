@@ -84,6 +84,9 @@
             <li class="nav-item {{ setNavActive('activity*') }}">
                 <a class="nav-link" href="{{ url('activity') }}">活动</a>
             </li>
+            <li class="nav-item {{ setNavActive(['about', 'help', 'terms', 'privacy']) }}">
+                <a class="nav-link" href="{{ url('about') }}">关于</a>
+            </li>
 
             @if (Auth::check())
                 <li class="nav-item d-block d-md-none {{ setNavActive('*ucenter*') }}">

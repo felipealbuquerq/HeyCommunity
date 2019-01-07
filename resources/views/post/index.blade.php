@@ -17,16 +17,7 @@
                     @foreach($posts as $post)
                         <li class="list-group-item">
                             <small class="text-muted d-inline d-md-none">{{ $post->created_at->format('m-d') }} &nbsp;</small>
-                            @if($post->type_id == 1)
-                                <a href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a>
-                            @else
-                                <a href="{{ $post->origin_url }}" self-href="{{ route('post.show', $post->id) }}" target="_blank">
-                                    {{ $post->title }}
-                                    <sup style="font-size:8px; color:#666;">
-                                        <i class="fa fa-external-link"></i>
-                                    </a>
-                                </a>
-                            @endif
+                            <a target="_blank" href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a>
                             <small class="pull-right text-muted d-none d-md-inline">{{ $post->created_at->format('Y-m-d') }}</small>
                         </li>
                     @endforeach
