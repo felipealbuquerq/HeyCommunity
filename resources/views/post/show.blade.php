@@ -52,6 +52,8 @@
                         <a class="btn btn-primary btn-block d-none d-md-block text-white mb-3" href="{{ route('post.edit', $post->id) }}">更新此资讯</a>
                     @endif
 
+                    @include('layouts._sns', ['class' => 'mb-3 d-none d-md-block'])
+
                     @include('layouts._tail')
                 </div>
             </div>

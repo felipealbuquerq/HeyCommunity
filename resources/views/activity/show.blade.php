@@ -111,6 +111,8 @@
                     </div>
 
                     <div class="mt-3">
+                        @include('layouts._sns', ['class' => 'mb-3'])
+
                         @include('layouts._tail')
                     </div>
                 </div>

@@ -207,6 +207,8 @@
                 <div id="section-right" class="col-md-3 d-none d-md-block">
                     @include('user._user-profile-card', ['user' => $topic->author])
 
+                    @include('layouts._sns', ['class' => 'mb-3'])
+
                     @include('layouts._tail')
                 </div>
 
