@@ -29,6 +29,10 @@ class PostController extends Controller
 
         if ($post->type_id == 2) {
             $view = 'post.iframe-show';
+
+            if (substr($post->origin_url, 0, 5) == 'http:') {
+                $post->origin_data = file_get_contents($post->origin_url);
+            }
         }
 
         return view($view, compact('post'));
