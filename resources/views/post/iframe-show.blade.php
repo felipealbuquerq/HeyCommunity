@@ -13,10 +13,6 @@
 @endsection
 
 @section('mainBody')
-    <iframe src="{{ $post->origin_url }}"
-        @if($post->origin_data)
-            srcdoc="{{ $post->origin_data }}"
-        @endif
-        height="600" frameborder="2" scrolling="auto" style="width:96%; margin:20px 2% 0;">
+    <iframe src="{{ $post->origin_url }}" height="600" frameborder="2" scrolling="auto" style="width:96%; margin:20px 2% 0;">
     </iframe>
 @endsection
