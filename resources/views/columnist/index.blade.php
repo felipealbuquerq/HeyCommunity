@@ -28,7 +28,7 @@
                             <div class="div">
                                 @foreach ($recentColumnists as $columnist)
                                     <div class="mb-2">
-                                        <strong><a href="">{{ $columnist->title }}</a></strong>
+                                        <strong><a href="{{ route('column.show', $columnist->domain) }}">{{ $columnist->title }}</a></strong>
                                         <small class="text-muted ml-1">{{ str_limit($columnist->description, 60) }}</small>
                                     </div>
                                 @endforeach
