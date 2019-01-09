@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-话题 - {{ $system->site_title }}
+话题首页 - {{ $system->site_title }}
 @endsection
 
 @section('description')

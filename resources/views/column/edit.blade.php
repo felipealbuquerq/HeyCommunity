@@ -1,7 +1,11 @@
 @extends('layouts.default')
 
 @section('title')
-    编辑专栏文章 - {{ $system->site_title }}
+    更新文章 - {{ $column->title }}
+@endsection
+
+@section('description')
+    专栏文章，分享你的观点和见解
 @endsection
 
 @section('mainBody')

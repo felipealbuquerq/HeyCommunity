@@ -1,7 +1,11 @@
 @extends('layouts.default')
 
 @section('title')
-活动 - {{ $system->site_title }}
+活动首页 - {{ $system->site_title }}
+@endsection
+
+@section('description')
+放下手中的电子设备，报名参加一个有趣的活动，和小伙伴们快乐地交流学习和娱乐玩耍
 @endsection
 
 @section('mainBody')

@@ -4,6 +4,14 @@
     {{ $column->title }} - {{ $columnist->title }} 专栏
 @endsection
 
+@section('description')
+    {{ str_limit(strip_tags($column->content), 100) }}
+@endsection
+
+@section('avatar')
+    {{ $column->user->avatar }}
+@endsection
+
 @section('mainBody')
     <div id="section-site" class="page-site-about">
         <div class="container pt-4">

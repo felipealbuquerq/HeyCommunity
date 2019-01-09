@@ -1,7 +1,11 @@
 @extends('layouts.default')
 
 @section('title')
-    发布一篇新专栏文章 - {{ $system->site_title }}
+    撰写新文章 - {{ $columnist->title }} 专栏
+@endsection
+
+@section('description')
+    撰写一篇新的专栏文章，分享你的观点和见解
 @endsection
 
 @section('mainBody')

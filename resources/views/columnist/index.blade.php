@@ -1,7 +1,11 @@
 @extends('layouts.default')
 
 @section('title')
-    专栏 - {{ $system->site_title }}
+    专栏首页 - {{ $system->site_title }}
+@endsection
+
+@section('description')
+    知识分子和精英阶层的在这里分享精彩的观点和见解
 @endsection
 
 @section('mainBody')

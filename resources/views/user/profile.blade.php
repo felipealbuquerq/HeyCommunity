@@ -1,10 +1,12 @@
 @extends('layouts.default')
 
 @section('title')
-用户资料 - {{ $system->site_title }}
+    更新用户资料 - {{ $system->site_title }}
 @endsection
 
-
+@php
+    $wxShareDisable = true;
+@endphp
 
 @section('mainBody')
     <div id="section-mainbody" class="page-user-profile">

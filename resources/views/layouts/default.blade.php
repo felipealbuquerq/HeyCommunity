@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" href="{{ asset('images/icon.png') }}">
     <link rel="apple-touch-startup-image" href="{{ asset('images/splash.png') }}">
 
-    <title>@yield('title', $system->site_title . ' - ' . $system->site_subheading)</title>
+    <title>{{ trim($__env->yieldContent('title', $system->site_title . ' - ' . $system->site_subheading)) }}</title>
 
     <link href='https://fonts.lug.ustc.edu.cn/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

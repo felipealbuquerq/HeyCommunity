@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-新闻资讯 - {{ $system->site_title }}
+新闻首页 - {{ $system->site_title }}
 @endsection
 
 @section('description')
