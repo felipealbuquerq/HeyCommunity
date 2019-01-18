@@ -18,9 +18,14 @@ class RequestRecorder
      */
     public function handle($request, Closure $next)
     {
-        $route = $request->route();
+        // session after login redirect route
+        if (Auth::guest() && !$request->is('user*login*', 'user*log-in*', 'user*logout*', 'user*signup*')) {
+            $request->session()->put('after-login-redirect-route', $request->route()->getName());
+        }
 
         // recorder
+        $route = $request->route();
+
         $requestRecorder = new \App\Models\System\RequestRecorder();
         $requestRecorder->user_id       =   Auth::id() ?: null;
         $requestRecorder->session_id    =   session()->getId();
