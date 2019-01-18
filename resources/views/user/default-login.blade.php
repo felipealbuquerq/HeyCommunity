@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group mb-3">
-                    <input class="form-control" type="password" name="password" value="{{ old('password') }}" placeholder="密码">
+                    <input class="form-control" type="password" name="password" placeholder="密码">
                 </div>
 
                 <div class="text-center">
