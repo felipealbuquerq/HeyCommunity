@@ -84,7 +84,7 @@ class UserController extends Controller
             session('after-login-redirect-route') &&
             (strpos(Agent::getUserAgent(), 'MicroMessenger') !== false)
         ) {
-            $route = session('after-login-redirect-route') ?: 'index';
+            $route = session('after-login-redirect-route') ?: 'home';
             return redirect()->route($route);
         }
 
@@ -110,7 +110,7 @@ class UserController extends Controller
         Auth::loginUsingId($request->user_id);
 
         flash('登录成功')->success();
-        $route = session('after-login-redirect-route') ?: 'index';
+        $route = session('after-login-redirect-route') ?: 'home';
         return redirect()->route($route);
     }
 
@@ -141,7 +141,8 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
-            return redirect()->back();
+            $route = session('after-login-redirect-route') ?: 'home';
+            return redirect()->route($route);
         } else {
             return back()->withInput()->withErrors(['fail' => '手机号码或密码不正确']);
         }
@@ -175,7 +176,8 @@ class UserController extends Controller
         if ($user->save()) {
             Auth::login($user);
 
-            return redirect()->back();
+            $route = session('after-login-redirect-route') ?: 'home';
+            return redirect()->route($route);
         } else {
             return back();
         }
