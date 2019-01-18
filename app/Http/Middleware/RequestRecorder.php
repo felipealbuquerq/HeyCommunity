@@ -18,13 +18,17 @@ class RequestRecorder
      */
     public function handle($request, Closure $next)
     {
-        $route = app('router')->getRoutes()->match(Request::create($request->url()));
+        $route = $request->route();
 
         // recorder
         $requestRecorder = new \App\Models\System\RequestRecorder();
         $requestRecorder->user_id       =   Auth::id() ?: null;
         $requestRecorder->session_id    =   session()->getId();
         $requestRecorder->url           =   $request->url();
+        $requestRecorder->path          =   $request->path();
+        $requestRecorder->ip            =   $request->ip();
+        $requestRecorder->method        =   $request->method();
+        $requestRecorder->params        =   json_encode($request->all());
         $requestRecorder->route_name    =   $route->getName();
         $requestRecorder->controller_name   =   $route->getAction('controller');
         $requestRecorder->save();
