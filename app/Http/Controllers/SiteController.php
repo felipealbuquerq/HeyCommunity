@@ -37,4 +37,12 @@ class SiteController extends Controller
     {
         return view('site.privacy');
     }
+
+    /**
+     * Weather forecast page
+     */
+    public function weatherForecast()
+    {
+        return view('site.weather-forecast');
+    }
 }

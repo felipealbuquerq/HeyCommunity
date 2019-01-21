@@ -26,6 +26,7 @@ Route::group([], function () {
     Route::get('help', 'SiteController@help')->name('site.help');
     Route::get('terms', 'SiteController@terms')->name('site.terms');
     Route::get('privacy', 'SiteController@privacy')->name('site.privacy');
+    Route::get('weather-forecast', 'SiteController@weatherForecast')->name('site.weather-forecast');
 });
 
 
