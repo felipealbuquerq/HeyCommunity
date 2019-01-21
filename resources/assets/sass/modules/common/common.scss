@@ -49,6 +49,26 @@
   position: relative;
 }
 
+
+//
+// simditor
+.simditor {
+  z-index: 9999 !important;
+
+  .simditor-wrapper {
+    .simditor-toolbar {
+      @include media-breakpoint-up(md) {
+        top: 51px !important;
+      }
+    }
+
+    .simditor-body {
+      height: 400px;
+      overflow: scroll;
+    }
+  }
+}
+
 #section-textarea-login-tip {
   z-index: 9;
   position: absolute;

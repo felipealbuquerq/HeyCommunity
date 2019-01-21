@@ -14,7 +14,8 @@
       var editor = new Simditor({
         textarea: $('.simditor-editor'),
         toolbar: ['title', 'bold', 'underline', 'fontScale', 'color', 'alignment', 'indent', 'ol', 'table', 'link', 'image', 'html', 'fullscreen'],
-        toolbarFloatOffset: 51,
+        // toolbarFloat: false,
+        // toolbarFloatOffset: 51,
         pasteImage: true,
         upload: {
           url: '{{ route('upload.simditor-upload-images') }}',
