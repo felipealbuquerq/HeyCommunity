@@ -71,18 +71,18 @@
             <li class="nav-item">
                 <a class="nav-link {{ setNavActive('/') }}" href="{{ url('/') }}">首页</a>
             </li>
-            -->
             <li class="nav-item {{ setNavActive('post*') }}">
                 <a class="nav-link" href="{{ route('post.index') }}">资讯</a>
             </li>
             <li class="nav-item {{ setNavActive('column*') }}">
                 <a class="nav-link" href="{{ route('columnist.index') }}">专栏</a>
             </li>
-            <li class="nav-item {{ setNavActive('topic*') }}">
-                <a class="nav-link" href="{{ route('topic.index') }}">话题</a>
-            </li>
             <li class="nav-item {{ setNavActive('activity*') }}">
                 <a class="nav-link" href="{{ url('activity') }}">活动</a>
+            </li>
+            -->
+            <li class="nav-item {{ setNavActive('topic*') }}">
+                <a class="nav-link" href="{{ route('topic.index') }}">话题</a>
             </li>
             <li class="nav-item {{ setNavActive(['about', 'help', 'terms', 'privacy']) }}">
                 <a class="nav-link" href="{{ url('about') }}">关于</a>
