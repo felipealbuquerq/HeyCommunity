@@ -8,14 +8,19 @@ include_once 'web-view-share.php';
 //
 // Home
 Route::group([], function () {
+    // Route::get('/', 'HomeController@index')->name('home.index');
+
     Route::get('home', function () {
         return redirect()->route('post.index');
     })->name('home');
+
     Route::get('/', function () {
         return redirect()->route('post.index');
     })->name('index');
 
-    // Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('mini-app', function () {
+        return redirect()->route('site.weather-forecast');
+    });
 });
 
 
@@ -27,6 +32,12 @@ Route::group([], function () {
     Route::get('terms', 'SiteController@terms')->name('site.terms');
     Route::get('privacy', 'SiteController@privacy')->name('site.privacy');
     Route::get('weather-forecast', 'SiteController@weatherForecast')->name('site.weather-forecast');
+    Route::get('weather-forecast-source', function () {
+        return '
+                <iframe src="//www.seniverse.com/weather/weather.aspx?uid=UEA0895246&cid=CHJX060000&l=&p=SMART&a=1&u=C&s=3&m=0&x=1&d=3&fc=&bgc=&bc=&ti=0&in=0&li="
+                        frameborder="0" scrolling="no" width="100%" height="110" allowTransparency="true"></iframe>
+        ';
+    });
 });
 
 
