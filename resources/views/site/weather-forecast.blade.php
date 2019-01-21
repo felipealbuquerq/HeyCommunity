@@ -14,7 +14,7 @@
                         frameborder="0" scrolling="no" width="100%" height="110" allowTransparency="true"></iframe>
 
                 <p class="text-muted text-center">
-                    Time: {{ date('Y-m-d D') }} <br>
+                    <span>{{ date('Y-m-d D') }}</span> <br>
                     天气预报信息由心知天气提供
                 </p>
             </div>
