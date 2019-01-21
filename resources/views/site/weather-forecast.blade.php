@@ -20,5 +20,11 @@
             </div>
         </div>
     </div>
+
+    <style rel="stylesheet" type="text/css">
+        #section-mainNav {
+            display: none !important;
+        }
+    </style>
 @stop
 
