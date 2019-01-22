@@ -96,6 +96,9 @@
                     <a class="nav-link" href="{{ route('user.logout') }}">登出</a>
                 </li>
             @else
+                <li class="nav-item d-block d-md-none {{ setNavActive('*signup*') }}">
+                    <a class="nav-link" href="{{ route('user.signup') }}">注册</a>
+                </li>
                 <li class="nav-item d-block d-md-none {{ setNavActive('*login*') }}">
                     <a class="nav-link" href="{{ route('user.login') }}">登录</a>
                 </li>
@@ -136,6 +139,11 @@
                     </a>
                 </li>
             @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.signup') }}">
+                        <i class="fa fa-user-plus"></i> &nbsp; 注册
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.login') }}">
                         <i class="fa fa-sign-in"></i> &nbsp; 登入

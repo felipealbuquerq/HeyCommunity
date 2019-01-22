@@ -41,7 +41,7 @@ class UserController extends Controller
             return redirect()->route('user.login-by-wechat');
         } else {
             if (Agent::isDesktop()) {
-                return redirect()->route('user.login-wechat');
+                return redirect()->route('user.default-signup');
             } else {
                 return redirect()->route('user.default-signup');
             }
