@@ -98,7 +98,7 @@
                                         &nbsp;/&nbsp;
                                         {{ $topic->thumb_down_num }} 踩
                                         &nbsp;/&nbsp;
-                                        {{ $topic->comment_num }} 评论
+                                        {{ $topic->comment_num }} 讨论
                                         &nbsp;/&nbsp;
                                         {{ $topic->read_num }} 阅读
                                     </div>
@@ -107,7 +107,7 @@
                                 <div class="text-center d-block d-md-none">
                                     <div class="topic-info text-muted">
                                         <div class="mt-5">
-                                            {{ $topic->comment_num }} 评论
+                                            {{ $topic->comment_num }} 讨论
                                             &nbsp;/&nbsp;
                                             {{ $topic->read_num }} 阅读
                                         </div>
@@ -158,7 +158,7 @@
                     </div>
 
                     <div id="section-comment-list">
-                        <h3><span class="badge badge-secondary">评论列表 <small>({{ $topic->comments()->count() }})</small></span></h3>
+                        <h3><span class="badge badge-secondary">讨论列表 <small>({{ $topic->comments()->count() }})</small></span></h3>
                         @foreach ($topic->rootComments as $comment)
                             @include('topic._topic_comment', ['comment' => $comment])
                         @endforeach
@@ -166,14 +166,14 @@
                         @if (!$topic->comments()->count())
                             <div class="card m-nb-r m-nb-y">
                                 <div class="card-body">
-                                    暂无评论
+                                    暂无讨论
                                 </div>
                             </div>
                         @endif
                     </div>
 
                     <div id="section-comment-textarea">
-                        <h3><span class="badge badge-secondary">我要评论</span></h3>
+                        <h3><span class="badge badge-secondary">我要讨论</span></h3>
                         <div class="card m-nb-r m-nb-y">
                             <div class="card-body">
                                 <form action="{{ route('topic.comment.store') }}" method="post">
@@ -183,7 +183,7 @@
                                     <div class="form-group simditor-box">
                                         @if (Auth::guest())
                                             <div id="section-textarea-login-tip" style="padding-top:25px;">
-                                                请<a href="{{ route('user.login') }}">登入</a>后再发表评论
+                                                请<a href="{{ route('user.login') }}">登入</a>后再发表讨论
                                             </div>
                                         @endif
                                         <textarea name="content" id="input-comment-textarea" class="form-control simditor-editor" rows="3" placeholder="{{ Auth::check() ? '在这里, 我们真诚地交流' : '' }}">{{ old('content') }}</textarea>
@@ -239,7 +239,7 @@
      * destroy topic comment
      */
     function destroyComment(id) {
-        confirmPostSubmit('是否要删除该评论', '{{ route("topic.comment.destroy") }}', {id: id})
+        confirmPostSubmit('是否要删除该讨论', '{{ route("topic.comment.destroy") }}', {id: id})
     }
 
     /**
