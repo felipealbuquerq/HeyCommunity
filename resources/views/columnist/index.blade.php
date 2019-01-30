@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="col-xl-9 col-md-8 m-np">
-                    <div class="right-tools mb-3">
+                    <div class="right-tools mb-3 m-p15-x">
                         <a class="btn btn-secondary {{ setParamActive('filter', 'recent') }}" href="{{ route('columnist.index', ['filter' => 'recent']) }}">最近</a>
                         <a class="btn btn-secondary {{ setParamActive('filter', 'hot') }}" href="{{ route('columnist.index', ['filter' => 'hot']) }}">最热</a>
                         <a class="disabled btn btn-secondary {{ setParamActive('filter', 'recommend') }}" href="{{ route('columnist.index', ['filter' => 'recommend']) }}">推荐</a>

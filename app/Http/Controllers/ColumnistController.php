@@ -47,6 +47,29 @@ class ColumnistController extends Controller
     {
         $columnist = Columnist::where('domain', $domain)->firstOrFail();
 
-        return view('columnist.show', compact('columnist'));
+        $query = $columnist->columns();
+
+        if ($request->filter) {
+            switch ($request->filter) {
+                case 'recent':
+                    $query->latest();
+                    break;
+                case 'hot':
+                    $query->orderByDesc('comment_num', 'favorite_num', 'thumb_up_num', 'read_num', 'updated_at')
+                    ->latest();
+                    break;
+                case 'recommend':
+                    // @todo
+                    $query->latest();
+                    break;
+                default:
+                    $query->latest();
+                    break;
+            }
+        }
+
+        $columns = $query->paginate(6);
+
+        return view('columnist.show', compact('columnist', 'columns'));
     }
 }
