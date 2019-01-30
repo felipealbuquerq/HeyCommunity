@@ -62,7 +62,7 @@
                     <a class="btn btn-secondary {{ setParamActive('filter', 'noreply') }}" href="{{ route('topic.index', ['filter' => 'noreply']) }}">零回复</a>
 
                     <div class="pull-right d-none d-sm-block">
-                        <a class="btn btn-secondary" href="{{ route('topic.index', ['filter' => 'default']) }}">刷新</a>
+                        <a class="btn btn-secondary" href="#" onclick="document.location.reload()">刷新</a>
                     </div>
                 </div>
 
