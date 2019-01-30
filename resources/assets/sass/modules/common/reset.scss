@@ -3,6 +3,11 @@ img {
   height: auto !important;
 }
 
+.dropdown-menu {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
 @include media-breakpoint-down(sm) {
   .card {
     .card-header {
