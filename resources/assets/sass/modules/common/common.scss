@@ -53,7 +53,9 @@
 //
 // simditor
 .simditor {
-  z-index: 9999 !important;
+  @include media-breakpoint-down(md) {
+    z-index: 9999 !important;
+  }
 
   .simditor-wrapper {
     .simditor-toolbar {
