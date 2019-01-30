@@ -20,8 +20,7 @@
                 </div>
 
                 <div class="input-group">
-                    <a class="btn btn-primary " href="{{ route('activity.create') }}">发布新活动</a>
-                    &nbsp;&nbsp;
+                    <a class="btn btn-primary d-none d-md-inline" href="{{ route('activity.create') }}">发布新活动</a>
                     &nbsp;&nbsp;
 
                     <!-- 分类 -->
@@ -43,7 +42,7 @@
                         </div>
                     </div>
 
-                    &nbsp;&nbsp;
+                    &nbsp;
 
                     <!-- 地区 -->
                     <div class="input-group-btn">

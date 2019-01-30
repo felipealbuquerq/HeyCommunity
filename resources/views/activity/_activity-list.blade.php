@@ -10,16 +10,16 @@
                         <img class="card-img-top m-nb-r" src="{{ asset($item->avatar) }}" alt="{{ $item->title }}">
 
                         <div class="info text-right">
+                            <div class="local">
+                                <i class="fa fa-map"></i> &nbsp;
+                                {{ $item->area ? $item->area->name : '' }}
+                                {{ $item->local }}
+                            </div>
                             <div class="date">
                                 <i class="fa fa-calendar"></i> &nbsp;
                                 {{ \Carbon\Carbon::parse($item->start_time)->format('m-d H:i') }}
                                 至
                                 {{ \Carbon\Carbon::parse($item->end_time)->format('m-d H:i') }}
-                            </div>
-                            <div class="local">
-                                <i class="fa fa-map"></i> &nbsp;
-                                {{ $item->area ? $item->area->name : '' }}
-                                {{ $item->local }}
                             </div>
                         </div>
                     </a>
