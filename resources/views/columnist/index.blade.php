@@ -40,13 +40,16 @@
                 <div class="col-md-9 m-np">
                     <div class="right-tools mb-3">
                         <a class="btn btn-secondary {{ setParamActive('filter', 'recent') }}" href="{{ route('columnist.index', ['filter' => 'recent']) }}">最近</a>
-                        <a class="disabled btn btn-secondary {{ setParamActive('filter', 'hot') }}" href="{{ route('columnist.index', ['filter' => 'hot']) }}">最热</a>
+                        <a class="btn btn-secondary {{ setParamActive('filter', 'hot') }}" href="{{ route('columnist.index', ['filter' => 'hot']) }}">最热</a>
                         <a class="disabled btn btn-secondary {{ setParamActive('filter', 'recommend') }}" href="{{ route('columnist.index', ['filter' => 'recommend']) }}">推荐</a>
+
+                        <!--
                         &nbsp;&nbsp;
-                        <a class="disabled btn btn-secondary {{ setParamActive('filter', 'subscription') }}" href="{{ route('columnist.index', ['filter' => 'subscription']) }}">订阅</a>
+                        <a class="btn btn-secondary {{ setParamActive('filter', 'subscription') }}" href="{{ route('columnist.index', ['filter' => 'subscription']) }}">订阅</a>
+                        -->
 
                         <div class="pull-right d-none d-sm-block">
-                            <a class="btn btn-secondary" href="{{ route('columnist.index', ['filter' => 'default']) }}">刷新</a>
+                            <a class="btn btn-secondary" href="#" onclick="document.location.reload()">刷新</a>
                         </div>
                     </div>
 
