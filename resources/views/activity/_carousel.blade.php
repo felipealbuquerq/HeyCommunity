@@ -22,6 +22,7 @@
                     <h3><a href="{{ route('activity.show', $item->id) }}">{{ $item->title }}</a></h3>
                     <p>{{ $item->intro }}</p>
                 </div>
+                <div class="carousel-caption-bg"></div>
             </div>
         @endforeach
     </div>

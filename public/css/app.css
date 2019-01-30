@@ -424,6 +424,11 @@ img {
   background-color: #555;
 }
 
+#section-mainbody.page-activity-index .carousel .carousel-control-next,
+#section-mainbody.page-activity-index .carousel .carousel-control-prev {
+  top: -50px !important;
+}
+
 #section-mainbody.page-activity-index .carousel .carousel-item {
   text-align: center;
   max-height: 300px;
@@ -445,6 +450,15 @@ img {
   color: #fff;
 }
 
+#section-mainbody.page-activity-index .carousel .carousel-item .carousel-caption-bg {
+  position: absolute;
+  width: 100%;
+  top: 170px;
+  height: 130px;
+  background-color: #000;
+  opacity: 0.1;
+}
+
 #section-mainbody.page-activity-index #section-carousel {
   margin-bottom: 21px;
 }
@@ -460,17 +474,36 @@ img {
 }
 
 #component-activity-card .box-pic {
+  position: relative;
   max-height: 165px;
   overflow: hidden;
 }
 
 #component-activity-card .box-pic .start-time {
+  border-bottom-left-radius: 16px;
   position: absolute;
   right: 0;
   top: 0;
   padding: 5px 10px;
   color: #fff;
-  background-color: rgba(60, 60, 60, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#component-activity-card .box-pic .info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px 10px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+#component-activity-card .box-pic .info .date,
+#component-activity-card .box-pic .info .local {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 #component-activity-card .box-pic .card-img-top {

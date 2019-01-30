@@ -23,6 +23,14 @@ class Activity extends BaseModel
     }
 
     /**
+     * Relate Area
+     */
+    public function area()
+    {
+        return $this->belongsTo(ActivityArea::class, 'area_id');
+    }
+
+    /**
      * Get In DailyPaper
      */
     public function getInDailyPaperAttribute()

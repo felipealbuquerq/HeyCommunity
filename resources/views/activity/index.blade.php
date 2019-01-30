@@ -10,10 +10,6 @@
 
 @section('mainBody')
 <div id="section-mainbody" class="page-activity-index">
-    <!--
-    @include('activity._carousel', ['elementId' => 'section-carousel-top'])
-    -->
-
     <div class="container pt-4">
         @include('activity._carousel', ['elementId' => 'section-carousel'])
 
@@ -26,10 +22,11 @@
                 <div class="input-group">
                     <a class="btn btn-primary " href="{{ route('activity.create') }}">发布新活动</a>
                     &nbsp;&nbsp;
+                    &nbsp;&nbsp;
 
                     <!-- 分类 -->
                     <div class="input-group-btn">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
                             @if (request('category_id'))
                                 {{ $categories->where('id', request('category_id'))->pluck('name')->pop() }}
                             @else
@@ -46,9 +43,11 @@
                         </div>
                     </div>
 
+                    &nbsp;&nbsp;
+
                     <!-- 地区 -->
                     <div class="input-group-btn">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
                             @if (request('area_id'))
                                 {{ $areas->where('id', request('area_id'))->pluck('name')->pop() }}
                             @else
