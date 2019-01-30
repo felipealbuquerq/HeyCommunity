@@ -12,7 +12,7 @@
     <div id="section-columnist" class="page-columnist-index">
         <div class="container pt-4">
             <div class="row">
-                <div class="col-lg-3 col-md-3 m-np d-none d-md-block">
+                <div class="col-xl-3 col-md-4 m-np d-none d-md-block">
                     <div class="card">
                         <div class="card-body">
                             <h6 class="card-title">推荐专栏</h6>
@@ -35,9 +35,13 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="mt-3">
+                        @include('layouts._tail')
+                    </div>
                 </div>
 
-                <div class="col-md-9 m-np">
+                <div class="col-xl-9 col-md-8 m-np">
                     <div class="right-tools mb-3">
                         <a class="btn btn-secondary {{ setParamActive('filter', 'recent') }}" href="{{ route('columnist.index', ['filter' => 'recent']) }}">最近</a>
                         <a class="btn btn-secondary {{ setParamActive('filter', 'hot') }}" href="{{ route('columnist.index', ['filter' => 'hot']) }}">最热</a>
@@ -66,13 +70,14 @@
                                                 {{ $column->thumb_up_num }} &nbsp; / &nbsp; {{ $column->comment_num }} &nbsp; / &nbsp; {{ $column->read_num }}
                                                 &nbsp;&nbsp;&nbsp; {{ $column->created_at->format('m-d') }}
                                             </span>
-                                            <span class="badge badge-light">
-                                                <a class="d-inline h6 text-primary" href="{{ route('columnist.show', $column->author->domain) }}">
+                                            <a class="d-inline" href="{{ route('column.show', $column->id) }}">{{ $column->title }}</a>
+
+                                            <small class="text-muted">
+                                                &nbsp;/
+                                                <a class="d-inline text-primary text-muted" href="{{ route('columnist.show', $column->author->domain) }}">
                                                     {{ $column->author->title }} 专栏
                                                 </a>
-                                            </span>
-                                            /&nbsp;
-                                            <a class="d-inline" href="{{ route('column.show', $column->id) }}">{{ $column->title }}</a>
+                                            </small>
                                         </div>
 
                                         <div class="text">
@@ -97,10 +102,7 @@
 
                 </div>
 
-                <div class="col-lg-9 col-md-9 m-np">
-                </div>
-
-                <div class="col-12 m-np mt-4">
+                <div class="col-12 m-np mt-4 d-block d-md-none">
                     @include('layouts._tail')
                 </div>
             </div>
