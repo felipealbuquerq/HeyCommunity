@@ -16,11 +16,13 @@
     <div id="section-site" class="page-site-about">
         <div class="container pt-4">
             <div class="row">
-                <div class="col-lg-3 col-md-3 m-np">
+                <div class="col-xl-3 col-md-4 m-np d-none d-md-block">
                     @include('columnist._columnist_card', ['columnist' => $columnist])
+
+                    @include('layouts._tail')
                 </div>
 
-                <div class="col-lg-9 col-md-9 m-np">
+                <div class="col-xl-9 col-md-8 m-np">
 
                     <nav id="section-breadcrumb" class="d-none d-md-block" aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
@@ -33,6 +35,11 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title"><span>{{ $column->title }}</span></h4>
+
+                            <h6 class="card-subtitle mb-2 text-muted d-block d-md-none">
+                                <a href="{{ route('columnist.show', $columnist->domain) }}">{{ $columnist->title }} <small>专栏</small></a>
+                                <span class="pull-right date">{{ $column->created_at }}</span>
+                            </h6>
 
                             <div class="card-text">
                                 {!! ($column->content) !!}
@@ -66,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="col-12 m-np mt-4">
+                <div class="col-12 m-np mt-4 d-block d-md-none">
                     @include('layouts._tail')
                 </div>
             </div>
