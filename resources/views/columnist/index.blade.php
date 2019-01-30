@@ -52,7 +52,7 @@
                         <a class="btn btn-secondary {{ setParamActive('filter', 'subscription') }}" href="{{ route('columnist.index', ['filter' => 'subscription']) }}">订阅</a>
                         -->
 
-                        <div class="pull-right d-none d-sm-block">
+                        <div class="pull-right">
                             <a class="btn btn-secondary" href="#" onclick="document.location.reload()">刷新</a>
                         </div>
                     </div>
