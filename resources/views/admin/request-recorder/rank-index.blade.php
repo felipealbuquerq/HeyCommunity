@@ -44,8 +44,14 @@
                                                             <td>{{ $recorder->getRecentTotal(7) }}</td>
                                                             <td>{{ $recorder->getRecentTotal(30) }}</td>
                                                             <td>{{ $recorder->total }}</td>
-                                                            <td>{{ $recorder->created_at }}</td>
-                                                            <td>{{ $recorder->user->created_at }}</td>
+                                                            <td>
+                                                                {{ $recorder->created_at }}
+                                                                <small class="text-muted">({{ $recorder->created_at->diffForHumans() }})</small>
+                                                            </td>
+                                                            <td>
+                                                                {{ $recorder->user->created_at }}
+                                                                <small class="text-muted">({{ $recorder->user->created_at->diffForHumans() }})</small>
+                                                            </td>
                                                         </tr>
                                                     @endforeach
                                                 @endif
