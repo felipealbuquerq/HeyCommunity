@@ -94,7 +94,12 @@
 
                                         <!-- Pagination -->
                                         <nav id="section-pagination">
-                                            {{ $recorders->links() }}
+                                            {{ $recorders->appends([
+                                                'keyword'   =>  Request::get('keyword'),
+                                                'ip'        =>  Request::get('ip'),
+                                                'visitor_type'  =>  Request::get('visitor_type'),
+                                                'method'    =>  Request::get('method'),
+                                            ])->links() }}
                                         </nav>
                                     </div>
                                 </div>
