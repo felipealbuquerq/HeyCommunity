@@ -204,6 +204,7 @@
                             <span class="pull-right"><i class="mdi mdi-chart-bubble"></i></span>
                         </a>
                         <ul class="list-unstyled">
+                            <li><a href="{{ route('admin.request-recorder.rank-index') }}">访客排名</a></li>
                             <li><a href="{{ route('admin.request-recorder.index') }}">访客记录</a></li>
                         </ul>
                     </li>

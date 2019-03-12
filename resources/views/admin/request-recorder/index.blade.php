@@ -1,15 +1,5 @@
 @extends('admin.layouts.default')
 
-@section('search')
-    <form class="navbar-form pull-left" role="search" action="{{ route('admin.news.index') }}">
-        <div class="form-group">
-            <input type="hidden" name="type" value="news">
-            <input type="text" name="q" class="form-control search-bar" placeholder="搜索" value="{{ Request::get('q') }}">
-        </div>
-        <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-    </form>
-@endsection
-
 @section('mainBody')
     <div class="">
         <div class="page-header-title">
@@ -60,35 +50,35 @@
                                     <div class="table-responsive">
                                         <table class="table" id="section-datatable">
                                             <thead>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>时间</th>
-                                                <th>访客 <small class="text-muted">ID</small></th>
-                                                <th>IP</th>
-                                                <th>请求</th>
-                                                <th>路由</th>
-                                            </tr>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>时间</th>
+                                                    <th>访客 <small class="text-muted">ID</small></th>
+                                                    <th>IP</th>
+                                                    <th>请求</th>
+                                                    <th>路由</th>
+                                                </tr>
                                             </thead>
                                             <tbody>
-                                            @if ($recorders->isEmpty())
-                                                <tr>
-                                                    <td colspan="5">无数据</td>
-                                                </tr>
-                                            @else
-                                                @foreach ($recorders as $recorder)
+                                                @if ($recorders->isEmpty())
                                                     <tr>
-                                                        <td>{{ $recorder->id }}</td>
-                                                        <td>{{ $recorder->created_at }}</td>
-                                                        <td>
-                                                            {{ $recorder->user ? $recorder->user->nickname : '-' }}
-                                                            <small class="text-muted">/ {{ $recorder->user_id ?: '-' }}</small>
-                                                        </td>
-                                                        <td>{{ $recorder->ip }}</td>
-                                                        <td>{{ $recorder->method }}</td>
-                                                        <td>{{ $recorder->route_name }}</td>
+                                                        <td colspan="5">无数据</td>
                                                     </tr>
-                                                @endforeach
-                                            @endif
+                                                @else
+                                                    @foreach ($recorders as $recorder)
+                                                        <tr>
+                                                            <td>{{ $recorder->id }}</td>
+                                                            <td>{{ $recorder->created_at }}</td>
+                                                            <td>
+                                                                {{ $recorder->user ? $recorder->user->nickname : '-' }}
+                                                                <small class="text-muted">/ {{ $recorder->user_id ?: '-' }}</small>
+                                                            </td>
+                                                            <td>{{ $recorder->ip }}</td>
+                                                            <td>{{ $recorder->method }}</td>
+                                                            <td>{{ $recorder->route_name }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
                                             </tbody>
                                         </table>
 

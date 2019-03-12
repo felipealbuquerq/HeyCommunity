@@ -24,7 +24,7 @@ class CreateRequestRecordersTable extends Migration
             $table->string('method', 10)->comment('The Request Method');
             $table->string('ip', 30)->comment('The Request Ip');
             $table->text('params')->nullable()->comment('The Request Params');
-            $table->string('route_name', 30)->nullable()->comment('The Page Route Name');
+            $table->string('route_name')->nullable()->comment('The Page Route Name');
             $table->string('controller_name', 100)->nullable()->comment('The Page Controller Name');
 
             $table->integer('lifetime')->default(0)->comment('The Page View Time');

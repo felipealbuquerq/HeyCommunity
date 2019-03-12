@@ -51,7 +51,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
 
     //
     // Operation & Analytics
-    Route::resource('request-recorder', 'RequestRecorderController', ['as' => 'admin']);
+    Route::group([], function () {
+        Route::get('request-recorder/rank-index', 'RequestRecorderController@rankIndex')->name('admin.request-recorder.rank-index');
+        Route::resource('request-recorder', 'RequestRecorderController', ['as' => 'admin']);
+    });
 
     //
     // System

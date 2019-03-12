@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\System\RequestRecorder;
-use function foo\func;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class RequestRecorderController extends Controller
 {
@@ -54,5 +54,20 @@ class RequestRecorderController extends Controller
         $recorders = $requestRecorderQuery->latest()->paginate();
 
         return view('admin.request-recorder.index', compact('recorders'));
+    }
+
+    /**
+     * Rank Index Page
+     */
+    public function rankIndex(Request $request)
+    {
+        $recorders = RequestRecorder::whereNotNull('user_id')
+            ->where('route_name', 'not like', 'admin.%')
+            ->select('*', DB::raw('count(*) as total'), DB::raw('max(created_at) as created_at'))
+            ->groupBy('user_id')
+            ->orderBy('created_at', 'desc')
+            ->paginate();
+
+        return view('admin.request-recorder.rank-index', compact('recorders'));
     }
 }
