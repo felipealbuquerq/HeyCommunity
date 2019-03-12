@@ -54,6 +54,7 @@
 
                                         <!-- Pagination -->
                                         <nav id="section-pagination">
+                                            {{ $recorders->links() }}
                                         </nav>
                                     </div>
                                 </div>
