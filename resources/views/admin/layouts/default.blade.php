@@ -185,6 +185,7 @@
                             <li><a href="{{ route('admin.topic.node.index') }}">节点管理</a></li>
                         </ul>
                     </li>
+
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect">
                             <i class="mdi mdi-gnome"></i>
@@ -193,6 +194,17 @@
                         </a>
                         <ul class="list-unstyled">
                             <li><a href="{{ route('admin.activity.index') }}">活动列表</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect">
+                            <i class="mdi mdi-chart-bubble"></i>
+                            <span>运营管理</span>
+                            <span class="pull-right"><i class="mdi mdi-chart-bubble"></i></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('admin.request-recorder.index') }}">访客记录</a></li>
                         </ul>
                     </li>
                     <li>

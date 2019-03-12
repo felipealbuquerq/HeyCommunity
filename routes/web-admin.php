@@ -50,6 +50,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::resource('daily-paper', 'DailyPaperController', ['as' => 'admin']);
 
     //
+    // Operation & Analytics
+    Route::resource('request-recorder', 'RequestRecorderController', ['as' => 'admin']);
+
+    //
     // System
     Route::group(['prefix' => 'system'], function () {
         Route::get('edit', 'SystemController@edit')->name('admin.system.edit');

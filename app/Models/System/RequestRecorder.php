@@ -2,9 +2,9 @@
 
 namespace App\Models\System;
 
-use Illuminate\Database\Eloquent\Model;
+use App\BaseModel;
 
-class RequestRecorder extends Model
+class RequestRecorder extends BaseModel
 {
     //
 }
