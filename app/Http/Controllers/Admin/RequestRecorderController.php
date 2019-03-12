@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\System\RequestRecorder;
+use function foo\func;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,6 +40,13 @@ class RequestRecorderController extends Controller
         if ($request->get('method') == 'GET' || $request->get('method') == 'POST') {
             $requestRecorderQuery->where('method', $request->get('method'));
         }
+
+        // @todo 时间
+
+        // 过滤后台记录
+        $requestRecorderQuery->where('route_name', 'not like', 'admin.%');
+
+        // @todo 过滤管理员记录
 
         $recorders = $requestRecorderQuery->latest()->paginate();
 
