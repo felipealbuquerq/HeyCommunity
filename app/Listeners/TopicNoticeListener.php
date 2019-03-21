@@ -28,9 +28,9 @@ class TopicNoticeListener
      */
     public function handle(TopicNotice $event)
     {
-        $this->wechatSendNewMailNotice($event);
-
         if ($event->userId != $event->senderId) {
+            $this->wechatSendNewMailNotice($event);
+            
             $notice = Notice::create([
                 'user_id'       =>  $event->userId,
                 'sender_id'     =>  $event->senderId,
