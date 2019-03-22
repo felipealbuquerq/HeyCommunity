@@ -37,7 +37,7 @@ class AuthServiceProvider extends ServiceProvider
                 }
             }
 
-            flash('你无权做此操作')->error();
+            // flash('你无权做此操作')->error();
             return false;
         });
 
