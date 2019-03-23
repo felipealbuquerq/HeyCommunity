@@ -49,6 +49,11 @@ Route::group([], function () {
 
 
 //
+// Timeline
+Route::resource('timeline', 'TimelineController');
+
+
+//
 // User
 Route::group(['prefix' => 'user', 'middleware' => []], function () {
     Route::group(['middleware' => 'guest'], function() {
