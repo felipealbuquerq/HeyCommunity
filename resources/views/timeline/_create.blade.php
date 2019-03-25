@@ -62,7 +62,7 @@
 
         for (var file of event.target.files) {
           formData.append('image', file);
-          
+
           $.ajax({
             url: "{{ route('timeline.upload-image') }}",
             method: 'POST',

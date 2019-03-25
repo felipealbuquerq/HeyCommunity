@@ -59,6 +59,8 @@ class TimelineController extends Controller
         $timelineImage = TimelineImage::create([
             'user_id'       =>  Auth::id(),
             'file_path'     =>  $filePath,
+            'image_width'   =>  getimagesize($request->image)[0],
+            'image_height'  =>  getimagesize($request->image)[1],
         ]);
 
         return response()->json($timelineImage);

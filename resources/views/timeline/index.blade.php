@@ -30,11 +30,9 @@
 
                                         @if ($timeline->images()->count())
                                             <div class="media-body-inline-grid" data-grid="images">
-                                                <div style="display: inline-block; margin-bottom: 10px; margin-right: 10px; vertical-align: bottom;">
-                                                    @foreach ($timeline->images as $image)
-                                                        <img data-action="zoom" data-width="1050" data-height="700" src="{{ $image->file_path }}" style="width: 273px; height: 182px;">
-                                                    @endforeach
-                                                </div>
+                                                @foreach ($timeline->images as $image)
+                                                    <img data-action="zoom" data-width="{{ $image->image_width }}" data-height="{{ $image->image_height }}" src="{{ asset($image->file_path) }}">
+                                                @endforeach
                                             </div>
                                         @endif
                                     </div>
