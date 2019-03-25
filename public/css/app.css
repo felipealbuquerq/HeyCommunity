@@ -557,6 +557,8 @@ img {
 }
 
 #section-mainbody.page-timeline-index #section-timeline-create-form #area-images img {
-  max-width: 60px;
+  width: auto;
+  height: 40px !important;
+  margin-right: 6px;
 }
 

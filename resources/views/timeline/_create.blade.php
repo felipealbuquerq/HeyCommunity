@@ -20,7 +20,7 @@
         </div>
 
         <div id="area-images" class="mt-2">
-            <img class="img img-responsive hidden">
+            <img class="img rounded img-responsive d-none">
         </div>
     </li>
 
@@ -89,10 +89,10 @@
        */
       function timelineAddImage(image) {
         // display the image
-        var imgEl = $(timelineFormEl).find('img.hidden').clone();
+        var imgEl = $(timelineFormEl).find('img.d-none').clone();
         imgEl.attr('src', image.file_path);
         imgEl.appendTo(timelineFormImageAreaEl);
-        imgEl.removeClass('hidden');
+        imgEl.removeClass('d-none');
 
         timelineFormInputImageIds.push(image.id);
       }
