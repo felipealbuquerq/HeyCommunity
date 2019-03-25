@@ -20,7 +20,10 @@
         </div>
 
         <div id="area-images" class="mt-2">
-            <img class="img rounded img-responsive d-none">
+            <div class="item-image d-none mb-1 mt-1 mr-1">
+                <div class="area-handle"><a onclick="timelineRemoveImage(event)" class="text-center bg-danger"><i class="fa fa-trash"></i></a></div>
+                <img class="img rounded img-responsive" data-id="" src="">
+            </div>
         </div>
     </li>
 
@@ -89,10 +92,14 @@
        */
       function timelineAddImage(image) {
         // display the image
-        var imgEl = $(timelineFormEl).find('img.d-none').clone();
+        var divEl = $(timelineFormEl).find('.item-image.d-none').clone();
+        var imgEl = divEl.find('img')
+
         imgEl.attr('src', image.file_path);
-        imgEl.appendTo(timelineFormImageAreaEl);
-        imgEl.removeClass('d-none');
+        divEl.appendTo(timelineFormImageAreaEl);
+        divEl.attr('data-id', image.id);
+        divEl.removeClass('d-none');
+        divEl.addClass('d-inline-block');
 
         timelineFormInputImageIds.push(image.id);
       }
@@ -100,6 +107,15 @@
       /**
        * Timeline Remove Image
        */
+      function timelineRemoveImage(event) {
+        var itemImage = $(event.target).parents('.item-image');
+        var imageId = itemImage.attr('data-id');
+
+        timelineFormInputImageIds = timelineFormInputImageIds.filter(function(item) {
+          return item != imageId;
+        });
+        itemImage.remove();
+      }
     </script>
 </form>
 

@@ -1,10 +1,35 @@
 #section-mainbody.page-timeline-index {
   #section-timeline-create-form {
     #area-images {
+      .item-image {
+        position: relative;
+
+        &:hover {
+          .area-handle {
+            display: block;
+          }
+        }
+
+        .area-handle {
+          width: 100%;
+          position: absolute;
+          display: none;
+
+          a {
+            color: #fff;
+            display: block;
+            width: 20px;
+            line-height: 1.5em;
+            position: absolute;
+            right: 0;
+            cursor: pointer;
+          }
+        }
+      }
+
       img {
         width: auto;
         height: 40px !important;
-        margin-right: 6px;
       }
     }
   }
