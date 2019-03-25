@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class TimelineVideo extends Model
+class TimelineVideo extends BaseModel
 {
     //
 }

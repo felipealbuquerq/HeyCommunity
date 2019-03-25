@@ -10,3 +10,12 @@ require('./laravel-echo');
 
 require('./utilities/request');
 require('./utilities/other');
+
+// set ajax request headers
+$(document).ready(function() {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+  });
+});

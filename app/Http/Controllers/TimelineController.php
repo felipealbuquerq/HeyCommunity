@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Timeline;
+use App\TimelineImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class TimelineController extends Controller
 {
@@ -25,13 +27,40 @@ class TimelineController extends Controller
     {
         $this->validate($request, [
             'content'       =>  'required|string|min:3',
+            'imageIds'      =>  'nullable|array',
+            'imageIds.*'    =>  'integer',
         ]);
 
-        Timeline::create([
+        $timeline = Timeline::create([
             'user_id'       =>  Auth::id(),
             'content'       =>  $request->content,
         ]);
 
+        if ($request->imageIds && is_array($request->imageIds)) {
+            TimelineImage::whereIn('id', $request->imageIds)->update([
+                'timeline_id'   =>  $timeline->id
+            ]);
+        }
+
         return redirect()->route('timeline.index');
+    }
+
+    /**
+     *
+     */
+    public function uploadImage(Request $request)
+    {
+        $this->validate($request, [
+            'image'     =>  'required|image',
+        ]);
+
+        $filePath = Storage::putFile('uploads/timlines', $request->image);
+
+        $timelineImage = TimelineImage::create([
+            'user_id'       =>  Auth::id(),
+            'file_path'     =>  $filePath,
+        ]);
+
+        return response()->json($timelineImage);
     }
 }

@@ -50,6 +50,7 @@ Route::group([], function () {
 
 //
 // Timeline
+Route::post('timeline/upload-image', 'TimelineController@uploadImage')->name('timeline.upload-image');
 Route::resource('timeline', 'TimelineController');
 
 

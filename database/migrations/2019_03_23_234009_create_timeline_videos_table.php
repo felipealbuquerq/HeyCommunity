@@ -15,10 +15,11 @@ class CreateTimelineVideosTable extends Migration
     {
         Schema::create('timeline_videos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->index()->unsigned()->comment('User ID');
+            $table->integer('user_id')->index()->unsigned()->nullable()->comment('User ID');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('timeline_id')->index()->unsigned()->comment('Timeline ID');
+            $table->integer('timeline_id')->index()->unsigned()->nullable()->comment('Timeline ID');
             $table->foreign('timeline_id')->references('id')->on('timelines');
+            $table->string('file_path')->comment('File Path');
 
             $table->timestamps();
             $table->softDeletes();

@@ -89,6 +89,15 @@ __webpack_require__(2);
 __webpack_require__(5);
 __webpack_require__(6);
 
+// set ajax request headers
+$(document).ready(function () {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+});
+
 /***/ }),
 /* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
