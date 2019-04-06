@@ -17,6 +17,14 @@
                     <ul class="list-group media-list media-list-stream mb-4">
                         @include('timeline._create')
 
+                        @unless ($timelines->count())
+                            <div class="card card-default">
+                                <div class="card-body">
+                                    暂无内容，你来发布第一个动态吧 ~
+                                </div>
+                            </div>
+                        @endunless
+
                         @foreach ($timelines as $timeline)
                             <li class="media list-group-item p-4">
                                 <img class="media-object d-flex align-self-start mr-3" src="{{ $timeline->user->avatar }}">
