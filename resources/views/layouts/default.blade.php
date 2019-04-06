@@ -162,6 +162,8 @@
 <!-- Main Body -->
 @yield('mainBody')
 
+@include('layouts._tool')
+
 
 <script src="{{ asset('assets/bootstrap-application-theme/js/popper.min.js') }}"></script>
 <script src="{{ asset('assets/bootstrap-application-theme/js/chart.js') }}"></script>
