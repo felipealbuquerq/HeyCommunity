@@ -79,6 +79,10 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
 
         Route::get('profile', 'UserController@profile')->name('user.profile');
         Route::post('profile', 'UserController@profileUpdate')->name('user.profile-update');
+
+        Route::get('oggle-sock-puppet/{id}', 'UserController@toggleSockPuppet')
+            ->where('id', '[0-9]+')
+            ->name('user.toggle-sock-puppet');
     });
 
     Route::get('uhome/{id}', 'UserController@uhome')->name('user.uhome');

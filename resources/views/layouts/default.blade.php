@@ -162,6 +162,7 @@
 <!-- Main Body -->
 @yield('mainBody')
 
+@include('layouts._utility')
 @include('layouts._tool')
 
 
