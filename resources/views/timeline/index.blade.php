@@ -44,6 +44,43 @@
                                             </div>
                                         @endif
                                     </div>
+                                    <div class="text-muted" style="font-size:12px;">
+                                        {{ $timeline->created_at }}
+                                        <div class="pull-right">
+                                            <a href="javascript:void" onclick="$('#timeline-{{ $timeline->id }}-comment-form').show()"><i class="fa fa-reply"></i> 评论</a>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <form id="timeline-{{ $timeline->id }}-comment-form" method="post" action="{{ route('timeline-comment.store') }}" class="mb-4" style="display:none;">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="timeline_id" value="{{ $timeline->id }}">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="评论一下 ~" name="content">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-secondary" type="submit" id="button-addon2">评论</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <ul class="media-list">
+                                        @foreach ($timeline->comments as $comment)
+                                        <li class="media">
+                                            <img class="media-object d-flex align-self-start mr-3" src="{{ $comment->user->avatar }}">
+                                            <div class="media-body">
+                                                <div>
+                                                    <strong>{{ $comment->user->nickname }}</strong>
+                                                    <div class="pull-right">
+                                                        <small class="text-muted">{{ $comment->created_at }}</small>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    {{ $comment->content }}
+                                                </div>
+                                                <hr>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </li>
                         @endforeach
