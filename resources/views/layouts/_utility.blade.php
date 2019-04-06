@@ -12,7 +12,3 @@
     </div>
 </div>
 @endif
-
-{{ $_COOKIE['sockPuppetHash'] }}
-<hr>
-{{ bcrypt('hey community sock puppet hash') }}
