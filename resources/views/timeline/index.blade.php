@@ -12,11 +12,11 @@
     <div id="section-mainbody" class="page-timeline-index">
         <div class="container pt-4">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 d-none d-md-block">
                     @include('user._user-profile-card', ['user' => Auth::user()])
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6 m-np">
                     <ul class="list-group media-list media-list-stream mb-4">
                         @include('timeline._create')
 
@@ -99,8 +99,8 @@
                     </nav>
                 </div>
 
-                <div class="col-md-3">
-                    <div class="card mb-4 d-none d-lg-block">
+                <div class="col-md-3 m-np">
+                    <div class="card mb-4">
                         <div class="card-body">
                             <h6 class="mb-3">活跃的人</h6>
                             <ul class="media-list media-list-stream">
