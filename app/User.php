@@ -45,4 +45,16 @@ class User extends Authenticatable
     {
         return asset($value);
     }
+
+    /**
+     * Get Bio Attribute
+     */
+    public function getBioAttribute($value)
+    {
+        if ($value) {
+            return $value;
+        } else {
+            return '暂无签名';
+        }
+    }
 }
