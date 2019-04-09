@@ -5,12 +5,18 @@
 
     <li class="media list-group-item p-4" style="display:block;">
         <div class="input-group">
-            <input name="content" type="text" class="form-control" placeholder="说点什么 ...">
+            @if (Auth::guest())
+                <input name="content" type="text" class="form-control" placeholder="请先登录再发布动态" disabled>
+            @else
+                <input name="content" type="text" class="form-control" placeholder="说点什么 ...">
+            @endif
             <div class="btn-group input-group-append">
-                <button type="button" class="btn btn-secondary" onclick="$('#section-timeline-create-form input[name=input-image]').click();">
+                <button type="button" class="btn btn-secondary"
+                    {{ Auth::guest() ? 'disabled' : '' }}
+                    onclick="$('#section-timeline-create-form input[name=input-image]').click();">
                     <span class="fa fa-image"></span>
                 </button>
-                <button type="submit" class="btn btn-secondary">
+                <button type="submit" class="btn btn-secondary" {{ Auth::guest() ? 'disabled' : '' }}>
                     <span class="fa fa-send"></span>
                 </button>
             </div>

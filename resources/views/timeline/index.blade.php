@@ -55,9 +55,13 @@
                                         {{ csrf_field() }}
                                         <input type="hidden" name="timeline_id" value="{{ $timeline->id }}">
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control" placeholder="评论一下 ~" name="content">
+                                            @if (Auth::guest())
+                                                <input type="text" class="form-control" placeholder="登录后才能发表评论" name="content" disabled>
+                                            @else
+                                                <input type="text" class="form-control" placeholder="评论一下 ~" name="content">
+                                            @endif
                                             <div class="input-group-append">
-                                                <button class="btn btn-secondary" type="submit" id="button-addon2">评论</button>
+                                                <button class="btn btn-secondary" type="submit" {{ Auth::guest() ? 'disabled' : '' }}>评论</button>
                                             </div>
                                         </div>
                                     </form>
