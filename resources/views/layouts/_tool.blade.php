@@ -19,6 +19,7 @@
 
 <style rel="stylesheet" type="text/css">
     #return-to-top {
+        z-index: 9998;
         position: fixed;
         bottom: 20px;
         right: 20px;
@@ -37,6 +38,7 @@
         -ms-transition: all 0.3s ease;
         -o-transition: all 0.3s ease;
         transition: all 0.3s ease;
+        border: 2px solid #fff;
     }
     #return-to-top i {
         color: #fff;
