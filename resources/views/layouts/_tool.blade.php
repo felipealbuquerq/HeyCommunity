@@ -44,7 +44,7 @@
         color: #fff;
         margin: 0;
         position: relative;
-        left: 16px;
+        left: 15px;
         top: 13px;
         font-size: 19px;
         -webkit-transition: all 0.3s ease;
@@ -58,6 +58,6 @@
     }
     #return-to-top:hover i {
         color: #fff;
-        top: 12px;
+        top: 10px;
     }
 </style>
