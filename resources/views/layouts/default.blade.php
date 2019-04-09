@@ -72,8 +72,11 @@
                 <a class="nav-link {{ setNavActive('/') }}" href="{{ url('/') }}">首页</a>
             </li>
             -->
-            <li class="nav-item {{ setNavActive('post*') }}">
-                <a class="nav-link" href="{{ route('post.index') }}">资讯</a>
+            <li class="nav-item {{ setNavActive('news*') }}">
+                <a class="nav-link" href="{{ route('news.index') }}">新闻</a>
+            </li>
+            <li class="nav-item {{ setNavActive('timeline*') }}">
+                <a class="nav-link" href="{{ route('timeline.index') }}">动态</a>
             </li>
             <li class="nav-item {{ setNavActive('column*') }}">
                 <a class="nav-link" href="{{ route('columnist.index') }}">专栏</a>
