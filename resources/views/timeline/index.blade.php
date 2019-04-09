@@ -12,8 +12,11 @@
     <div id="section-mainbody" class="page-timeline-index">
         <div class="container pt-4">
             <div class="row">
-                <div class="col-lg-7 offset-lg-1">
+                <div class="col-md-3">
+                    @include('user._user-profile-card', ['user' => Auth::user()])
+                </div>
 
+                <div class="col-md-6">
                     <ul class="list-group media-list media-list-stream mb-4">
                         @include('timeline._create')
 
@@ -32,7 +35,7 @@
                                     <div class="media-body-text">
                                         <div class="media-heading">
                                             <small class="float-right text-muted">{{ $timeline->created_at->diffForHumans() }}</small>
-                                            <h6>{{ $timeline->user->nickname }}</h6>
+                                            <h6><a href="{{ route('user.uhome', $timeline->user_id) }}">{{ $timeline->user->nickname }}</a></h6>
                                         </div>
                                         <p>{{ $timeline->content }}</p>
 
@@ -72,7 +75,7 @@
                                             <img class="media-object d-flex align-self-start mr-3" src="{{ $comment->user->avatar }}">
                                             <div class="media-body">
                                                 <div>
-                                                    <strong>{{ $comment->user->nickname }}</strong>
+                                                    <strong><a href="{{ route('user.uhome', $comment->user_id) }}">{{ $comment->user->nickname }}</a></strong>
                                                     <div class="pull-right">
                                                         <small class="text-muted">{{ $comment->created_at }}</small>
                                                     </div>
@@ -94,6 +97,35 @@
                     <nav id="section-pagination">
                         {{ $timelines->links() }}
                     </nav>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="card mb-4 d-none d-lg-block">
+                        <div class="card-body">
+                            <h6 class="mb-3">活跃的人</h6>
+                            <ul class="media-list media-list-stream">
+                                @foreach ($timelineUsers as $user)
+                                    <li class="media mb-2">
+                                        <img class="media-object d-flex align-self-start mr-3" src="{{ asset($user->avatar) }}">
+                                        <div class="media-body">
+                                            <strong><a href="{{ route('user.uhome', $user->id) }}">{{ $user->nickname }}</a></strong>
+                                            <div class="media-body-actions">
+                                                {{ $user->bio }}
+                                            </div>
+                                        </div>
+                                    </li>
+                                @endforeach
+                                @unless ($timelineUsers->count())
+                                    <li><span class="text-muted">暂无内容</span></li>
+                                @endunless
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            在社区中活跃的用户，关注他们以订阅更多精彩动态
+                        </div>
+                    </div>
+
+                    @include('layouts._tail')
                 </div>
             </div>
         </div>

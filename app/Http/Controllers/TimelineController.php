@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Timeline;
 use App\TimelineImage;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -25,7 +26,9 @@ class TimelineController extends Controller
     {
         $timelines = Timeline::latest()->paginate();
 
-        return view('timeline.index', compact('timelines'));
+        $timelineUsers = User::whereIn('id', Timeline::pluck('user_id')->toArray())
+                                    ->inRandomOrder()->limit(5)->get();
+        return view('timeline.index', compact('timelines', 'timelineUsers'));
     }
 
     /**
