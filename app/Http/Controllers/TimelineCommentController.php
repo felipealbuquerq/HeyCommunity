@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Auth;
 class TimelineCommentController extends Controller
 {
     /**
+     * Construct
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

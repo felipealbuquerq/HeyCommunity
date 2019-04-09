@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Storage;
 class TimelineController extends Controller
 {
     /**
+     * Construct
+     */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
+    /**
      * Timeline Index Page
      */
     public function index()
