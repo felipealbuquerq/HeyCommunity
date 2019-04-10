@@ -30,13 +30,14 @@ class ColumnController extends Controller
     public function create($domain)
     {
         $columnist = Columnist::where('domain', $domain)->firstOrFail();
+        $column = new Column();
 
         // gate
         if (!Gate::allows('auth.ownOrAdmin', $columnist)) {
             return back();
         }
 
-        return view('column.create', compact('columnist'));
+        return view('column.create', compact('columnist', 'column'));
     }
 
     /**

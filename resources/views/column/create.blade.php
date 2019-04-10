@@ -26,36 +26,17 @@
                     </nav>
 
                     <div class="card m-nb-y m-nb-r">
+                        <div class="card-header">
+                            发布一篇新专栏文章
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title">发布一篇新专栏文章</h5>
-                            <hr>
-
-                            <form action="{{ route('column.store', $columnist->domain) }}" method="post">
+                            <form action="{{ route('column.store', $columnist->domain) }}" method="post" onsubmit="formSubmit(event)">
                                 {{ csrf_field() }}
 
-                                <div class="form-group row">
-                                    <label for="input-title" class="col-sm-2 col-form-label">标题</label>
-                                    <div class="col-sm-10">
-                                        <input name="title" type="text" class="form-control" id="input-title" value="{{ old('title') }}">
-
-                                        <div class="text-danger">{{ $errors->first('title') }}</div>
-                                    </div>
-                                </div>
+                                @include('column._form')
 
                                 <div class="form-group row">
-                                    <label for="input-content" class="col-sm-2 col-form-label">内容</label>
-                                    <div class="col-sm-10">
-                                        <textarea name="content" class="form-control simditor-editor" id="input-content" rows="8">{{ old('content') }}</textarea>
-
-                                        <div class="text-danger">{{ $errors->first('content') }}</div>
-
-                                        @include('layouts._simditor')
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <div class="col-sm-2"></div>
-                                    <div class="col-sm-10">
+                                    <div class="col-sm-8 offset-sm-2">
                                         <button class="btn btn-primary btn-block" type="submit">发布</button>
                                     </div>
                                 </div>
