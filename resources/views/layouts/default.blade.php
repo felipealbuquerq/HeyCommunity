@@ -24,6 +24,8 @@
     <script src="{{ asset('assets/bootstrap-application-theme/js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}?v=180104"></script>
 
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/entrycss/bin/entry.css') }}">
+
     <style>
         /* note: this is a hack for ios iframe for bootstrap themes shopify page */
         /* this chunk of css is not part of the toolkit :) */

@@ -13,6 +13,8 @@
 @endsection
 
 @section('mainBody')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/entrycss/bin/entry.css') }}">
+
     <div id="section-site" class="page-site-about">
         <div class="container pt-4">
             <div class="row">
@@ -32,44 +34,46 @@
                     </nav>
 
                     <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title text-center mt-3"><span>{{ $column->title }}</span></h4>
-                            <small class="d-block text-center mb-5 text-muted">
-                                <strong>{{ $column->user->nickname }}</strong> 发表于{{ $column->created_at }}
-                            </small>
+                        <div class="card-header d-block d-md-none text-center">
+                            <a class="text-dark" href="{{ route('columnist.show', $columnist->domain) }}">{{ $columnist->title }} <small>专栏</small></a>
+                        </div>
 
-                            <h6 class="card-subtitle mb-2 text-muted d-block d-md-none">
-                                <a href="{{ route('columnist.show', $columnist->domain) }}">{{ $columnist->title }} <small>专栏</small></a>
-                                <span class="pull-right date">{{ $column->created_at }}</span>
-                            </h6>
+                        <div class="card-body entry">
+                            <div class="text-center mt-4">
+                                <h2>{{ $column->title }}</h2>
+                                <small class="d-block text-center mb-3 text-muted">
+                                    <a href="{{ route('user.uhome', $column->user_id) }}">{{ $column->user->nickname }}</a>
+                                    发表于{{ $column->created_at }}
+                                </small>
+                            </div>
 
                             <div class="card-text">
                                 {!! ($column->content) !!}
                             </div>
+                        </div>
 
-                            <div class="footer mt-3">
-                                <div class="pull-right d-none d-md-block">
-                                    <div class="topic-info text-muted">
-                                        {{ $column->favorite_num }} 收藏
-                                        &nbsp;/&nbsp;
-                                        {{ $column->thumb_up_num }} 赞
-                                        &nbsp;/&nbsp;
-                                        {{ $column->thumb_down_num }} 踩
-                                        &nbsp;/&nbsp;
-                                        {{ $column->comment_num }} 评论
-                                        &nbsp;/&nbsp;
-                                        {{ $column->read_num }} 阅读
-                                    </div>
+                        <div class="card-footer mt-3">
+                            <div class="pull-right d-none d-md-block">
+                                <div class="topic-info text-muted">
+                                    {{ $column->favorite_num }} 收藏
+                                    &nbsp;/&nbsp;
+                                    {{ $column->thumb_up_num }} 赞
+                                    &nbsp;/&nbsp;
+                                    {{ $column->thumb_down_num }} 踩
+                                    &nbsp;/&nbsp;
+                                    {{ $column->comment_num }} 评论
+                                    &nbsp;/&nbsp;
+                                    {{ $column->read_num }} 阅读
                                 </div>
+                            </div>
 
-                                <div>
-                                    @if (Gate::allows('auth.ownOrAdmin', $column))
-                                        <a class="btn btn-link p-0 border-0 mr-2" href="{{ route('column.edit', $column->id) }}">编辑</a>
-                                        <button class="btn btn-link p-0 border-0 mr-2" onclick="confirmPostSubmit('是否要删除该文章', '{{ route("column.destroy", $column->id) }}')">删除</button>
-                                        <span class="text-muted">|</span>&nbsp;
-                                    @endif
-                                    {{ $column->created_at }}
-                                </div>
+                            <div>
+                                @if (Gate::allows('auth.ownOrAdmin', $column))
+                                    <a class="btn btn-link p-0 border-0 mr-2" href="{{ route('column.edit', $column->id) }}">编辑</a>
+                                    <button class="btn btn-link p-0 border-0 mr-2" onclick="confirmPostSubmit('是否要删除该文章', '{{ route("column.destroy", $column->id) }}')">删除</button>
+                                    <span class="text-muted">|</span>&nbsp;
+                                @endif
+                                {{ $column->created_at }}
                             </div>
                         </div>
                     </div>
