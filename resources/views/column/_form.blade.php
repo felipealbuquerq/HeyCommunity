@@ -5,19 +5,16 @@
 </script>
 
 <div class="form-group row">
-    <div class="col-sm-8 offset-sm-2">
-        <input name="title" type="text" class="form-control" id="input-title" placeholder="文章标题" value="{{ old('title', $column->title) }}">
+    <div class="col-md-10 offset-md-1">
+        <input name="title" type="text" class="form-control text-center" id="input-title" placeholder="文章标题" value="{{ old('title', $column->title) }}">
 
         <div class="text-danger">{{ $errors->first('title') }}</div>
     </div>
 </div>
 
 <div class="form-group row">
-    <div class="col-sm-8 offset-sm-2">
-        <input type="hidden" name="content">
-        <div id="ckeditor" style="border:2px solid #ddd"
-             data-html="{{ old('content', $column->content ?: '开始起笔 ...') }}"></div>
-        <div class="text-danger">{{ $errors->first('content') }}</div>
+    <div class="col-md-10 offset-md-1">
+        <textarea name="content" class="form-control" id="ckeditor">{{ old('content', $column->content ?: '开始起笔 ..') }}</textarea>
 
         @include('layouts.ckeditor5.ckeditor-classic')
     </div>

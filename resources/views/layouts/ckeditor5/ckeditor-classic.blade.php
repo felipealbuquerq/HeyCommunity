@@ -9,5 +9,5 @@
 </script>
 
 <style rel="stylesheet">
-    .ck-content { min-height:200px; max-height:400px; }.
+    .ck-content { min-height:300px; max-height:400px; }.
 </style>

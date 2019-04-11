@@ -26,6 +26,9 @@
                     </nav>
 
                     <div class="card m-nb-y m-nb-r">
+                        <div class="card-header">
+                            更新专栏文章
+                        </div>
                         <div class="card-body">
                             <form action="{{ route('column.update', $column->id) }}" method="post" onsubmit="formSubmit(event)">
                                 {{ csrf_field() }}
@@ -33,7 +36,7 @@
                                 @include('column._form')
 
                                 <div class="form-group row">
-                                    <div class="col-sm-8 offset-sm-2">
+                                    <div class="col-md-10 offset-md-1">
                                         <button class="btn btn-primary btn-block" type="submit">更新</button>
                                     </div>
                                 </div>

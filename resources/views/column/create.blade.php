@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="col-lg-9 col-md-9 m-np">
-                    <nav id="section-breadcrumb" class="d-none d-md-block" aria-label="breadcrumb" role="navigation">
+                    <nav id="section-breadcrumb" class="" aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">首页</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('columnist.show', $columnist->domain) }}">{{ $columnist->title }}</a> <span class="text-muted">专栏</span></li>
@@ -36,7 +36,7 @@
                                 @include('column._form')
 
                                 <div class="form-group row">
-                                    <div class="col-sm-8 offset-sm-2">
+                                    <div class="col-md-10 offset-md-1">
                                         <button class="btn btn-primary btn-block" type="submit">发布</button>
                                     </div>
                                 </div>
