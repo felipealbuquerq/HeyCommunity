@@ -15,10 +15,11 @@
 <div class="form-group row">
     <div class="col-sm-8 offset-sm-2">
         <input type="hidden" name="content">
-        <div id="ckeditor" data-html="{{ old('content', $column->content ?: '开始起笔 ...') }}"></div>
+        <div id="ckeditor" style="border:2px solid #ddd"
+             data-html="{{ old('content', $column->content ?: '开始起笔 ...') }}"></div>
         <div class="text-danger">{{ $errors->first('content') }}</div>
 
-        @include('layouts._ckeditor-balloon-block')
+        @include('layouts.ckeditor5.ckeditor-classic')
     </div>
 </div>
 
