@@ -13,7 +13,7 @@
                     </div>
 
                     <div class="content">
-                        {{ mb_substr(strip_tags($topic->content), 0, 150) }}
+                        {{ str_limit(strip_tags($topic->content), 220) }}
                     </div>
                 </div>
             </div>

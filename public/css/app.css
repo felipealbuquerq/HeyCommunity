@@ -301,9 +301,6 @@ img {
 }
 
 #component-topic-list .list-group-item .body .content {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   min-height: 1.6rem;
 }
 
