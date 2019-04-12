@@ -14,7 +14,7 @@
 
 <div class="form-group row">
     <div class="col-md-10 offset-md-1">
-        <textarea name="content" class="form-control entry" id="ckeditor">{{ old('content', $column->content ?: '开始起笔 ..') }}</textarea>
+        <textarea name="content" class="form-control" id="ckeditor" data-entry="true">{{ old('content', $column->content ?: '开始起笔 ..') }}</textarea>
 
         @include('layouts.ckeditor5.ckeditor-classic')
     </div>

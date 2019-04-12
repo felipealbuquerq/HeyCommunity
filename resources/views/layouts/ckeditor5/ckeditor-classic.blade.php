@@ -5,6 +5,8 @@
     .ck-content {
         min-height:300px;
         max-height:400px;
+    }
+    .ck-editor .entry .ck-content {
         padding-left: 20px !important;
         padding-right: 20px !important;
     }
@@ -20,9 +22,9 @@
     .create(document.querySelector('#ckeditor'), {
       language: 'zh-cn',
     }).then(function(editor) {
-      $('.ck-editor__main').addClass('entry');
+      if ($('#ckeditor').attr('data-entry') == 'true') {
+        $('.ck-editor__main').addClass('entry');
+      }
     });
-
-
 </script>
 
