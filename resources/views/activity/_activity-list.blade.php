@@ -6,6 +6,12 @@
                     <a class="box-pic" href="{{ route('activity.show', $item->id) }}">
                         <div class="start-time">
                             <i class="fa fa-clock-o"></i>&nbsp; {{ \Carbon\Carbon::parse($item->start_time)->diffForHumans() }}
+                            @if ($item->is_exhibited)
+                                &nbsp;&nbsp;<i class="fa fa-star text-danger"></i>
+                            @endif
+                            @if ($item->is_pinned)
+                                &nbsp;&nbsp;<i class="fa fa-thumb-tack text-danger"></i>
+                            @endif
                         </div>
                         <img class="card-img-top m-nb-r" src="{{ asset($item->avatar) }}" alt="{{ $item->title }}">
 
