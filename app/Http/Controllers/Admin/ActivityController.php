@@ -65,4 +65,33 @@ class ActivityController extends Controller
 
         return back();
     }
+
+    /**
+     * Activities Set Pinned
+     */
+    public function setPinHandler(Request $request)
+    {
+        $this->validate($request, [
+            'id'                =>      'required|integer',
+            'is_pinned'         =>      'required|boolean',
+        ]);
+
+        $activity = Activity::findOrFail($request->id);
+
+        // set pinned
+        if (!$activity->is_pinned && $request->is_pinned == true) {
+            $activity->is_pinned = true;
+            $activity->pinned_at = now();
+            $activity->save();
+        }
+
+        // unset pinned
+        if ($activity->is_pinned && $request->is_pinned == false) {
+            $activity->is_pinned = false;
+            $activity->pinned_at = null;
+            $activity->save();
+        }
+
+        return back();
+    }
 }

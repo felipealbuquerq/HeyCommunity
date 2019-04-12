@@ -67,10 +67,17 @@
                                                         <td>
                                                             <a class="btn btn-xs btn-danger" onclick="destroy('{{ $activity->title }}', {{ $activity->id }})" title="删除"><i class="fa fa-trash-o"></i></a>
                                                             <button {{ $activity->inDailyPaper ? 'disabled' : '' }} class="btn btn-xs btn-primary" onclick="presentDailyPaper('{{ $activity->title }}', {{ $activity->id }})" title="转发到 Daily Paper"><i class="fa fa-send"></i></button>
+
                                                             @if ($activity->is_exhibited)
-                                                                <button class="btn btn-xs btn-primary" onclick="activitySetExhibited('{{ $activity->title }}', {{ $activity->id }}, 0)" title="取消展出"><i class="fa fa-star"></i></button>
+                                                                <button class="btn btn-xs btn-default" onclick="activitySetExhibited('{{ $activity->title }}', {{ $activity->id }}, 0)" title="取消展出"><i class="fa fa-star"></i></button>
                                                             @else
-                                                                <button class="btn btn-xs btn-primary" onclick="activitySetExhibited('{{ $activity->title }}', {{ $activity->id }}, 1)" title="设为展出"><i class="fa fa-star-o"></i></button>
+                                                                <button class="btn btn-xs btn-default" onclick="activitySetExhibited('{{ $activity->title }}', {{ $activity->id }}, 1)" title="设为展出"><i class="fa fa-star-o"></i></button>
+                                                            @endif
+
+                                                            @if ($activity->is_pinned)
+                                                                <button class="btn btn-xs btn-default" onclick="activitySetPinned('{{ $activity->title }}', {{ $activity->id }}, 0)" title="取消置顶"><i class="fa fa-minus-square"></i></button>
+                                                            @else
+                                                                <button class="btn btn-xs btn-default" onclick="activitySetPinned('{{ $activity->title }}', {{ $activity->id }}, 1)" title="设为置顶"><i class="fa fa-thumb-tack"></i></button>
                                                             @endif
                                                         </td>
                                                     </tr>
@@ -127,6 +134,23 @@
                 postSubmit(url, {
                   id: id,
                   is_exhibited: isExhibit
+                });
+              }
+            }
+
+            function activitySetPinned(title, id, isPinned) {
+              var message;
+              if (isPinned) {
+                message = '是否要把 "' + title + '" 设为置顶?';
+              } else {
+                message = '是否要把 "' + title + '" 取消置顶?';
+              }
+
+              if (confirm(message)) {
+                var url = '{{ route('admin.activity.set-pinned-handler') }}';
+                postSubmit(url, {
+                  id: id,
+                  is_pinned: isPinned
                 });
               }
             }
