@@ -180,7 +180,7 @@
                                     <input type="hidden" name="topic_id" value="{{ $topic->id }}">
                                     {{ csrf_field() }}
 
-                                    <div class="form-group simditor-box">
+                                    <div class="form-group">
                                         @if (Auth::guest())
                                             <div id="section-textarea-login-tip" style="padding-top:25px;">
                                                 请<a href="{{ route('user.login') }}">登入</a>后再发表讨论
