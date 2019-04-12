@@ -36,4 +36,33 @@ class ActivityController extends Controller
 
         return back();
     }
+
+    /**
+     * Activities Set Exhibited
+     */
+    public function setExhibitHandler(Request $request)
+    {
+        $this->validate($request, [
+            'id'                =>      'required|integer',
+            'is_exhibited'      =>      'required|boolean',
+        ]);
+
+        $activity = Activity::findOrFail($request->id);
+
+        // set exhibited
+        if (!$activity->is_exhibited && $request->is_exhibited == true) {
+            $activity->is_exhibited = true;
+            $activity->exhibited_at = now();
+            $activity->save();
+        }
+
+        // unset exhibited
+        if ($activity->is_exhibited && $request->is_exhibited == false) {
+            $activity->is_exhibited = false;
+            $activity->exhibited_at = null;
+            $activity->save();
+        }
+
+        return back();
+    }
 }

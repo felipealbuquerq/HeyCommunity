@@ -67,6 +67,11 @@
                                                         <td>
                                                             <a class="btn btn-xs btn-danger" onclick="destroy('{{ $activity->title }}', {{ $activity->id }})" title="删除"><i class="fa fa-trash-o"></i></a>
                                                             <button {{ $activity->inDailyPaper ? 'disabled' : '' }} class="btn btn-xs btn-primary" onclick="presentDailyPaper('{{ $activity->title }}', {{ $activity->id }})" title="转发到 Daily Paper"><i class="fa fa-send"></i></button>
+                                                            @if ($activity->is_exhibited)
+                                                                <button class="btn btn-xs btn-primary" onclick="activityUnsetExhibited('{{ $activity->title }}', {{ $activity->id }})" title="取消展出"><i class="fa fa-star"></i></button>
+                                                            @else
+                                                                <button class="btn btn-xs btn-primary" onclick="activitySetExhibited('{{ $activity->title }}', {{ $activity->id }})" title="设为展出"><i class="fa fa-star-o"></i></button>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -105,6 +110,30 @@
                 postSubmit(url, {
                   id: id,
                   type: '{{ addslashes(\App\Activity::class) }}'
+                });
+              }
+            }
+
+            function activitySetExhibited(title, id) {
+              var message = '是否要把 "' + title + '" 设为展出?';
+
+              if (confirm(message)) {
+                var url = '{{ route('admin.activity.set-exhibit-handler') }}';
+                postSubmit(url, {
+                  id: id,
+                  is_exhibited: 1
+                });
+              }
+            }
+
+            function activityUnsetExhibited(title, id) {
+              var message = '是否要把 "' + title + '" 取消展出?';
+
+              if (confirm(message)) {
+                var url = '{{ route('admin.activity.set-exhibit-handler') }}';
+                postSubmit(url, {
+                  id: id,
+                  is_exhibited: 0
                 });
               }
             }

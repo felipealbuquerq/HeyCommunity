@@ -43,6 +43,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::group(['prefix' => 'activity'], function () {
         Route::get('/', 'ActivityController@index')->name('admin.activity.index');
         Route::post('destroy', 'ActivityController@destroy')->name('admin.activity.destroy');
+        Route::post('set-exhibit', 'ActivityController@setExhibitHandler')->name('admin.activity.set-exhibit-handler');
     });
 
     //
