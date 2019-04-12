@@ -5,6 +5,9 @@
   BalloonEditor
     .create(document.querySelector('#ckeditor'), {
       language: 'zh-cn',
+      ckfinder: {
+        uploadUrl: "{{ route('upload.ckeditor-upload-images') }}"
+      }
     }).then(editor => {
       ckeditor = editor;
       ckeditor.setData($('#ckeditor').attr('data-html'));

@@ -21,6 +21,9 @@
   ClassicEditor
     .create(document.querySelector('#ckeditor'), {
       language: 'zh-cn',
+      ckfinder: {
+        uploadUrl: "{{ route('upload.ckeditor-upload-images') }}"
+      }
     }).then(function(editor) {
       if ($('#ckeditor').attr('data-entry') == 'true') {
         $('.ck-editor__main').addClass('entry');

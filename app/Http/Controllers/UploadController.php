@@ -39,4 +39,47 @@ class UploadController extends Controller
         ];
         return json_encode($res);
     }
+
+    /**
+     * Simditor upload images
+     */
+    public function ckeditorUploadImages(Request $request)
+    {
+        $this->validate($request, [
+            'upload'    =>  'required|image',
+        ]);
+
+        $uploadSuccess = false;
+        $uploadFileName = null;
+        $uploadFilePath = null;
+        $uploadErrorMessage = '未知错误，图片上传失败';
+
+        $image = $request->upload;
+
+        $uploadPath = 'uploads/ckeditor-images/';
+        $fileName   = date('Ymd-His_') . str_random(6) . '_' . $image->getClientOriginalName();
+        $imagePath = '/' . $uploadPath . $fileName;
+
+        $contents = file_get_contents($image->getRealPath());
+
+        if (Storage::put($imagePath, $contents)) {
+            $uploadSuccess = true;
+            $uploadFilePath = $imagePath;
+            $uploadFileName = $fileName;
+        } else {
+            $uploadSuccess = false;
+            $uploadErrorMessage = '未知错误，图片上传失败';
+        }
+
+        $res = (object) [
+            'uploaded'      =>  $uploadSuccess,
+            'fileName'      =>  $uploadFileName,
+            'url'           =>  $uploadFilePath,
+            'error'         =>  [
+                'message'       =>  $uploadErrorMessage,
+            ],
+        ];
+
+        return json_encode($res);
+    }
 }
