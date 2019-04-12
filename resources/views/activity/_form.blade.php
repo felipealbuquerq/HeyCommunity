@@ -105,10 +105,10 @@ if (!isset($activity)) {
 <div class="form-group row">
     <label for="input-content" class="col-sm-2 col-form-label">活动详情</label>
     <div class="col-sm-10">
-        <textarea name="content" class="form-control simditor-editor" id="input-content" rows="8">{{ old('content', formValue($activity, 'content')) }}</textarea>
+        <textarea name="content" class="form-control" id="ckeditor" rows="8">{{ old('content', formValue($activity, 'content')) }}</textarea>
 
         <div class="text-danger">{{ $errors->first('content') }}</div>
     </div>
 </div>
 
-@include('layouts._simditor')
+@include('layouts.ckeditor5.ckeditor-classic')
