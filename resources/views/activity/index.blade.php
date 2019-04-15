@@ -17,6 +17,7 @@
             <div class="col-12">
                 <div style="z-index:99; position:absolute; right:15px;">
                     <a class="btn btn-secondary" href="{{ route('activity.index') }}">刷新</a>
+                    <a class="btn btn-primary d-none d-md-inline-block" href="{{ route('activity.create') }}"><i class="fa fa-wheelchair-alt"></i> 让我们来帮你，发布或协办一个活动</a>
                 </div>
 
                 <div class="input-group">
@@ -33,6 +34,9 @@
                             @endif
                         </button>
                         <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('activity.index', [
+                                'area_id'       =>  request('area_id'),
+                            ]) }}">所有分类</a>
                             @foreach ($categories as $category)
                                 <a class="dropdown-item" href="{{ route('activity.index', [
                                     'category_id'   =>  $category->id,
@@ -54,6 +58,9 @@
                             @endif
                         </button>
                         <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ route('activity.index', [
+                                    'category_id'   =>  request('category_id'),
+                                ]) }}">所有地区</a>
                             @foreach ($areas as $area)
                                 <a class="dropdown-item" href="{{ route('activity.index', [
                                     'area_id'       =>  $area->id,
@@ -74,6 +81,10 @@
 
         <div class="row">
             <div class="col-md-12 m-np">
+                <div class="d-block d-md-none mt-1 mb-3 container">
+                    <a class="btn btn-primary btn-block" href="{{ route('activity.create') }}"><i class="fa fa-wheelchair-alt"></i> 让我们来帮你，发布或协办一个活动</a>
+                </div>
+
                 @include('layouts._tail')
             </div>
         </div>
