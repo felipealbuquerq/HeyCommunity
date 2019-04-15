@@ -13,8 +13,6 @@
 @endsection
 
 @section('mainBody')
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/entrycss/bin/entry.css') }}">
-
     <div id="section-site" class="page-site-about">
         <div class="container pt-4">
             <div class="row">

@@ -18,17 +18,19 @@
             <div class="row">
                 <div class="col-md-9 m-np mb-3">
                     <div class="card card-news">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $news->title }}</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">
-                                <span class="news-origin">
-                                    {{ $news->origin }}
-                                </span>
+                        <div class="card-body entry">
+                            <div class="mt-4 mb-2">
+                                <h2 class="text-left">{{ $news->title }}</h2>
+                                <small class="d-block mb-3 text-muted">
+                                    <span class="">
+                                        {{ $news->origin }}
+                                    </span>
 
-                                <span class="pull-right news-date">
+                                    <span class="pull-right news-date">
                                     {{ $news->time }}
                                 </span>
-                            </h6>
+                                </small>
+                            </div>
 
                             <div class="card-text">
                                 {!! $news->content !!}
