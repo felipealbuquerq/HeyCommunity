@@ -6,6 +6,7 @@
 
 <style rel="stylesheet">
     #global-fixed-btns {
+        z-index: 9998;
         position: fixed;
         right: 20px;
         bottom: 20px;
