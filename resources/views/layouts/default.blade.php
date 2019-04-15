@@ -167,7 +167,7 @@
 <!-- Main Body -->
 @yield('mainBody')
 
-@include('layouts._utility')
+@include('layouts._switch_sock_puppet')
 @include('layouts._tool')
 
 
