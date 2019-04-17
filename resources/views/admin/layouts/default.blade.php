@@ -106,6 +106,9 @@
                         <li class="hidden-xs">
                             <a href="#" id="btn-fullscreen" class="waves-effect waves-light notification-icon-box"><i class="mdi mdi-fullscreen"></i></a>
                         </li>
+                        <li class="">
+                            <a href="{{ route('home') }}" class="waves-effect waves-light notification-icon-box" target="_blank"><i class="mdi mdi-web"></i></a>
+                        </li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
                                 <img src="{{ asset(Auth::user()->avatar) }}" alt="user-img" class="img-circle">

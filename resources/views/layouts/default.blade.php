@@ -143,6 +143,13 @@
                         <i class="fa fa-sign-out"></i> &nbsp; 登出
                     </a>
                 </li>
+                @if (Auth::user()->is_super_admin)
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.home') }}" target="_blank">
+                            <i class="fa fa-cogs"></i> &nbsp; 管理后台
+                        </a>
+                    </li>
+                @endif
             @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.signup') }}">
