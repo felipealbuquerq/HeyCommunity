@@ -15,13 +15,13 @@ class CreateActivityCommentsTable extends Migration
     {
         Schema::create('activity_comments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('parent_id')->index()->unsigned()->nullable()->comment('Activity Comment ID');
+            $table->integer('floor_number')->comment('Activity Comment Floor Number');
+
             $table->integer('user_id')->index()->unsigned()->comment('User ID');
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('activity_id')->index()->unsigned()->comment('Activity ID');
             $table->foreign('activity_id')->references('id')->on('activities');
-
-            $table->integer('activity_comment_id')->index()->unsigned()->nullable()->comment('Activity Comment ID');
-            $table->integer('floor_number')->comment('Activity Comment Floor Number');
 
             $table->text('content')->comment('Activity Comment Content');
 

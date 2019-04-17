@@ -86,12 +86,32 @@
                         </div>
                         <div class="card-body">
                             <div class="tab-content pt-0">
-                                <div class="tab-pane fade show active" id="nav-content" role="tabpanel" aria-labelledby="nav-content-tab">
+                                <!-- Content -->
+                                <div class="tab-pane fade show" id="nav-content" role="tabpanel" aria-labelledby="nav-content-tab">
                                     {!! $activity->content !!}
                                 </div>
 
-                                <div class="tab-pane fade" id="nav-topic" role="tabpanel" aria-labelledby="nav-topic-tab">
-                                    话题讨论暂不可用
+                                <!-- Comments -->
+                                <div class="tab-pane fade show  active" id="nav-topic" role="tabpanel" aria-labelledby="nav-topic-tab">
+                                    @foreach ($activity->comments as $comment)
+                                        <div>
+                                            <b>{{ $comment->user->nickname }}:</b>
+                                            {{ $comment->content }}
+                                        </div>
+                                        <hr>
+                                    @endforeach
+
+                                    <form action="{{ route('activity-comment.store') }}" method="post">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" name="activity_id" value="{{ $activity->id }}">
+
+                                        <div class="input-group">
+                                            <textarea name="content" class="form-control" placeholder="请输入评论内容" rows="3"></textarea>
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-primary" type="submit" style="width:5em;">发布</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

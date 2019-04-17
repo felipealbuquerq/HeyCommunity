@@ -171,7 +171,14 @@ Route::group(['prefix' => 'activity', 'middleware' => ['wechat.oauth', 'auth.wec
 
 
 //
-// Activity
+// Activity Comment
+Route::group(['middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+    Route::resource('activity-comment', 'ActivityCommentController');
+});
+
+
+//
+// Daily
 Route::group(['prefix' => 'daily', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
     Route::get('/', 'DailyPaperController@index')->name('daily.index');
 });
