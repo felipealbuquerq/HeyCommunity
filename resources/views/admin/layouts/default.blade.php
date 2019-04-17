@@ -146,7 +146,7 @@
 
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect">
-                            <i class="mdi mdi-book"></i>
+                            <i class="mdi mdi-bookmark"></i>
                             <span>今日管理</span>
                             <span class="pull-right"><i class="mdi mdi-plus"></i></span>
                         </a>
@@ -211,11 +211,27 @@
                             <li><a href="{{ route('admin.request-recorder.index') }}">访客记录</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.system.edit') }}" class="waves-effect">
-                            <i class="mdi mdi-wrench"></i>
-                            <span>系统配置</span>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect">
+                            <i class="mdi mdi-book"></i>
+                            <span>站点页面</span>
+                            <span class="pull-right"><i class="mdi mdi-chart-bubble"></i></span>
                         </a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('admin.site-page.index') }}">页面列表</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect">
+                            <i class="mdi mdi-settings"></i>
+                            <span>系统管理</span>
+                            <span class="pull-right"><i class="mdi mdi-chart-bubble"></i></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('admin.system.edit') }}">系统配置</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

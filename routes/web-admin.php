@@ -60,6 +60,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     });
 
     //
+    // Site Page
+    Route::group([], function () {
+        Route::resource('site-page', 'SitePageController', ['as' => 'admin']);
+    });
+
+    //
     // System
     Route::group(['prefix' => 'system'], function () {
         Route::get('edit', 'SystemController@edit')->name('admin.system.edit');

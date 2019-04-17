@@ -27,6 +27,7 @@ Route::group([], function () {
 //
 // Site
 Route::group([], function () {
+    Route::get('page/{id}', 'SiteController@page')->name('site.page')->where('id', '[0-9]+');
     Route::get('about', 'SiteController@about')->name('site.about');
     Route::get('help', 'SiteController@help')->name('site.help');
     Route::get('terms', 'SiteController@terms')->name('site.terms');
