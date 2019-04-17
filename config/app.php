@@ -239,6 +239,7 @@ return [
         'QrCode'    =>  SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Purifier'  =>  Mews\Purifier\Facades\Purifier::class,
         'Agent'     =>  Jenssegers\Agent\Facades\Agent::class,
+        'Debugbar'  =>  Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
