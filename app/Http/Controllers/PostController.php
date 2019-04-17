@@ -70,7 +70,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->type_id = $request->type_id;
         $post->origin_url = $request->origin_url;
-        $post->content = clean($request->content);
+        $post->content = clean($request->get('content'));
 
         if ($post->save()) {
             return redirect()->route('post.show', $post->id);
