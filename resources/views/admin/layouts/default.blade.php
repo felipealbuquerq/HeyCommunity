@@ -21,7 +21,7 @@
 
     <script src="{{ asset('assets/webadmin/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/webadmin/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </head>
 
 
