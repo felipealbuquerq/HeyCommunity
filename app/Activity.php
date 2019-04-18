@@ -17,7 +17,9 @@ class Activity extends BaseModel
      */
     public function comments()
     {
-        return $this->HasMany('App\ActivityComment', 'activity_id');
+        return $this->HasMany('App\ActivityComment', 'activity_id')
+            ->whereNull('parent_id')
+            ->latest();
     }
 
     /**

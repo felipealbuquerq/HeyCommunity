@@ -44,6 +44,7 @@ class ActivityCommentController extends Controller
 
         $data = $request->only(['activity_id', 'parent_id', 'content']);
         $data['user_id']    =   Auth::id();
+        $data['floor_number']   =   ActivityComment::where('activity_id', $request->activity_id)->withTrashed()->count() + 1;
         $comment = ActivityComment::create($data);
 
         if ($comment) {
