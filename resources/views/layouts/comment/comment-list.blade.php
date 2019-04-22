@@ -2,9 +2,12 @@
     <hr>
     <div class="text-muted">暂无数据，你来发布第一条评论吧 ~</div>
 @else
+    @php
+        $comments = $entity->comments()->paginate(5);
+    @endphp
     <div id="section-comment-list" class="mt-4">
         <ul class="list-group media-list media-list-stream">
-            @foreach ($entity->comments as $comment)
+            @foreach ($comments as $comment)
                 <li class="media list-group-item pt-4 pb-4 pl-0 pr-0">
                     <img class="media-object d-flex align-self-start mr-3" src="{{ asset($comment->user->avatar) }}">
                     <div class="media-body">
@@ -19,7 +22,7 @@
                                 </small>
                                 <h6><a href="{{ route('user.uhome', $comment->user_id) }}">{{ $comment->user->nickname }}</a></h6>
                             </div>
-                            <p class="content">{{ $comment->content }}</p>
+                            <p class="content">{!!  nl2br($comment->content) !!}</p>
 
                         </div>
                         <div class="text-muted" style="font-size:12px;">
@@ -71,7 +74,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            {{ $subComment->content }}
+                                            {{ ($subComment->content) }}
                                         </div>
                                         <hr>
                                     </div>
@@ -83,4 +86,9 @@
             @endforeach
         </ul>
     </div>
+
+
+    <nav id="section-pagination">
+        {{ $comments->links() }}
+    </nav>
 @endif

@@ -157,10 +157,6 @@ button {
   border-right: none;
 }
 
-#section-comment-list .list-group .list-group-item:last-of-type {
-  border-bottom: none;
-}
-
 #section-comment-list .list-group .list-group-item img.media-object {
   width: 51px;
 }

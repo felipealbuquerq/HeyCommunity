@@ -19,29 +19,38 @@
                 <div class="col-md-7 m-np mb-3">
                     <div class="card card-news">
                         <div class="card-header d-none d-md-block">新闻详情</div>
-                        <div class="card-body entry">
-                            <div class="mt-4 mb-2">
-                                <h2 class="text-left">{{ $news->title }}</h2>
-                                <small class="d-block mb-3 text-muted">
+                        <div class="card-body">
+                            <div class="entry">
+                                <div class="mt-4 mb-2">
+                                    <h2 class="text-left">{{ $news->title }}</h2>
+                                    <small class="d-block mb-3 text-muted">
                                     <span class="">
                                         {{ $news->origin }}
                                     </span>
 
-                                    <span class="pull-right news-date">
+                                        <span class="pull-right news-date">
                                     {{ $news->time }}
                                 </span>
-                                </small>
-                            </div>
+                                    </small>
+                                </div>
 
-                            <div class="card-text">
-                                {!! $news->content !!}
+                                <div class="card-text">
+                                    {!! $news->content !!}
+                                </div>
                             </div>
-
-                            <br class="m-inline">
-                            <a target="_blank" href="{{ $news->url ?: $news->weburl }}" class="card-link m-inline">访问原文</a>
-                            <br class="m-hide">
-                            <a target="_blank" href="{{ $news->weburl ?: $news->url }}" class="card-link m-hide">访问原文</a>
                         </div>
+
+                        <div class="card-footer small text-muted">
+                            <span class="">发布于 {{ $news->time }}</span>
+                            <span class="pull-right">
+                                <a class="text-dark d-none d-md-inline" target="_blank" href="{{ $news->url ?: $news->weburl }}">{{ $news->origin }}</a>
+                                <a class="text-dark d-inline-block d-md-none" target="_blank" href="{{ $news->weburl ?: $news->url }}">{{ $news->origin }}</a>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="d-none d-md-block">
+                        @include('layouts._tail')
                     </div>
                 </div>
 
@@ -54,7 +63,9 @@
                         </div>
                     </div>
 
-                    @include('layouts._tail')
+                    <div class="d-block d-md-none">
+                        @include('layouts._tail')
+                    </div>
                 </div>
             </div>
         </div>
