@@ -201,5 +201,12 @@ Route::group(['prefix' => 'column', 'middleware' => ['wechat.oauth', 'auth.wecha
 
 
 //
+// Comment
+Route::group(['middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+    Route::resource('comment', 'CommentController');
+});
+
+
+//
 // web admin routes
 include_once 'web-admin.php';

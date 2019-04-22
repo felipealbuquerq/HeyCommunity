@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Comment;
+
 class News extends BaseModel
 {
     /**
@@ -10,6 +12,14 @@ class News extends BaseModel
     public function dailyPapers()
     {
         return $this->morphMany(DailyPaper::class, 'entity');
+    }
+
+    /**
+     * Relate Comment
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'belong_entity')->latest();
     }
 
     /**

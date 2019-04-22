@@ -16,7 +16,7 @@
     <div id="section-mainbody" class="page-news-show">
         <div class="container pt-4">
             <div class="row">
-                <div class="col-md-9 m-np mb-3">
+                <div class="col-md-7 m-np mb-3">
                     <div class="card card-news">
                         <div class="card-body entry">
                             <div class="mt-4 mb-2">
@@ -44,7 +44,10 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 m-np">
+                <div class="col-md-5 m-np">
+                    @include('layouts.comment.root-comment', ['entityType' => get_class($news), 'entityId' => $news->id])
+                    @include('layouts.comment.comment-list', ['entity' => $news])
+
                     @include('layouts._tail')
                 </div>
             </div>
