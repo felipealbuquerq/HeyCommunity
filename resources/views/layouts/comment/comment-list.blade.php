@@ -16,9 +16,9 @@
                                 <small class="float-right text-muted">
                                     <span>#{{ $comment->floor_number }}</span>
                                     &nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a class="disable"><i class="fa fa-thumbs-o-up"></i> 点赞 <sup>0</sup></a>
+                                    <a class="disable"><i class="fa fa-thumbs-o-up"></i> 点赞 <sup>{{ $comment->thumb_up_num ?: '' }}</sup></a>
                                     &nbsp;<small>|</small>&nbsp;
-                                    <a class="disable"><i class="fa fa-thumbs-o-down"></i> 反对 <sup>0</sup></a>
+                                    <a class="disable"><i class="fa fa-thumbs-o-down"></i> 反对 <sup>{{ $comment->thumb_down_num ?: '' }}</sup></a>
                                 </small>
                                 <h6><a href="{{ route('user.uhome', $comment->user_id) }}">{{ $comment->user->nickname }}</a></h6>
                             </div>
@@ -31,7 +31,7 @@
                             <div class="pull-right">
                                 <a href="javascript:void" onclick="$('#comment-{{ $comment->id }}-form').show()">
                                     <i class="fa fa-reply"></i> 评论
-                                    <sup>{{ $comment->comments()->count() }}</sup>
+                                    <sup>{{ $comment->comment_num ?: '' }}</sup>
                                 </a>
                             </div>
                         </div>

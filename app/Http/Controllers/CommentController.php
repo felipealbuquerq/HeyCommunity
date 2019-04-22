@@ -51,7 +51,14 @@ class CommentController extends Controller
 
         $comment = Comment::create($data);
 
+        // @todo 触发通知
+
         if ($comment) {
+            // comment_num
+            if ($comment->parent_id) {
+                $comment->parent->increment('comment_num');
+            }
+
             flash('评论成功')->success();
 
             return back();

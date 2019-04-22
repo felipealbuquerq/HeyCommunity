@@ -25,6 +25,10 @@ class CreateCommentsTable extends Migration
 
             $table->text('content')->comment('Activity Comment Content');
 
+            $table->integer('thumb_up_num')->comment('Thumb Up Num');
+            $table->integer('thumb_down_num')->comment('Thumb Up Num');
+            $table->integer('comment_num')->comment('Comment Num');
+
             $table->timestamps();
             $table->softDeletes();
         });

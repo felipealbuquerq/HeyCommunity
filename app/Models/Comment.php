@@ -15,10 +15,18 @@ class Comment extends BaseModel
     }
 
     /**
-     * Related Comment
+     * Related SubComment
      */
     public function comments()
     {
         return $this->HasMany('App\Models\Comment', 'parent_id', 'id')->latest();
+    }
+
+    /**
+     * Related Parent Comment
+     */
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Comment', 'parent_id', 'id');
     }
 }
