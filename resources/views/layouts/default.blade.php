@@ -175,7 +175,7 @@
 @yield('mainBody')
 
 @include('layouts._switch_sock_puppet')
-@include('layouts._global_fixed_buttons')
+
 
 
 <script src="{{ asset('assets/bootstrap-application-theme/js/popper.min.js') }}"></script>
