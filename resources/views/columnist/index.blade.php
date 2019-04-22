@@ -13,7 +13,9 @@
         <div class="container pt-4">
             <div class="row">
                 <div class="col-xl-3 col-md-4 m-np d-none d-md-block">
-                    <div class="card">
+                    <button class="btn btn-primary btn-block" onclick="alert('暂未开放申请')">申请创建专栏</button>
+
+                    <div class="card mt-3">
                         <div class="card-body">
                             <h6 class="card-title">推荐专栏</h6>
                             <div class="div">
