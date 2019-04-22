@@ -11,11 +11,11 @@ Route::group([], function () {
     // Route::get('/', 'HomeController@index')->name('home.index');
 
     Route::get('home', function () {
-        return redirect()->route('post.index');
+        return redirect()->route('news.index');
     })->name('home');
 
     Route::get('/', function () {
-        return redirect()->route('post.index');
+        return redirect()->route('news.index');
     })->name('index');
 
     Route::get('mini-app', function () {
