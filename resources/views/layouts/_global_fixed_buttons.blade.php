@@ -1,29 +1,3 @@
-<!-- Global fixed buttons -->
-<div id="global-fixed-btns d-none">
-    <a href="javascript:" class=""><i class="fa fa-at"> 关注我们</i></a>
-    <a href="javascript:" class=""><i class="fa fa-comments"> 提供建议</i></a>
-</div>
-
-<style rel="stylesheet">
-    #global-fixed-btns {
-        z-index: 9998;
-        position: fixed;
-        right: 20px;
-        bottom: 20px;
-    }
-
-    #global-fixed-btns a {
-        display: block;
-        background: rgb(48, 151, 209);
-        background: rgba(48, 151, 209, 0.9);
-        color: white;
-        padding: 4px 10px;
-        margin: 4px 0;
-        border-radius: 4px;
-    }
-</style>
-
-
 <!-- Return to Top -->
 <a href="javascript:" id="return-to-top"><i class="fa fa-arrow-up"></i></a>
 
@@ -47,7 +21,7 @@
     #return-to-top {
         z-index: 9998;
         position: fixed;
-        bottom: 95px;
+        bottom: 30px;
         right: 20px;
         background: rgb(48, 151, 209);
         background: rgba(48, 151, 209, 0.7);
