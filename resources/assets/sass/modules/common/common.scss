@@ -80,3 +80,37 @@
   text-align: center;
   padding-top: 180px;
 }
+
+#section-comment-list {
+  .list-group {
+    .list-group-item {
+      border-radius: 0;
+      border-left: none;
+      border-right: none;
+
+      &:first-of-type {
+        // border-top: none;
+      }
+
+      &:last-of-type {
+        border-bottom: none;
+      }
+
+      img.media-object {
+        width: 51px;
+      }
+
+      .content {
+        min-height: 2em;
+      }
+
+      .media-list {
+        .media {
+          img.media-object {
+            width: 42px;
+          }
+        }
+      }
+    }
+  }
+}

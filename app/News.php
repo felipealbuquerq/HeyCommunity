@@ -19,7 +19,7 @@ class News extends BaseModel
      */
     public function comments()
     {
-        return $this->morphMany(Comment::class, 'belong_entity')->latest();
+        return $this->morphMany(Comment::class, 'belong_entity')->whereNull('parent_id')->latest();
     }
 
     /**

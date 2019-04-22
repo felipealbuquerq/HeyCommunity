@@ -40,11 +40,12 @@ class CommentController extends Controller
             'belong_entity_type'        =>  'required|string',
             'belong_entity_id'          =>  'required|integer',
             'content'                   =>  'required|string',
+            'parent_id'                 =>  'nullable|integer',
         ]);
 
         $belongEntity = with(new $request->belong_entity_type())->query()->findOrFail($request->belong_entity_id);
 
-        $data = $request->only(['belong_entity_type', 'belong_entity_id', 'content']);
+        $data = $request->only(['belong_entity_type', 'belong_entity_id', 'content', 'parent_id']);
         $data['user_id'] = Auth::id();
         $data['floor_number'] = $belongEntity->comments()->withTrashed()->count() + 1;
 

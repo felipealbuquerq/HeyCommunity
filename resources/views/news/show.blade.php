@@ -18,6 +18,7 @@
             <div class="row">
                 <div class="col-md-7 m-np mb-3">
                     <div class="card card-news">
+                        <div class="card-header d-none d-md-block">新闻详情</div>
                         <div class="card-body entry">
                             <div class="mt-4 mb-2">
                                 <h2 class="text-left">{{ $news->title }}</h2>
@@ -45,8 +46,13 @@
                 </div>
 
                 <div class="col-md-5 m-np">
-                    @include('layouts.comment.root-comment', ['entityType' => get_class($news), 'entityId' => $news->id])
-                    @include('layouts.comment.comment-list', ['entity' => $news])
+                    <div class="card">
+                        <div class="card-header">评论</div>
+                        <div class="card-body">
+                            @include('layouts.comment.root-comment', ['entityType' => get_class($news), 'entityId' => $news->id])
+                            @include('layouts.comment.comment-list', ['entity' => $news])
+                        </div>
+                    </div>
 
                     @include('layouts._tail')
                 </div>
