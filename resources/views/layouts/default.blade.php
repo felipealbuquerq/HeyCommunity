@@ -75,37 +75,37 @@
             </li>
             -->
             <li class="nav-item {{ setNavActive('news*') }}">
-                <a class="nav-link" href="{{ route('news.index') }}">新闻</a>
+                <a class="nav-link" href="{{ route('news.index') }}"><i class="d-inine-block d-md-none fa fa-newspaper-o"></i> 新闻</a>
             </li>
             <li class="nav-item {{ setNavActive('timeline*') }}">
-                <a class="nav-link" href="{{ route('timeline.index') }}">动态</a>
+                <a class="nav-link" href="{{ route('timeline.index') }}"><i class="d-inline-block d-md-none fa fa-feed"></i> 动态</a>
             </li>
             <li class="nav-item {{ setNavActive('column*') }}">
-                <a class="nav-link" href="{{ route('columnist.index') }}">专栏</a>
+                <a class="nav-link" href="{{ route('columnist.index') }}"><i class="d-inline-block d-md-none fa fa-file-text-o"></i> 专栏</a>
             </li>
             <li class="nav-item {{ setNavActive('topic*') }}">
-                <a class="nav-link" href="{{ route('topic.index') }}">话题</a>
+                <a class="nav-link" href="{{ route('topic.index') }}"><i class="d-inline-block d-md-none fa fa-quote-left"></i> 话题</a>
             </li>
             <li class="nav-item {{ setNavActive('activity*') }}">
-                <a class="nav-link" href="{{ url('activity') }}">活动</a>
+                <a class="nav-link" href="{{ url('activity') }}"><i class="d-inline-block d-md-none fa fa-calendar"></i> 活动</a>
             </li>
             <li class="nav-item {{ setNavActive(['about', 'help', 'terms', 'privacy']) }}">
-                <a class="nav-link" href="{{ url('about') }}">关于</a>
+                <a class="nav-link" href="{{ url('about') }}"><i class="d-inline-block d-md-none fa fa-info-circle"></i> 关于</a>
             </li>
 
             @if (Auth::check())
                 <li class="nav-item d-block d-md-none {{ setNavActive('*ucenter*') }}">
-                    <a class="nav-link" href="{{ route('user.ucenter') }}">用户中心</a>
+                    <a class="nav-link" href="{{ route('user.ucenter') }}"><i class="d-inline-block d-md-none fa fa-newspaper-o"></i> 用户中心</a>
                 </li>
                 <li class="nav-item d-block d-md-none">
-                    <a class="nav-link" href="{{ route('user.logout') }}">登出</a>
+                    <a class="nav-link" href="{{ route('user.logout') }}"><i class="d-inline-block d-md-none fa fa-sign-out"></i> 登出</a>
                 </li>
             @else
                 <li class="nav-item d-block d-md-none {{ setNavActive('*signup*') }}">
-                    <a class="nav-link" href="{{ route('user.signup') }}">注册</a>
+                    <a class="nav-link" href="{{ route('user.signup') }}"><i class="d-inline-block d-md-none fa fa-user-plus"></i> 注册</a>
                 </li>
                 <li class="nav-item d-block d-md-none {{ setNavActive('*login*') }}">
-                    <a class="nav-link" href="{{ route('user.login') }}">登录</a>
+                    <a class="nav-link" href="{{ route('user.login') }}"><i class="d-inline-block d-md-none fa fa-sign-in"></i> 登录</a>
                 </li>
             @endif
         </ul>
