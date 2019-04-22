@@ -1,4 +1,23 @@
-@if (isset($_COOKIE['sockPuppetHash']) && $_COOKIE['sockPuppetHash'] == '$2y$10$.hAgAbqyo4m.KzJSr6uoluMgEVn/wH8NERzfGE28f9eLNKB67t00e')
+@php
+    if (isset($_COOKIE['sockPuppetUsers'])) {
+        $sockPuppetUsers = explode(',', $_COOKIE['sockPuppetUsers']);
+    }
+@endphp
+
+
+@if (
+    env('SOCK_PUPPET_ENABLE') === true
+    && isset($_COOKIE['sockPuppetEnable'])
+    && $_COOKIE['sockPuppetEnable'] == 'true'
+
+    && isset($_COOKIE['sockPuppetHash'])
+    && $_COOKIE['sockPuppetHash'] == env('SOCK_PUPPET_HASH')
+
+    && isset($_COOKIE['sockPuppetUsers'])
+    && isset($sockPuppetUsers)
+    && is_array($sockPuppetUsers)
+    && count($sockPuppetUsers)
+)
     <!-- switch sock puppet -->
     <div class="btn-group" role="group" style="position:absolute; right:20px; top:70px; z-index:9998">
         <button id="btnGroup-switch-sock-puppet" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -6,7 +25,7 @@
             Switch Sock Puppet
         </button>
         <div class="dropdown-menu" aria-labelledby="btnGroup-switch-sock-puppet">
-            @foreach ([2, 3, 4, 5] as $userId)
+            @foreach ($sockPuppetUsers as $userId)
                 <a class="dropdown-item" href="{{ route('user.toggle-sock-puppet', ['id' => $userId]) }}">{{ \App\User::findOrFail($userId)->nickname }}</a>
             @endforeach
         </div>

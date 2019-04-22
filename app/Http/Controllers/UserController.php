@@ -258,7 +258,10 @@ class UserController extends Controller
      */
     public function toggleSockPuppet($id)
     {
-        if (isset($_COOKIE['sockPuppetHash']) && $_COOKIE['sockPuppetHash'] == '$2y$10$.hAgAbqyo4m.KzJSr6uoluMgEVn/wH8NERzfGE28f9eLNKB67t00e') {
+        if (
+            env('SOCK_PUPPET_ENABLE') &&
+            isset($_COOKIE['sockPuppetHash']) && $_COOKIE['sockPuppetHash'] == env('SOCK_PUPPET_HASH')
+        ) {
             Auth::loginUsingId($id);
 
             flash('操作成功')->success();
