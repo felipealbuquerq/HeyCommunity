@@ -9,6 +9,6 @@ class TimelineImage extends BaseModel
      */
     public function getFilePathAttribute($value)
     {
-        return makeCdnAssetPath($value);
+        return makeCdnAssetPath($value, '?imageView2/2/w/1000');
     }
 }
