@@ -19,6 +19,6 @@ class Comment extends BaseModel
      */
     public function comments()
     {
-        return $this->HasMany(Comment::class, 'parent_id', 'id')->latest();
+        return $this->HasMany('App\Models\Comment', 'parent_id', 'id')->latest();
     }
 }

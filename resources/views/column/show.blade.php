@@ -16,13 +16,7 @@
     <div id="section-site" class="page-site-about">
         <div class="container pt-4">
             <div class="row">
-                <div class="offset-xl-1 col-xl-3 col-md-4 m-np d-none d-md-block">
-                    @include('columnist._columnist_card', ['columnist' => $columnist])
-
-                    @include('layouts._tail')
-                </div>
-
-                <div class="col-xl-7 col-md-8 m-np">
+                <div class="col-md-7 m-np mb-3">
                     <nav id="section-breadcrumb" class="d-none d-md-block" aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ url('/') }}">首页</a></li>
@@ -75,9 +69,23 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="mt-3 d-none d-md-block">
+                        @include('layouts._tail')
+                    </div>
                 </div>
 
-                <div class="col-12 m-np mt-4 d-block d-md-none">
+                <div class="col-md-5 m-np">
+                    <div class="card">
+                        <div class="card-header">评论</div>
+                        <div class="card-body">
+                            @include('layouts.comment.root-comment', ['entityType' => get_class($column), 'entityId' => $column->id])
+                            @include('layouts.comment.comment-list', ['entity' => $column])
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 m-np mt-3 d-block d-md-none">
                     @include('layouts._tail')
                 </div>
             </div>
