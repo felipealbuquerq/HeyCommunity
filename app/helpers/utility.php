@@ -89,3 +89,17 @@ function formValue($object, $key)
         return null;
     }
 }
+
+/**
+ * Make CDN Asset Path
+ */
+function makeCdnAssetPath($path)
+{
+    if (env('CDN_ENABLE')) {
+        if (!str_is('http', $path)) {
+            return env('CDN_DOMAIN') . '/' . $path;
+        }
+    }
+
+    return $path;
+}
