@@ -1,5 +1,5 @@
 <!-- Global fixed buttons -->
-<div id="global-fixed-btns">
+<div id="global-fixed-btns d-none">
     <a href="javascript:" class=""><i class="fa fa-at"> 关注我们</i></a>
     <a href="javascript:" class=""><i class="fa fa-comments"> 提供建议</i></a>
 </div>

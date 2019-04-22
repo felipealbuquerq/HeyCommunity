@@ -175,6 +175,7 @@
 @yield('mainBody')
 
 @include('layouts._switch_sock_puppet')
+@include('layouts._global_fixed_buttons')
 
 
 
