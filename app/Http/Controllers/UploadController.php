@@ -12,6 +12,8 @@ class UploadController extends Controller
      */
     public function simditorUploadImages(Request $request)
     {
+        \Debugbar::disable();
+
         $this->validate($request, [
             'files'    =>  'required|image',
         ]);
@@ -45,6 +47,8 @@ class UploadController extends Controller
      */
     public function ckeditorUploadImages(Request $request)
     {
+        \Debugbar::disable();
+
         $this->validate($request, [
             'upload'    =>  'required|image',
         ]);
@@ -64,7 +68,7 @@ class UploadController extends Controller
 
         if (Storage::put($imagePath, $contents)) {
             $uploadSuccess = true;
-            $uploadFilePath = $imagePath;
+            $uploadFilePath = makeCdnAssetPath($imagePath);
             $uploadFileName = $fileName;
         } else {
             $uploadSuccess = false;

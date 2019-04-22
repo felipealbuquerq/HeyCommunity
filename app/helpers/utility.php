@@ -93,7 +93,7 @@ function formValue($object, $key)
 /**
  * Make CDN Asset Path
  */
-function makeCdnAssetPath($path, $params)
+function makeCdnAssetPath($path, $params = '?imageView2/2/w/1000')
 {
     if (env('CDN_ENABLE')) {
         if (!str_is('http', $path)) {
