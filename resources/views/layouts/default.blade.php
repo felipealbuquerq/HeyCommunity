@@ -22,7 +22,7 @@
     <link href="{{ asset('assets/bootstrap-application-theme/css/toolkit.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bootstrap-application-theme/css/application.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/bootstrap-application-theme/js/jquery.min.js') }}"></script>
-    <script src="{{ mix('js/app.js') }}?v=180104"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/entrycss/bin/entry.css') }}">
 
