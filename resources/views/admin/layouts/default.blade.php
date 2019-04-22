@@ -220,6 +220,7 @@
                         </a>
                         <ul class="list-unstyled">
                             <li><a href="{{ route('admin.site-page.index') }}">页面列表</a></li>
+                            <li><a href="{{ route('admin.site-page.create') }}">新增页面</a></li>
                         </ul>
                     </li>
 

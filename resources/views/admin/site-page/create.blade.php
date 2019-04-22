@@ -3,7 +3,7 @@
 @section('mainBody')
 <div class="">
     <div class="page-header-title">
-        <h4 class="page-title">站点页面更新</h4>
+        <h4 class="page-title">新增站点页面</h4>
     </div>
 </div>
 
@@ -15,9 +15,8 @@
                     <div class="panel-body p-t-10">
                         <h4 class="m-b-30 m-t-0"></h4>
 
-                        <form class="form-horizontal" action="{{ route('admin.site-page.update', $page->id) }}" method="post">
+                        <form class="form-horizontal" action="{{ route('admin.site-page.store') }}" method="post">
                             {{ csrf_field() }}
-                            {{ method_field('PUT') }}
 
                             @include('admin.site-page._form')
                         </form>
