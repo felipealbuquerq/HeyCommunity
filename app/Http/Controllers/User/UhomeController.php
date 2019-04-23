@@ -16,6 +16,9 @@ class UhomeController extends Controller
      */
     public function index($id)
     {
+        $user = User::findOrFail($id);
+        return view('user.uhome.index', compact('user'));
+
         return redirect()->route('user.uhome.topic-published', $id);
     }
 

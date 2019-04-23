@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-{{ $user->nickname }} 的发布的话题 - {{ $system->site_title }}
+{{ $user->nickname }} 的主页 - {{ $system->site_title }}
 @endsection
 
 @section('description')
@@ -25,7 +25,11 @@
 
                     <div class="tab-content" id="nav-mainTabContent">
                         <div class="tab-pane fade show active">
-                            @include('topic._topic-list', ['topics' => $topics])
+                            <div class="card">
+                                <div class="card-body">
+                                    暂无数据
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

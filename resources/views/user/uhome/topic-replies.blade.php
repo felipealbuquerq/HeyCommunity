@@ -24,7 +24,7 @@
                     @include('user.uhome._nav')
 
                     <div class="tab-content" id="nav-mainTabContent">
-                        <div class="tab-pane fade show active" id="nav-topic">
+                        <div class="tab-pane fade show active">
                             @if ($topicComments->count())
                                 <div id="component-topic-list" class="list-group">
                                     @foreach ($topicComments as $comment)
