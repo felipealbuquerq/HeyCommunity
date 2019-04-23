@@ -8,48 +8,46 @@ use App\TopicComment;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class UhomeController extends Controller
+class UCenterController extends Controller
 {
     /**
      * Index Page
      */
-    public function index($id)
+    public function index()
     {
-        return redirect()->route('user.uhome.topic-published', $id);
-
-        $user = User::findOrFail($id);
-        return view('user.uhome.index', compact('user'));
+        return redirect()->route('user.ucenter.topic-published');
     }
 
     /**
      * Topic Published Page
      */
-    public function topicPublished($id)
+    public function topicPublished()
     {
-        $user = User::findOrFail($id);
+        $user = Auth::user();
         $topics = Topic::where(['user_id' => $user->id])->paginate(10);
 
-        return view('user.uhome.topic-published', compact('user', 'topics'));
+        return view('user.ucenter.topic-published', compact('user', 'topics'));
     }
 
     /**
      * Topic Replies Page
      */
-    public function topicReplies($id)
+    public function topicReplies()
     {
-        $user = User::findOrFail($id);
+        $user = Auth::user();
         $topicComments = TopicComment::where('user_id', $user->id)->latest()->paginate(10);
 
-        return view('user.uhome.topic-replies', compact('user', 'topicComments'));
+        return view('user.ucenter.topic-replies', compact('user', 'topicComments'));
     }
 
     /**
      * Activity Page
      */
-    public function activity($id)
+    public function activity()
     {
-        $user = User::findOrFail($id);
+        $user = Auth::user();
         $activities = Activity::where(['user_id' => $user->id])->paginate(12);
 
         return view('user.uhome.activity', compact('user', 'activities'));

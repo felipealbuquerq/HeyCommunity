@@ -79,17 +79,23 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
     Route::get('login-by-wechat-success', 'UserController@loginByWechatSuccess')->name('user.login-by-wechat-success');
 
     Route::middleware(['auth'])->group(function () {
+        Route::get('ucenter', 'User\UCenterController@index')->name('user.ucenter');
+        Route::get('ucenter/topic-published', 'User\UCenterController@topicPublished')->name('user.ucenter.topic-published');
+        Route::get('ucenter/topic-replies', 'User\UCenterController@topicReplies')->name('user.ucenter.topic-replies');
+
+        /*
         Route::get('ucenter', 'UserController@ucenter')->name('user.ucenter');
         Route::get('ucenter/my-timelines', 'UserController@ucenter')->name('user.ucenter.my-timelines');
         Route::get('ucenter/my-topics', 'UserController@ucenter')->name('user.ucenter.my-topics');
         Route::get('ucenter/my-topic-comments', 'UserController@ucenter')->name('user.ucenter.my-topic-comments');
         Route::get('ucenter/my-activities', 'UserController@ucenter')->name('user.ucenter.my-activities');
         Route::get('ucenter/my-activity-signups', 'UserController@ucenter')->name('user.ucenter.my-activity-signups');
+        */
 
         Route::get('profile', 'UserController@profile')->name('user.profile');
         Route::post('profile', 'UserController@profileUpdate')->name('user.profile-update');
 
-        Route::get('oggle-sock-puppet/{id}', 'UserController@toggleSockPuppet')
+        Route::get('toggle-sock-puppet/{id}', 'UserController@toggleSockPuppet')
             ->where('id', '[0-9]+')
             ->name('user.toggle-sock-puppet');
     });
