@@ -94,7 +94,10 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
             ->name('user.toggle-sock-puppet');
     });
 
-    Route::get('uhome/{id}', 'UserController@uhome')->name('user.uhome');
+    Route::get('uhome/{id}', 'User\UhomeController@index')->name('user.uhome');
+    Route::get('uhome/{id}/topic-published', 'User\UhomeController@topicPublished')->name('user.uhome.topic-published');
+    Route::get('uhome/{id}/topic-replies', 'User\UhomeController@topicReplies')->name('user.uhome.topic-replies');
+    Route::get('uhome/{id}/activity', 'User\UhomeController@activity')->name('user.uhome.activity');
 });
 
 
