@@ -24,8 +24,8 @@ $wxShareDisable = true;
 
                 <div class="col-lg-9 col-md-9 m-np">
                     <div class="card">
-                        <div class="card-header">社区轨迹</div>
-                        <div class="card-body">暂无内容</div>
+                        <div class="card-header">消息推送</div>
+                        <div class="card-body">我们主要通过微信公众号的消息推送功能，把通知中心的消息推送给你</div>
                     </div>
                 </div>
 

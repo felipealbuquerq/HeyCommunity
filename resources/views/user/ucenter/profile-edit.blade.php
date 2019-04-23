@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-个人中心 - {{ $system->site_title }}
+更新资料 - {{ $system->site_title }}
 @endsection
 
 @php

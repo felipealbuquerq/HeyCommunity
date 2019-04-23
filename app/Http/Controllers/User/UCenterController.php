@@ -71,7 +71,7 @@ class UCenterController extends Controller
     public function realnameVerify()
     {
         $user = Auth::user();
-        return view('user.ucenter.index', compact('user'));
+        return view('user.ucenter.realname-verify', compact('user'));
     }
 
     /**
@@ -80,7 +80,7 @@ class UCenterController extends Controller
     public function settingNotice()
     {
         $user = Auth::user();
-        return view('user.ucenter.index', compact('user'));
+        return view('user.ucenter.setting-notice', compact('user'));
     }
 
     /**
@@ -89,7 +89,7 @@ class UCenterController extends Controller
     public function SecurityCenter()
     {
         $user = Auth::user();
-        return view('user.ucenter.index', compact('user'));
+        return view('user.ucenter.security-center', compact('user'));
     }
 
 }
