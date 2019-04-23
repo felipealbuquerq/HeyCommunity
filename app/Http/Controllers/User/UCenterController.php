@@ -50,6 +50,6 @@ class UCenterController extends Controller
         $user = Auth::user();
         $activities = Activity::where(['user_id' => $user->id])->paginate(12);
 
-        return view('user.uhome.activity', compact('user', 'activities'));
+        return view('user.ucenter.activity', compact('user', 'activities'));
     }
 }
