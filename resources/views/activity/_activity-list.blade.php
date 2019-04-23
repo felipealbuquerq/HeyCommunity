@@ -1,7 +1,7 @@
 @if ($activities->count())
     <div class="row">
         @foreach ($activities as $item)
-            <div class="col-md-3 m-np">
+            <div class="col-md-4 m-np">
                 <div id="component-activity-card" class="card card-activity">
                     <a class="box-pic" href="{{ route('activity.show', $item->id) }}">
                         <div class="start-time">

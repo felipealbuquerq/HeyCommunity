@@ -31,6 +31,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Related Columnist
+     */
+    public function columnist()
+    {
+        return $this->hasOne('App\Columnist');
+    }
+
+    /**
      * Guest Avatar
      */
     public static function guestAvatar()

@@ -42,13 +42,11 @@
 
                 <div class="col-md-9 m-np" id="section-body">
                     <nav class="nav nav-pills" id="mainTab">
-                        <!--
-                        <a class="nav-item nav-link" data-toggle="tab" href="#nav-timeline">公园</a>
-                        -->
                         <a class="nav-item nav-link active" data-toggle="tab" href="#nav-topic">话题</a>
-                        <!--
                         <a class="nav-item nav-link" data-toggle="tab" href="#nav-activity">活动</a>
-                        -->
+                        @if ($user->columnist)
+                            <a class="nav-item nav-link" href="{{ route('columnist.show', $user->columnist->domain) }}">专栏</a>
+                        @endif
                     </nav>
 
                     <div class="tab-content" id="nav-mainTabContent">
