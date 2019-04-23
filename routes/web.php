@@ -79,7 +79,7 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
     Route::get('login-by-wechat-success', 'UserController@loginByWechatSuccess')->name('user.login-by-wechat-success');
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('ucenter', 'User\UCenterController@index')->name('user.ucenter');
+        Route::get('ucenter/index', 'User\UCenterController@index')->name('user.ucenter');
         Route::get('ucenter/topic-published', 'User\UCenterController@topicPublished')->name('user.ucenter.topic-published');
         Route::get('ucenter/topic-replies', 'User\UCenterController@topicReplies')->name('user.ucenter.topic-replies');
         Route::get('ucenter/activity', 'User\UCenterController@activity')->name('user.ucenter.activity');

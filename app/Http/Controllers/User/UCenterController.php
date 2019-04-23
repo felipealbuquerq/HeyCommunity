@@ -17,6 +17,9 @@ class UCenterController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        return view('user.ucenter.index', compact('user'));
+
         return redirect()->route('user.ucenter.topic-published');
     }
 
