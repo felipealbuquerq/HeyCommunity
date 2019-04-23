@@ -80,18 +80,11 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
 
     Route::middleware(['auth'])->group(function () {
         Route::get('ucenter/index', 'User\UCenterController@index')->name('user.ucenter');
-        Route::get('ucenter/topic-published', 'User\UCenterController@topicPublished')->name('user.ucenter.topic-published');
-        Route::get('ucenter/topic-replies', 'User\UCenterController@topicReplies')->name('user.ucenter.topic-replies');
-        Route::get('ucenter/activity', 'User\UCenterController@activity')->name('user.ucenter.activity');
+        Route::get('ucenter/profile', 'User\UCenterController@profile')->name('user.ucenter.profile');
+        Route::get('ucenter/realname-verify', 'User\UCenterController@realname-verify')->name('user.ucenter.realname-verify');
+        Route::get('ucenter/setting-notice', 'User\UCenterController@setting-notice')->name('user.ucenter.setting-notice');
+        Route::get('ucenter/security-center', 'User\UCenterController@security-center')->name('user.ucenter.security-center');
 
-        /*
-        Route::get('ucenter', 'UserController@ucenter')->name('user.ucenter');
-        Route::get('ucenter/my-timelines', 'UserController@ucenter')->name('user.ucenter.my-timelines');
-        Route::get('ucenter/my-topics', 'UserController@ucenter')->name('user.ucenter.my-topics');
-        Route::get('ucenter/my-topic-comments', 'UserController@ucenter')->name('user.ucenter.my-topic-comments');
-        Route::get('ucenter/my-activities', 'UserController@ucenter')->name('user.ucenter.my-activities');
-        Route::get('ucenter/my-activity-signups', 'UserController@ucenter')->name('user.ucenter.my-activity-signups');
-        */
 
         Route::get('profile', 'UserController@profile')->name('user.profile');
         Route::post('profile', 'UserController@profileUpdate')->name('user.profile-update');
