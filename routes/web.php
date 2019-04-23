@@ -81,9 +81,11 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
     Route::middleware(['auth'])->group(function () {
         Route::get('ucenter/index', 'User\UCenterController@index')->name('user.ucenter');
         Route::get('ucenter/profile', 'User\UCenterController@profile')->name('user.ucenter.profile');
-        Route::get('ucenter/realname-verify', 'User\UCenterController@realname-verify')->name('user.ucenter.realname-verify');
-        Route::get('ucenter/setting-notice', 'User\UCenterController@setting-notice')->name('user.ucenter.setting-notice');
-        Route::get('ucenter/security-center', 'User\UCenterController@security-center')->name('user.ucenter.security-center');
+        Route::get('ucenter/profile-edit', 'User\UCenterController@profileEdit')->name('user.ucenter.profile-edit');
+        Route::post('ucenter/profile-update', 'User\UCenterController@profileUpdate')->name('user.ucenter.profile-update');
+        Route::get('ucenter/realname-verify', 'User\UCenterController@realnameVerify')->name('user.ucenter.realname-verify');
+        Route::get('ucenter/setting-notice', 'User\UCenterController@settingNotice')->name('user.ucenter.setting-notice');
+        Route::get('ucenter/security-center', 'User\UCenterController@securityCenter')->name('user.ucenter.security-center');
 
 
         Route::get('profile', 'UserController@profile')->name('user.profile');
