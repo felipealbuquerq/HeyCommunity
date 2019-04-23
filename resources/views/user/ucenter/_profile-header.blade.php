@@ -1,7 +1,16 @@
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.bundle.min.js"></script>
+<link href="{{ asset('assets/node_modules/cropperjs/dist/cropper.min.css') }}" rel="stylesheet">
+<script src="{{ asset('assets/node_modules/cropperjs/dist/cropper.min.js') }}"></script>
+
 <div class="profile-header" style="background-image: url('{{ asset($user->profile_bg_img) }}');">
     <div class="container">
         <div class="container-inner">
-            <img class="rounded-circle media-object" src="{{ asset($user->avatar) }}">
+            <label class="label" data-toggle="tooltip" title="" data-original-title="更新头像" style="position:relative;">
+                <img class="rounded-circle media-object" src="{{ asset($user->avatar) }}" style="border:2px solid #ddd;">
+                <i class="fa fa-edit" style="color:#ddd; font-size:18px; position:absolute; bottom:10px; left:4px;"></i>
+                <input type="file" class="sr-only" id="input-avatar" name="image" accept="image/*">
+            </label>
+
             <h3 class="profile-header-user">{{ $user->nickname }}</h3>
             <p class="profile-header-bio">
                 {{ $user->bio ?: '暂无签名' }}
@@ -34,10 +43,53 @@
     </div>
 </div>
 
-<link href="{{ asset('assets/node_modules/cropperjs/dist/cropper.min.css') }}" rel="stylesheet">
-<script src="{{ asset('assets/node_modules/cropperjs/dist/cropper.min.js') }}"></script>
+<script>
+    window.avatarCropper = null;
 
-<div class="modal fade" id="modal-upload-avatar" tabindex="-1" role="dialog">
+    $('#input-avatar').on('change', function(event) {
+      var files = event.target.files;
+      var input = $('#input-avatar');
+      var image = $('#img-avatar')[0];
+      var $modal = $('#modal-avatar');
+
+      var done = function (url) {
+        console.log(url);
+        input.value = '';
+        image.src = url;
+        $modal.modal('show');
+      };
+
+      // 获取图片 URL
+      if (files && files.length > 0) {
+        file = files[0];
+
+        if (URL) {
+          done(URL.createObjectURL(file));
+        } else if (FileReader) {
+          reader = new FileReader();
+          reader.onload = function (event) {
+            done(reader.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+
+      // 模态框事件
+      $modal.on('shown.bs.modal', function () {
+        window.avatarCropper = new Cropper(image, {
+          aspectRatio: 1,
+          viewMode: 3,
+          minContainerWidth: 200,
+          minContainerHeight: 200,
+        });
+      });
+      $modal.on('hidden.bs.modal', function () {
+        window.avatarCropper.destroy();
+        window.avatarCropper = null;
+      });
+    });
+</script>
+<div class="modal fade" id="modal-avatar" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -76,16 +128,6 @@
                     }
 
 
-                    var img = $('#img-avatar')[0];
-                    console.log(img);
-
-                    var cropper = new Cropper(img, {
-                      aspectRatio: 1,
-                      viewMode: 1,
-                      minContainerWidth: 200,
-                      minContainerHeight: 200,
-                    });
-
                     function submit() {
                       var croppedCanvas;
                       var roundedCanvas;
@@ -93,7 +135,7 @@
 
 
                       // Crop
-                      croppedCanvas = cropper.getCroppedCanvas();
+                      croppedCanvas = window.avatarCropper.getCroppedCanvas();
 
                       // Round
                       roundedCanvas = getRoundedCanvas(croppedCanvas);
