@@ -34,6 +34,14 @@ $wxShareDisable = true;
                                 {{ csrf_field() }}
 
                                 <div class="form-group row">
+                                    <label class="offset-md-1 col-md-1 col-form-label">头像</label>
+                                    <div class="col-md-6">
+                                        <img class="rounded align-bottom" src="{{ asset($user->avatar) }}" style="width:80px;">
+                                        <a href="{{ route('user.ucenter.avatar-edit') }}" class="btn btn-secondary btn-sm ml-3">更换头像</a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
                                     <label for="input-nickname" class="offset-md-1 col-md-1 col-form-label">昵称</label>
                                     <div class="col-md-6">
                                         <input disabled name="nickname" type="text" class="form-control" id="input-nickname" value="{{ old('nickname', $user->nickname) }}">

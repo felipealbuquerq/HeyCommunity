@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UCenterController extends Controller
 {
@@ -92,4 +93,39 @@ class UCenterController extends Controller
         return view('user.ucenter.security-center', compact('user'));
     }
 
+    /**
+     * Avatar Edit
+     */
+    public function avatarEdit()
+    {
+        $user = Auth::user();
+        return view('user.ucenter.avatar-edit', compact('user'));
+    }
+
+    /**
+     * Avatar Update
+     */
+    public function avatarUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'avatar'    =>  'required|image',
+        ]);
+
+        $user = Auth::user();
+
+        $filePath = 'uploads/users/avatars/';
+        $fileName = Storage::putFile($filePath, $request->avatar);
+
+        $user->update([
+            'avatar'    =>  $fileName
+        ]);
+        $user->save();
+
+        return response()->json([
+            'status'    =>  200,
+            'data'      =>  [
+                'avatar'    =>  $user->avatar,
+            ],
+        ]);
+    }
 }
