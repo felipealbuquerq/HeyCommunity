@@ -113,11 +113,13 @@ window.cropperAjaxSubmit = function(action, successCallback, failCallback) {
 
   var croppedCanvas;
   var roundedCanvas;
+  var canvas;
 
   croppedCanvas = window.cropper.getCroppedCanvas();
-  roundedCanvas = getRoundedCanvas(croppedCanvas);
-
-  roundedCanvas.toBlob(function(blob) {
+  // roundedCanvas = getRoundedCanvas(croppedCanvas);
+  
+  canvas = croppedCanvas;
+  canvas.toBlob(function(blob) {
     var formData = new FormData();
     formData.append('image', blob, 'image.png');
     formData.append('_token', document.head.querySelector('[name=csrf-token]').content);
