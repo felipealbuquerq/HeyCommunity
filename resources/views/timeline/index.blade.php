@@ -30,7 +30,7 @@
 
                         @foreach ($timelines as $timeline)
                             <li class="media list-group-item p-4">
-                                <img class="media-object d-flex align-self-start mr-3" src="{{ $timeline->user->avatar }}">
+                                <img class="media-object d-flex align-self-start mr-3" src="{{ asset($timeline->user->avatar) }}">
                                 <div class="media-body">
                                     <div class="media-body-text">
                                         <div class="media-heading">
@@ -72,7 +72,7 @@
                                     <ul class="media-list">
                                         @foreach ($timeline->comments as $comment)
                                         <li class="media">
-                                            <img class="media-object d-flex align-self-start mr-3" src="{{ $comment->user->avatar }}">
+                                            <img class="media-object d-flex align-self-start mr-3" src="{{ asset($comment->user->avatar) }}">
                                             <div class="media-body">
                                                 <div>
                                                     <strong><a href="{{ route('user.uhome', $comment->user_id) }}">{{ $comment->user->nickname }}</a></strong>

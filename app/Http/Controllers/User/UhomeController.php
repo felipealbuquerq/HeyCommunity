@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Activity;
+use App\Timeline;
 use App\Topic;
 use App\TopicComment;
 use App\User;
@@ -20,6 +21,17 @@ class UhomeController extends Controller
 
         $user = User::findOrFail($id);
         return view('user.uhome.index', compact('user'));
+    }
+
+    /**
+     * Timeline Page
+     */
+    public function timeline($id)
+    {
+        $user = User::findOrFail($id);
+        $timelines = Timeline::where('user_id', $id)->latest()->paginate(5);
+
+        return view('user.uhome.timeline', compact('user', 'timelines'));
     }
 
     /**
