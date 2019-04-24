@@ -51,7 +51,7 @@ class User extends Authenticatable
      */
     public function getAvatarAttribute($value)
     {
-        return asset($value);
+        return makeCdnAssetPath($value, '?imageView2/2/w/400');
     }
 
     /**
