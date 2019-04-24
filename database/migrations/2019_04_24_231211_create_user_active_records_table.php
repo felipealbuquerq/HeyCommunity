@@ -17,8 +17,10 @@ class CreateUserActiveRecordsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->index()->unsigned()->comment('User ID');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('entity_type')->index()->comment('Belong Entity Type');
-            $table->integer('entity_id')->index()->unsigned()->comment('Belong Entity ID');
+
+            $table->string('entity_type')->index()->comment('Entity Type');
+            $table->integer('entity_id')->index()->unsigned()->comment('Entity ID');
+            $table->text('entity_data')->comment('Entity Data');
 
             $table->timestamps();
             $table->softDeletes();

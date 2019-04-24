@@ -2,7 +2,8 @@
 
 namespace App\Listeners;
 
-use App\Events\UserActiveRecord;
+use App\Events\UserActiveRecordEvent;
+use App\Models\User\UserActiveRecord;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -24,12 +25,13 @@ class UserActiveRecordListener
      * @param  UserActiveRecord  $event
      * @return void
      */
-    public function handle(UserActiveRecord $event)
+    public function handle(UserActiveRecordEvent $event)
     {
-        \App\Models\User\UserActiveRecord::create([
+        UserActiveRecord::create([
             'user_id'       =>  $event->user->id,
             'entity_type'   =>  get_class($event->entity),
             'entity_id'     =>  $event->entity->id,
+            'entity_data'   =>  $event->entity,
         ]);
     }
 }
