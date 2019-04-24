@@ -55,6 +55,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get Avatar Attribute
+     */
+    public function getProfileBgImgAttribute($value)
+    {
+        return makeCdnAssetPath($value, '?imageView2/2/w/1500');
+    }
+
+    /**
      * Get Bio Attribute
      */
     public function getBioAttribute($value)
