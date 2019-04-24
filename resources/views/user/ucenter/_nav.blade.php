@@ -1,7 +1,10 @@
 <div class="d-none d-md-block">
     <div class="list-group">
+        <a target="_blank" href="{{ route('user.uhome', $user->id) }}" class="list-group-item list-group-item-action d-flex justify-content-between">
+            <span>我的主页</span> <span class="icon icon-export"></span>
+        </a>
         <a href="{{ route('user.ucenter') }}" class="{{ setNavActive('*index') }} list-group-item list-group-item-action d-flex justify-content-between">
-            <span>社区轨迹</span> <span class="icon icon-chevron-thin-right"></span>
+            <span>社区生涯</span> <span class="icon icon-chevron-thin-right"></span>
         </a>
     </div>
 

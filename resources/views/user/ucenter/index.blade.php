@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-社区轨迹 - {{ $system->site_title }}
+社区生涯 - {{ $system->site_title }}
 @endsection
 
 @php
@@ -24,7 +24,7 @@ $wxShareDisable = true;
 
                 <div class="col-lg-9 col-md-9 m-np">
                     <div class="card">
-                        <div class="card-header">社区轨迹</div>
+                        <div class="card-header">社区生涯</div>
                         <div class="card-body">暂无内容</div>
                     </div>
                 </div>

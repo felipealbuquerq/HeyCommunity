@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-社区轨迹 - {{ $system->site_title }}
+社区生涯 - {{ $system->site_title }}
 @endsection
 
 @php
