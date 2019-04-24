@@ -184,46 +184,6 @@ class UserController extends Controller
     }
 
     /**
-     * User center
-     */
-    public function ucenter(Request $request)
-    {
-        if ($request->is('*ucenter')) {
-            return redirect()->route('user.ucenter.my-topics');
-        }
-
-        $user = Auth::user();
-
-        $myTopics = Topic::mine()->latest()->paginate();
-        $myTopicComments = TopicComment::mine()->latest()->paginate();
-        $myActivities = Activity::paginate();
-
-        return view('user.ucenter', compact('user', 'myTopics', 'myTopicComments', 'myActivities'));
-    }
-
-    /**
-     * User home
-     */
-    public function uhome($id)
-    {
-        $user = User::findOrFail($id);
-        $myTopics = Topic::where(['user_id' => $user->id])->paginate(10);
-        $myActivities = Activity::paginate(12);
-
-        return view('user.uhome', compact('user', 'myTopics', 'myActivities'));
-    }
-
-    /**
-     *  User profile
-     */
-    public function profile()
-    {
-        $user = Auth::user();
-
-        return view('user.profile', compact('user'));
-    }
-
-    /**
      * User profile update
      */
     public function profileUpdate(Request $request)

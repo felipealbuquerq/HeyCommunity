@@ -113,7 +113,7 @@ class UCenterController extends Controller
 
         $user = Auth::user();
 
-        $filePath = 'uploads/users/avatars/';
+        $filePath = 'uploads/users/avatars';
         $fileName = Storage::putFile($filePath, $request->image);
 
         $user->update([
@@ -140,7 +140,7 @@ class UCenterController extends Controller
 
         $user = Auth::user();
 
-        $filePath = 'uploads/users/profile_bg_imgs/';
+        $filePath = 'uploads/users/profile_bg_imgs';
         $fileName = Storage::putFile($filePath, $request->image);
 
         $user->update([

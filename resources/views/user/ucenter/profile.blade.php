@@ -37,7 +37,7 @@ $wxShareDisable = true;
                                     <label class="offset-md-1 col-md-1 col-form-label">头像</label>
                                     <div class="col-md-6">
                                         <img class="rounded align-bottom" src="{{ asset($user->avatar) }}" style="width:80px;">
-                                        <a href="{{ route('user.ucenter.avatar-edit') }}" class="btn btn-secondary btn-sm ml-3">更换头像</a>
+                                        <button type="button" onclick="$('#cropper-input-avatar').click()" class="btn btn-secondary btn-sm ml-3">更换头像</button>
                                     </div>
                                 </div>
 
