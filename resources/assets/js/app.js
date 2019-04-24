@@ -11,6 +11,7 @@ require('./laravel-echo');
 
 require('./utilities/request');
 require('./utilities/other');
+require('./utilities/cropper');
 
 // set ajax request headers
 $(document).ready(function() {

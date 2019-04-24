@@ -108,13 +108,13 @@ class UCenterController extends Controller
     public function avatarUpdate(Request $request)
     {
         $this->validate($request, [
-            'avatar'    =>  'required|image',
+            'image'     =>  'required|image',
         ]);
 
         $user = Auth::user();
 
         $filePath = 'uploads/users/avatars/';
-        $fileName = Storage::putFile($filePath, $request->avatar);
+        $fileName = Storage::putFile($filePath, $request->image);
 
         $user->update([
             'avatar'    =>  $fileName
