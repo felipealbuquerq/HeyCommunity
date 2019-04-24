@@ -117,7 +117,7 @@ window.cropperAjaxSubmit = function(action, successCallback, failCallback) {
 
   croppedCanvas = window.cropper.getCroppedCanvas();
   // roundedCanvas = getRoundedCanvas(croppedCanvas);
-  
+
   canvas = croppedCanvas;
   canvas.toBlob(function(blob) {
     var formData = new FormData();

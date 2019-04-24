@@ -89,6 +89,7 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
 
         Route::get('ucenter/avatar-edit', 'User\UCenterController@avatarEdit')->name('user.ucenter.avatar-edit');
         Route::post('ucenter/avatar-update', 'User\UCenterController@avatarUpdate')->name('user.ucenter.avatar-update');
+        Route::post('ucenter/profile-bg-img-update', 'User\UCenterController@profileBgImgUpdate')->name('user.ucenter.profile-bg-img-update');
 
 
         Route::get('profile', 'UserController@profile')->name('user.profile');

@@ -128,4 +128,31 @@ class UCenterController extends Controller
             ],
         ]);
     }
+
+    /**
+     * Profile BgImg Update
+     */
+    public function profileBgImgUpdate(Request $request)
+    {
+        $this->validate($request, [
+            'image'     =>  'required|image',
+        ]);
+
+        $user = Auth::user();
+
+        $filePath = 'uploads/users/profile_bg_imgs/';
+        $fileName = Storage::putFile($filePath, $request->image);
+
+        $user->update([
+            'profile_bg_img'    =>  $fileName
+        ]);
+        $user->save();
+
+        return response()->json([
+            'status'    =>  200,
+            'data'      =>  [
+                'profile_bg_img'    =>  $user->profile_bg_img,
+            ],
+        ]);
+    }
 }

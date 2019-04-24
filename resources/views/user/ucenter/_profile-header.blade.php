@@ -7,34 +7,15 @@
                 <input type="file" class="sr-only" id="cropper-input-avatar" name="image" accept="image/*">
             </label>
 
+            <label class="label btn btn-sm btn-secondary" style="position:absolute; top:20px; right:20px;">
+                <i class="fa fa-image"> 更换封面</i>
+                <input type="file" class="sr-only" id="cropper-input-profile-bg-img" name="image" accept="image/*">
+            </label>
+
             <h3 class="profile-header-user">{{ $user->nickname }}</h3>
             <p class="profile-header-bio">
                 {{ $user->bio ?: '暂无签名' }}
             </p>
-        </div>
-
-        <div class="row operations">
-            <div class="col-sm-6 text-right d-none d-sm-block">
-                <button data-toggle="modal" data-target="#cropper-modal-avatar" class="btn btn-sm btn-secondary"><i class="fa fa-w fa-user-circle-o"></i> 更换头像</button>
-                &nbsp;
-                <a onclick="alert('暂不可用')" class="btn btn-sm btn-secondary"><i class="fa fa-w fa-picture-o"></i> 更换封面</a>
-            </div>
-
-            <div class="col-sm-6 text-left d-none d-sm-block">
-                <a href="{{ route('user.uhome', $user->id) }}" class="btn btn-sm btn-secondary"><i class="fa fa-w fa-info-circle"></i> 我的主页</a>
-                &nbsp;
-                <a href="{{ route('user.profile') }}" class="btn btn-sm btn-secondary"><i class="fa fa-w fa-id-card-o"></i> 更新资料</a>
-            </div>
-
-            <div class="col-12 d-block d-sm-none">
-                <div class="btn-group btn-group-sm">
-                    <button data-toggle="modal" data-target="#modal-upload-avatar" class="btn btn-sm btn-secondary"><i class="fa fa-w fa-user-circle-o"></i> 更换头像</button>
-                    <a onclick="alert('暂不可用')" class="btn btn-sm btn-secondary">更换头像</a>
-                    <a onclick="alert('暂不可用')" class="btn btn-sm btn-secondary">更换封面</a>
-                    <a href="{{ route('user.uhome', $user->id) }}" class="btn btn-sm btn-secondary">我的主页</a>
-                    <a href="{{ route('user.profile') }}" class="btn btn-sm btn-secondary">更新资料</a>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -56,7 +37,29 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary">同步微信头像</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
-                <button type="button" onclick="cropperAjaxSubmit('{{ route("user.ucenter.avatar-update") }}')" class="btn btn-primary">更新头像</button>
+                <button type="button" onclick="cropperAjaxSubmit('{{ route("user.ucenter.avatar-update") }}')" class="btn btn-primary">更新</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="cropper-modal-profile-bg-img" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">更新横幅图</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center" style="width:80%; margin:0 auto;">
+                    <img id="cropper-img-profile-bg-img" src="{{ asset($user->profile_bg_img) }}">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                <button type="button" onclick="cropperAjaxSubmit('{{ route("user.ucenter.profile-bg-img-update") }}')" class="btn btn-primary">更新</button>
             </div>
         </div>
     </div>
@@ -67,14 +70,26 @@
 <script src="{{ asset('assets/node_modules/cropperjs/dist/cropper.min.js') }}"></script>
 
 <script>
-  /**
-   * 头像上传模态框裁剪编辑
-   */
+  //
+  // 头像上传模态框裁剪编辑
   cropperModalEdit({
       inputEl: $('#cropper-input-avatar'),
       imageEl: $('#cropper-img-avatar')[0],
       modalEl: $('#cropper-modal-avatar'),
-    });
+  });
+
+  //
+  // 头像上传模态框裁剪编辑
+  cropperModalEdit({
+    inputEl: $('#cropper-input-profile-bg-img'),
+    imageEl: $('#cropper-img-profile-bg-img')[0],
+    modalEl: $('#cropper-modal-profile-bg-img'),
+  }, {
+    aspectRatio: 2.264,
+    viewMode: 2,
+    minContainerWidth: 200,
+    minContainerHeight: 200,
+  });
 </script>
 
 <style rel="stylesheet">
