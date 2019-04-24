@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-{{ $user->nickname }} 的发起或参与的活动 - {{ $system->site_title }}
+{{ $user->nickname }}发起或参与的活动 - {{ $system->site_title }}
 @endsection
 
 @section('description')
@@ -23,8 +23,9 @@
                 <div class="col-md-9 m-np" id="section-body">
                     @include('user.uhome._nav')
 
-                    <div class="tab-content" id="nav-mainTabContent">
-                        <div class="tab-pane fade show active">
+
+                    <div class="card">
+                        <div class="card-body">
                             @include('activity._activity-list', ['activities' => $activities])
                         </div>
                     </div>

@@ -6,7 +6,7 @@
     <a class="nav-item nav-link {{ Request::is('*activity') ? 'active' : '' }}" href="{{ route('user.uhome.activity', $user->id) }}">发起或参与的活动</a>
 
     @if ($user->columnist)
-        <a class="nav-item nav-link" href="{{ route('columnist.show', $user->columnist->domain) }}">专栏</a>
+        <a class="nav-item nav-link" href="{{ route('columnist.show', $user->columnist->domain) }}">专栏 <sup><i class="fa fa-external-link"></i></sup></a>
     @endif
 @endsection
 
