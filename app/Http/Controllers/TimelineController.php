@@ -53,6 +53,9 @@ class TimelineController extends Controller
             ]);
         }
 
+        // record user activity log
+        event(new \App\Events\UserActiveRecordEvent(Auth::user(), $timeline));
+
         return redirect()->route('timeline.index');
     }
 
