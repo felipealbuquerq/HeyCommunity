@@ -48,8 +48,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body text-center">
-                <img id="cropper-img-avatar" src="{{ $user->avatar }}" style="width:100%;">
+            <div class="modal-body">
+                <div style="width:300px; margin:0 auto;">
+                    <img id="cropper-img-avatar" src="{{ $user->avatar }}">
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary">同步微信头像</button>
