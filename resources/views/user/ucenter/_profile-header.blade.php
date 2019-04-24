@@ -96,8 +96,8 @@
     .cropper-container {
         margin: 0 auto;
     }
-    .cropper-view-box,
-    .cropper-face {
+    #cropper-modal-avatar .cropper-view-box,
+    #cropper-modal-avatar .cropper-face {
         border-radius: 50%;
     }
 </style>
