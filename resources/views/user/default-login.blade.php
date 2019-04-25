@@ -36,14 +36,14 @@
                                     <a class="text-muted">忘记密码？</a>
                                 </div>
                                 <div>
+                                    <div>
+                                        没有帐号? 现在<a class="" href="{{ route('user.default-signup') }}">注册</a>
+                                    </div>
                                     @if (Agent::isDesktop())
                                         <div>
                                             <a href="{{ route('user.login-wechat') }}"><i class="fa fa-wechat"></i> 使用微信快速登录</a>
                                         </div>
                                     @endif
-                                    <div>
-                                        没有帐号? 现在<a class="" href="{{ route('user.default-signup') }}">注册</a>
-                                    </div>
                                 </div>
                             </footer>
                         </form>
