@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "372269e1517f68baf9edaa71bfad4c7c",
+    "content-hash": "bed677a90e6772f59b0c7bf812eab068",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1497,6 +1497,48 @@
                 "useragent"
             ],
             "time": "2017-11-10T10:35:35+00:00"
+        },
+        {
+            "name": "jiguang/jsms",
+            "version": "v1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jpush/jsms-api-php-client.git",
+                "reference": "2cbae18540ee214c967c0bb112855eb97746e5dd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jpush/jsms-api-php-client/zipball/2cbae18540ee214c967c0bb112855eb97746e5dd",
+                "reference": "2cbae18540ee214c967c0bb112855eb97746e5dd",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JiGuang\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "JPush",
+                    "email": "support@jpush.cn"
+                }
+            ],
+            "time": "2019-01-25T10:30:26+00:00"
         },
         {
             "name": "laracasts/flash",

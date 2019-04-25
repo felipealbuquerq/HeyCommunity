@@ -47,6 +47,8 @@ Route::group([], function () {
 Route::group([], function () {
     Route::post('simditor-upload-images', 'UploadController@simditorUploadImages')->name('upload.simditor-upload-images');
     Route::post('ckeditor-upload-images', 'UploadController@ckeditorUploadImages')->name('upload.ckeditor-upload-images');
+
+    Route::post('get-phone-captcha', 'System\SystemController@getPhoneCaptcha')->name('system.get-phone-captcha');
 });
 
 

@@ -164,6 +164,7 @@ class UserController extends Controller
         $this->validate($request, [
             'nickname'  =>  'required|string',
             'phone'     =>  'required|string|unique:users',
+            'captcha'   =>  'required|string',
             'password'  =>  'required',
         ]);
 
