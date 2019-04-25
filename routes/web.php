@@ -81,7 +81,6 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
     Route::get('logout', 'UserController@logout')->name('user.logout');
     Route::get('login-by-wechat', 'UserController@loginByWechat')->middleware(['wechat.oauth', 'auth.wechat'])->name('user.login-by-wechat');
     Route::post('login-by-wechat-handler', 'UserController@loginByWechatHandler')->name('user.login-by-wechat-handler');
-    Route::get('login-by-wechat-success', 'UserController@loginByWechatSuccess')->name('user.login-by-wechat-success');
 
     Route::middleware(['auth'])->group(function () {
         Route::get('ucenter/index', 'User\UCenterController@index')->name('user.ucenter');

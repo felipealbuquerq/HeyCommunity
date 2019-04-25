@@ -115,14 +115,6 @@ class UserController extends Controller
     }
 
     /**
-     * Login page with wechat
-     */
-    public function loginByWechatSuccess()
-    {
-        return view('user.login-by-wechat-success');
-    }
-
-    /**
      * Default login page
      */
     public function defaultLogin()
