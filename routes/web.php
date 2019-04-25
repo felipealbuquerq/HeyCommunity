@@ -69,7 +69,7 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
         Route::get('forget-password', 'UserController@forgetPassword')->name('user.forget-password');
         Route::post('forget-password', 'UserController@forgetPasswordHandler')->name('user.forget-password-handler');
 
-        Route::post('get-signup-phone-captcha', 'UserController@sendSignupPhoneCaptcha')->name('user.get-signup-phone-captcha');
+        Route::post('get-signup-captcha', 'UserController@getSignupCaptcha')->name('user.get-signup-captcha');
         Route::get('default-signup', 'UserController@defaultSignup')->name('user.default-signup');
         Route::post('default-signup', 'UserController@defaultSignupHandler')->name('user.default-signup-handler');
         Route::get('default-login', 'UserController@defaultLogin')->name('user.default-login');

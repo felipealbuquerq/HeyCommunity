@@ -78,14 +78,14 @@ $wxShareDisable = true;
       var secoundNum = 60;
       var timer;
 
-      btnEl.attr('disabled', 'true');
-
       if (phone.length != 11) {
         alert('手机号码不正确');
         return false;
       }
 
-      $.ajax("{{ route('user.get-signup-phone-captcha') }}", {
+      btnEl.attr('disabled', 'true');
+
+      $.ajax("{{ route('user.get-signup-captcha') }}", {
         method: 'POST',
         data: {phone: phone},
         success: function() {

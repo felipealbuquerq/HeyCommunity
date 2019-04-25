@@ -149,9 +149,9 @@ class UserController extends Controller
     }
 
     /**
-     *  Send Signup Phone Captcha
+     *  Send Signup Captcha
      */
-    public function sendSignupPhoneCaptcha(Request $request)
+    public function getSignupCaptcha(Request $request)
     {
         $this->validate($request, [
             'phone'     =>  'required|string|size:11',
@@ -216,14 +216,14 @@ class UserController extends Controller
             $route = session()->pull('after-login-redirect-route') ?: 'home';
             return redirect()->route($route);
         } else {
-            return back();
+            return back()->withInput()->withErrors();
         }
     }
 
     /**
      *  Get Forget Password Captcha
      */
-    public function GetForgetPasswordCaptcha(Request $request)
+    public function getForgetPasswordCaptcha(Request $request)
     {
         $this->validate($request, [
             'phone'     =>  'required|string|size:11',

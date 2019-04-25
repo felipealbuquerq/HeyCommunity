@@ -42,12 +42,12 @@
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-block btn-primary">注册</button>
+                                <button type="submit" class="btn btn-block btn-primary">提交</button>
                             </div>
 
                             <footer class="mt-3">
-                                <div class="pull-right">
-                                    如果记得手机和密码，请<a class="" href="{{ route('user.default-login') }}">尝试登录</a>
+                                <div class="">
+                                    <a class="" href="{{ route('user.default-login') }}">尝试登录</a>
                                 </div>
                             </footer>
                         </form>
