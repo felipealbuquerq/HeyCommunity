@@ -33,7 +33,7 @@
 
                             <footer class="mt-3">
                                 <div class="pull-right">
-                                    <a class="text-muted">忘记密码？</a>
+                                    <a class="" href="{{ route('user.forget-password') }}">忘记密码？</a>
                                 </div>
                                 <div>
                                     <div>

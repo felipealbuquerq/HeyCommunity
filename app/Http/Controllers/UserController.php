@@ -221,6 +221,73 @@ class UserController extends Controller
     }
 
     /**
+     *  Get Forget Password Captcha
+     */
+    public function GetForgetPasswordCaptcha(Request $request)
+    {
+        $this->validate($request, [
+            'phone'     =>  'required|string|size:11',
+        ]);
+
+        if (!User::where('phone', $request->phone)->exists()) {
+            return response([
+                'status_code'   =>  403,
+                'message'       =>  '手机号已未注册，请尝试其他号码！'
+            ], 403);
+        }
+
+        // get captcha
+        $result = getJiGuangSmsCode($request->phone, 'captcha-forget-password-jiguang-smgId');
+
+        if ($result['http_code'] == 200) {
+            return response()->json([
+                'status_code'   =>  200,
+            ]);
+        } else {
+            return response([
+                'status_code'   =>  403,
+                'message'       =>  $result['body']['error']['message'],
+            ], 403);
+        }
+    }
+
+    /**
+     * Forget Password Page
+     */
+    public function forgetPassword()
+    {
+        return view('user.forget-password');
+    }
+
+    /**
+     * Sign up handler
+     */
+    public function forgetPasswordHandler(Request $request)
+    {
+        $this->validate($request, [
+            'phone'     =>  'required|string|exists:users',
+            'captcha'   =>  'required|string',
+            'password'  =>  'required|confirmed|string|min:8',
+        ]);
+
+        // check captcha
+        if (!checkJiGuangSmsCode($request->phone, $request->captcha, 'captcha-forget-password-jiguang-smgId')) {
+            return back()->withInput()->withErrors(['captcha' => ['短信验证码不正确']]);
+        }
+
+        $user = User::where('phone', $request->phone)->first();
+        $user->password     =   Hash::make($request->password);
+
+        if ($user->save()) {
+            flash('密码修改成功，使用新密码进行登录')->success();
+
+            return redirect()->route('user.default-login');
+        } else {
+            return back()->withInput()->withErrors();
+        }
+    }
+
+    /**
      * User profile update
      */
     public function profileUpdate(Request $request)
