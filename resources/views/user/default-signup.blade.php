@@ -22,13 +22,13 @@ $wxShareDisable = true;
                             <br>
 
                             <div class="form-group">
-                                <input class="form-control" type="text" name="nickname" value="{{ old('nickname') }}" placeholder="昵称, 至少 3 个字符">
+                                <input required class="form-control" type="text" name="nickname" value="{{ old('nickname') }}" placeholder="昵称, 至少 3 个字符">
                                 <div class="text-danger">{{ $errors->first('nickname') }}</div>
                             </div>
 
                             <div class="form-group">
                                 <div class="input-group">
-                                    <input class="form-control" type="text" id="input-phone" name="phone" value="{{ old('phone', '19970966696') }}" placeholder="手机号码">
+                                    <input required class="form-control" type="number" id="input-phone" name="phone" value="{{ old('phone') }}" placeholder="手机号码">
                                     <div class="input-group-append">
                                         <button class="btn btn-secondary" id="get-captcha-btn" type="button" onclick="getCaptcha(event, $('#input-phone').val())">获取短信验证码</button>
                                     </div>
@@ -37,13 +37,17 @@ $wxShareDisable = true;
                             </div>
 
                             <div class="form-group">
-                                <input class="form-control" type="text" name="captcha" value="{{ old('captcha') }}" placeholder="短信验证码">
+                                <input required class="form-control" type="number" name="captcha" value="{{ old('captcha') }}" placeholder="短信验证码">
                                 <div class="text-danger">{{ $errors->first('captcha') }}</div>
                             </div>
 
                             <div class="form-group mb-3">
-                                <input class="form-control" type="password" name="password" placeholder="密码, 字母和数字的组合, 至少 6 个字符">
+                                <input required class="form-control" type="password" name="password" placeholder="密码, 字母和数字的组合, 至少 6 个字符">
                                 <div class="text-danger">{{ $errors->first('password') }}</div>
+                            </div>
+
+                            <div class="form-group mb-3">
+                                <input required class="form-control" type="password" name="password_confirmation" placeholder="重复输入密码">
                             </div>
 
                             <div class="text-center">

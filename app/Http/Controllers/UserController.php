@@ -196,7 +196,7 @@ class UserController extends Controller
             'nickname'  =>  'required|string|min:3',
             'phone'     =>  'required|string|unique:users',
             'captcha'   =>  'required|string',
-            'password'  =>  'required|string|min:8',
+            'password'  =>  'required|confirmed|string|min:8',
         ]);
 
         // check captcha
