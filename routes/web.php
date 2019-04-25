@@ -217,3 +217,10 @@ Route::group(['middleware' => ['wechat.oauth', 'auth.wechat']], function () {
 //
 // web admin routes
 include_once 'web-admin.php';
+
+// dev routes
+if (env('APP_DEBUG')) {
+    Route::get('dev1', 'System\DevUtilityController@dev1');
+    Route::get('dev2', 'System\DevUtilityController@dev2');
+    Route::get('dev3', 'System\DevUtilityController@dev3');
+}
