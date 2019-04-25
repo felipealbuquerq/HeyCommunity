@@ -202,18 +202,6 @@
 
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect">
-                            <i class="mdi mdi-chart-bubble"></i>
-                            <span>运营管理</span>
-                            <span class="pull-right"><i class="mdi mdi-chart-bubble"></i></span>
-                        </a>
-                        <ul class="list-unstyled">
-                            <li><a href="{{ route('admin.request-recorder.rank-index') }}">访客排名</a></li>
-                            <li><a href="{{ route('admin.request-recorder.index') }}">访客记录</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="has_sub">
-                        <a href="javascript:void(0);" class="waves-effect">
                             <i class="mdi mdi-book"></i>
                             <span>站点页面</span>
                             <span class="pull-right"><i class="mdi mdi-chart-bubble"></i></span>
@@ -221,6 +209,18 @@
                         <ul class="list-unstyled">
                             <li><a href="{{ route('admin.site-page.index') }}">页面列表</a></li>
                             <li><a href="{{ route('admin.site-page.create') }}">新增页面</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect">
+                            <i class="mdi mdi-chart-bubble"></i>
+                            <span>运营管理</span>
+                            <span class="pull-right"><i class="mdi mdi-chart-bubble"></i></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('admin.request-recorder.rank-index') }}">访客排名</a></li>
+                            <li><a href="{{ route('admin.request-recorder.index') }}">访客记录</a></li>
                         </ul>
                     </li>
 
