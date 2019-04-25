@@ -18,12 +18,12 @@
                             <br>
 
                             <div class="form-group">
-                                <input class="form-control" type="text" name="phone" value="{{ old('phone') }}" placeholder="手机号码">
+                                <input required class="form-control" type="number" name="phone" value="{{ old('phone') }}" placeholder="手机号码">
                                 <div class="text-danger">{{ $errors->first('phone') }}</div>
                             </div>
 
                             <div class="form-group mb-3">
-                                <input class="form-control" type="password" name="password" placeholder="密码">
+                                <input required class="form-control" type="password" name="password" placeholder="密码">
                                 <div class="text-danger">{{ $errors->first('password') }}</div>
                             </div>
 
