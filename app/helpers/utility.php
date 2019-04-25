@@ -127,6 +127,7 @@ function getJiGuangSmsCode($phone, $msgIdCacheKey = 'captcha-jiguang-msgId', $mi
     $masterSecret = env('JIGUANG_SECRET');
     $smsTempId = env('JIGUANG_CAPTCHA_TEMPID');
     $signTempId = env('JIGUANG_CAPTCHA_SIGNID');
+    $msgIdCacheKey = $msgIdCacheKey . '-' . $phone;
 
     $client = new \JiGuang\JSMS($appKey, $masterSecret);
     $result = $client->sendCode($phone, $smsTempId, $signTempId);
@@ -141,9 +142,10 @@ function getJiGuangSmsCode($phone, $msgIdCacheKey = 'captcha-jiguang-msgId', $mi
 /**
  * Get Jiguang Sms Code
  */
-function checkJiGuangSmsCode($captcha, $msgIdCacheKey = 'captcha-jiguang-msgId') {
+function checkJiGuangSmsCode($phone, $captcha, $msgIdCacheKey = 'captcha-jiguang-msgId') {
     $appKey = env('JIGUANG_APPKEY');
     $masterSecret = env('JIGUANG_SECRET');
+    $msgIdCacheKey = $msgIdCacheKey . '-' . $phone;
 
     $client = new \JiGuang\JSMS($appKey, $masterSecret);
     $result = $client->checkCode(cache($msgIdCacheKey), $captcha);

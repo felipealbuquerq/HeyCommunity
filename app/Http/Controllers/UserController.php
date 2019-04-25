@@ -200,7 +200,7 @@ class UserController extends Controller
         ]);
 
         // check captcha
-        if (!checkJiGuangSmsCode($request->captcha, 'captcha-signup-jiguang-smgId')) {
+        if (!checkJiGuangSmsCode($request->phone, $request->captcha, 'captcha-signup-jiguang-smgId')) {
             return back()->withInput()->withErrors(['captcha' => ['短信验证码不正确']]);
         }
 
