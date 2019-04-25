@@ -47,9 +47,11 @@ class RequestRecorderController extends Controller
         $requestRecorderQuery->where('route_name', 'not like', 'admin.%');
 
         // 过滤管理员记录
-        $requestRecorderQuery->whereHas('user', function ($query) {
-            $query->where('is_super_admin', 0);
-        });
+        if ($request->get('visitor_type') == 'user') {
+            $requestRecorderQuery->whereHas('user', function ($query) {
+                $query->where('is_super_admin', 0);
+            });
+        }
 
         $recorders = $requestRecorderQuery->latest()->paginate();
 
