@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Activity;
+use App\Models\User\UserActiveRecord;
 use App\Timeline;
 use App\Topic;
 use App\TopicComment;
@@ -17,10 +18,10 @@ class UhomeController extends Controller
      */
     public function index($id)
     {
-        return redirect()->route('user.uhome.topic-published', $id);
-
         $user = User::findOrFail($id);
-        return view('user.uhome.index', compact('user'));
+        $records = UserActiveRecord::latest()->paginate(10);
+
+        return view('user.uhome.index', compact('user', 'records'));
     }
 
     /**
