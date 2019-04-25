@@ -47,8 +47,6 @@ Route::group([], function () {
 Route::group([], function () {
     Route::post('simditor-upload-images', 'UploadController@simditorUploadImages')->name('upload.simditor-upload-images');
     Route::post('ckeditor-upload-images', 'UploadController@ckeditorUploadImages')->name('upload.ckeditor-upload-images');
-
-    Route::post('get-phone-captcha', 'System\SystemController@getPhoneCaptcha')->name('system.get-phone-captcha');
 });
 
 
@@ -67,6 +65,7 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
         Route::get('login', 'UserController@login')->name('user.login');
         Route::get('signup', 'UserController@signup')->name('user.signup');
 
+        Route::post('get-signup-phone-captcha', 'UserController@sendSignupPhoneCaptcha')->name('user.get-signup-phone-captcha');
         Route::get('default-signup', 'UserController@defaultSignup')->name('user.default-signup');
         Route::post('default-signup', 'UserController@defaultSignupHandler')->name('user.default-signup-handler');
         Route::get('default-login', 'UserController@defaultLogin')->name('user.default-login');

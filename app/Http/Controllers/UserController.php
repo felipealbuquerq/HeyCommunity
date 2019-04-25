@@ -149,6 +149,42 @@ class UserController extends Controller
     }
 
     /**
+     *  Send Signup Phone Captcha
+     */
+    public function sendSignupPhoneCaptcha(Request $request)
+    {
+        $this->validate($request, [
+            'phone'     =>  'required|string|size:11',
+        ]);
+
+        if (User::where('phone', $request->phone)->exists()) {
+            return response([
+                'status_code'   =>  403,
+                'message'       =>  '手机号已被使用，请使用其他手机号码注册！'
+            ], 403);
+        }
+
+        $appKey = 'dd62f0529984ca26a98b0be3';
+        $masterSecret = 'eda9b43078100513650e14c2';
+        $smsTempId = '29873';
+        $signTempId = '8560';
+
+        $client = new \JiGuang\JSMS($appKey, $masterSecret);
+        $result = $client->sendCode($request->phone, $smsTempId, $signTempId);
+
+        if ($result['http_code'] == 200) {
+            return response()->json([
+                'status_code'   =>  200,
+            ]);
+        } else {
+            return response([
+                'status_code'   =>  403,
+                'message'       =>  $result['body']['error']['message'],
+            ], 403);
+        }
+    }
+
+    /**
      * Default sign up page
      */
     public function defaultSignup()

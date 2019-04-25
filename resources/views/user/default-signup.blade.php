@@ -81,7 +81,7 @@ $wxShareDisable = true;
         return false;
       }
 
-      $.ajax("{{ route('system.get-phone-captcha') }}", {
+      $.ajax("{{ route('user.get-signup-phone-captcha') }}", {
         method: 'POST',
         data: {phone: phone},
         success: function() {
@@ -106,6 +106,7 @@ $wxShareDisable = true;
         },
         error: function(xhr) {
           alert('获取短信验证码失败: ' + xhr.responseJSON.message);
+          btnEl.attr('disabled', false);
           btnEl.html(btnElDefaultText);
         }
       });
