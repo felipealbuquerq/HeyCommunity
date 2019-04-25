@@ -95,9 +95,9 @@ function formValue($object, $key)
  */
 function makeCdnAssetPath($path, $params = '?imageView2/2/w/1000')
 {
-    if (env('CDN_ENABLE')) {
+    if (env('QINIU_ENABLE')) {
         if (!str_is('http', $path)) {
-            return env('CDN_DOMAIN') . '/' . $path . $params;
+            return env('QINIU_DOMAIN') . '/' . $path . $params;
         }
     }
 
