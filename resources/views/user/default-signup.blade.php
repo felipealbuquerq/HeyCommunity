@@ -4,9 +4,6 @@
 注册 - {{ $system->site_title }}
 @endsection
 
-@php
-$wxShareDisable = true;
-@endphp
 
 @section('mainBody')
 <div id="section-mainbody" class="page-user-signup">
