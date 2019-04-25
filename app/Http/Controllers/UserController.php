@@ -164,13 +164,8 @@ class UserController extends Controller
             ], 403);
         }
 
-        $appKey = 'dd62f0529984ca26a98b0be3';
-        $masterSecret = 'eda9b43078100513650e14c2';
-        $smsTempId = '29873';
-        $signTempId = '8560';
-
-        $client = new \JiGuang\JSMS($appKey, $masterSecret);
-        $result = $client->sendCode($request->phone, $smsTempId, $signTempId);
+        // get captcha
+        $result = getJiGuangSmsCode($request->phone, 'captcha-signup-jiguang-smgId');
 
         if ($result['http_code'] == 200) {
             return response()->json([
@@ -198,11 +193,16 @@ class UserController extends Controller
     public function defaultSignupHandler(Request $request)
     {
         $this->validate($request, [
-            'nickname'  =>  'required|string',
+            'nickname'  =>  'required|string|min:3',
             'phone'     =>  'required|string|unique:users',
             'captcha'   =>  'required|string',
-            'password'  =>  'required',
+            'password'  =>  'required|string|min:8',
         ]);
+
+        // check captcha
+        if (!checkJiGuangSmsCode($request->captcha, 'captcha-signup-jiguang-smgId')) {
+            return back()->withInput()->withErrors(['captcha' => ['短信验证码不正确']]);
+        }
 
         $user = new User;
         $user->nickname     =   $request->nickname;

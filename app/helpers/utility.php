@@ -118,3 +118,41 @@ function getIpInfoToString($ip)
         return 'unknown';
     }
 }
+
+/**
+ * Get Jiguang Sms Code
+ */
+function getJiGuangSmsCode($phone, $msgIdCacheKey = 'captcha-jiguang-msgId', $minutes = 10) {
+    $appKey = 'dd62f0529984ca26a98b0be3';
+    $masterSecret = 'eda9b43078100513650e14c2';
+    $smsTempId = '29873';
+    $signTempId = '8560';
+
+    $client = new \JiGuang\JSMS($appKey, $masterSecret);
+    $result = $client->sendCode($phone, $smsTempId, $signTempId);
+
+    if ($result['http_code'] == 200) {
+        cache([$msgIdCacheKey => $result['body']['msg_id']], $minutes);
+    }
+
+    return $result;
+}
+
+/**
+ * Get Jiguang Sms Code
+ */
+function checkJiGuangSmsCode($captcha, $msgIdCacheKey = 'captcha-jiguang-msgId') {
+    $appKey = 'dd62f0529984ca26a98b0be3';
+    $masterSecret = 'eda9b43078100513650e14c2';
+
+    $client = new \JiGuang\JSMS($appKey, $masterSecret);
+    $result = $client->checkCode(cache($msgIdCacheKey), $captcha);
+
+    if ($result['http_code'] == 200) {
+        \Cache::forget($msgIdCacheKey);
+
+        return true;
+    }
+
+    return false;
+}
