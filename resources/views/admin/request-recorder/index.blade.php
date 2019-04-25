@@ -55,6 +55,7 @@
                                                     <th>时间</th>
                                                     <th>访客 <small class="text-muted">ID</small></th>
                                                     <th>IP</th>
+                                                    <th>IP 归属地</th>
                                                     <th>请求</th>
                                                     <th>路由</th>
                                                 </tr>
@@ -74,6 +75,7 @@
                                                                 <small class="text-muted">/ {{ $recorder->user_id ?: '-' }}</small>
                                                             </td>
                                                             <td>{{ $recorder->ip }}</td>
+                                                            <td>{{ getIpInfoToString($recorder->ip) }}</td>
                                                             <td>{{ $recorder->method }}</td>
                                                             <td>{{ $recorder->route_name }}</td>
                                                         </tr>

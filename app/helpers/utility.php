@@ -103,3 +103,18 @@ function makeCdnAssetPath($path, $params = '?imageView2/2/w/1000')
 
     return $path;
 }
+
+/**
+ * Get Ip Info To String
+ */
+function getIpInfoToString($ip)
+{
+    $district = new \ipip\db\City(resource_path('other/17monipdb/ipipfree.ipdb'));
+
+    try {
+        $data = ($district->find($ip, 'CN'));
+        return $data[1] . $data[2];
+    } catch (Exception $e) {
+        return 'unknown';
+    }
+}
