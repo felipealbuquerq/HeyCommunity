@@ -136,7 +136,7 @@ class UserController extends Controller
             $route = session()->pull('after-login-redirect-route') ?: 'home';
             return redirect()->route($route);
         } else {
-            return back()->withInput()->withErrors(['fail' => '手机号码或密码不正确']);
+            return back()->withInput()->withErrors(['password' => ['手机号码或密码不正确']]);
         }
     }
 
