@@ -14,7 +14,7 @@
                         <form action="{{ route('user.default-login-handler') }}" method="post">
                             {{ csrf_field() }}
 
-                            <h2 class="text-center pt-2">欢迎登入</h2>
+                            <h2 class="text-center pt-2">欢迎登录</h2>
                             <br>
 
                             <div class="form-group">
@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="text-center">
-                                <button class="btn btn-block btn-primary">登入</button>
+                                <button class="btn btn-block btn-primary">登录</button>
                             </div>
 
                             <footer class="mt-3">

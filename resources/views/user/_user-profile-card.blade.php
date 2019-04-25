@@ -23,7 +23,7 @@
 
             <h6 class="card-title">
                 <span class="text-inherit">游客
-                    <small><a href="{{ route('user.login') }}">[登入]</a></small>
+                    <small><a href="{{ route('user.login') }}">[登录]</a></small>
                 </span>
             </h6>
 

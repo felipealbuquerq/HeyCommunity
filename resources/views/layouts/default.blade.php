@@ -158,7 +158,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.login') }}">
-                        <i class="fa fa-sign-in"></i> &nbsp; 登入
+                        <i class="fa fa-sign-in"></i> &nbsp; 登录
                     </a>
                 </li>
             @endif

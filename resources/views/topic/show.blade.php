@@ -183,7 +183,7 @@
                                     <div class="form-group">
                                         @if (Auth::guest())
                                             <div id="section-textarea-login-tip" style="padding-top:25px;">
-                                                请<a href="{{ route('user.login') }}">登入</a>后再发表讨论
+                                                请<a href="{{ route('user.login') }}">登录</a>后再发表讨论
                                             </div>
                                         @endif
                                         <textarea name="content" id="input-comment-textarea" class="form-control simditor-editor" rows="3" placeholder="{{ Auth::check() ? '在这里, 我们真诚地交流' : '' }}">{{ old('content') }}</textarea>
