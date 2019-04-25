@@ -25,7 +25,20 @@ $wxShareDisable = true;
                 <div class="col-lg-9 col-md-9 m-np">
                     <div class="card">
                         <div class="card-header">社区生涯</div>
-                        <div class="card-body">暂无内容</div>
+                        @if ($records->isEmpty())
+                            <div class="card-body">暂无数据</div>
+                        @else
+                            <ul class="list-group media-list media-list-stream mb-2">
+                                @foreach ($records as $record)
+                                    @include('user.uhome.user-active-record.' . $record->entity_blade_tpl)
+                                @endforeach
+                            </ul>
+
+                            <!-- Pagination -->
+                            <nav id="section-pagination">
+                                {{ $records->links() }}
+                            </nav>
+                        @endif
                     </div>
                 </div>
 

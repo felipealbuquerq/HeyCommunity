@@ -19,7 +19,7 @@ class UhomeController extends Controller
     public function index($id)
     {
         $user = User::findOrFail($id);
-        $records = UserActiveRecord::latest()->paginate(10);
+        $records = UserActiveRecord::where('user_id', $user->id)->latest()->paginate(10);
 
         return view('user.uhome.index', compact('user', 'records'));
     }
