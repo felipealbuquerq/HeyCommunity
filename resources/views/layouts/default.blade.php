@@ -144,7 +144,7 @@
                     </a>
                 </li>
                 @if (Auth::user()->is_super_admin)
-                    <li class="nav-item">
+                    <li class="nav-item mt-1">
                         <a class="nav-link" href="{{ route('admin.home') }}" target="_blank">
                             <i class="fa fa-cogs"></i> &nbsp; 管理后台
                         </a>
@@ -152,12 +152,17 @@
                 @endif
             @else
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.login-wechat') }}">
+                        <i class="fa fa-weixin"></i> &nbsp; 微信登录
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('user.signup') }}">
                         <i class="fa fa-user-plus"></i> &nbsp; 注册
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.login') }}">
+                    <a class="nav-link" href="{{ route('user.default-login') }}">
                         <i class="fa fa-sign-in"></i> &nbsp; 登录
                     </a>
                 </li>
