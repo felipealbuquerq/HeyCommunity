@@ -12,9 +12,6 @@
         <a href="{{ route('user.ucenter.profile') }}" class="{{ setNavActive('*profile*') }} list-group-item list-group-item-action d-flex justify-content-between">
             <span>我的资料</span> <span class="icon icon-chevron-thin-right"></span>
         </a>
-        <a href="{{ route('user.ucenter.realname-verify') }}" class="{{ setNavActive('*realname-verify') }} list-group-item list-group-item-action d-flex justify-content-between">
-            <span>实名认证</span> <span class="icon icon-chevron-thin-right"></span>
-        </a>
         <a href="{{ route('user.ucenter.setting-notice') }}" class="{{ setNavActive('*setting-notice') }} list-group-item list-group-item-action d-flex justify-content-between">
             <span>消息推送</span> <span class="icon icon-chevron-thin-right"></span>
         </a>
@@ -22,4 +19,13 @@
             <span>安全中心</span> <span class="icon icon-chevron-thin-right"></span>
         </a>
     </div>
+</div>
+
+
+<div class="mb-3 d-block d-md-none container text-right">
+    <a href="{{ route('user.ucenter') }}" class="pull-left btn {{ Request::is('*index') ? 'btn-primary' : 'btn-secondary' }}">社区生涯</a>
+
+    <a href="{{ route('user.ucenter.profile') }}" class="btn {{ Request::is('*profile*') ? 'btn-primary' : 'btn-secondary' }}">我的资料</a>
+    <a href="{{ route('user.ucenter.setting-notice') }}" class="btn {{ Request::is('*setting-notice') ? 'btn-primary' : 'btn-secondary' }}">消息推送</a>
+    <a href="{{ route('user.ucenter.security-center') }}" class="btn {{ Request::is('*security-center') ? 'btn-primary' : 'btn-secondary' }}">安全中心</a>
 </div>
