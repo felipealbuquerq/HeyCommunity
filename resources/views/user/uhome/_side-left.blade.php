@@ -1,6 +1,6 @@
 @include('user._user-profile-card', ['user' => $user])
 
-<div class="card d-md-block d-lg-block mb-4 m-nb-r m-nb-y">
+<div class="card d-md-block d-none mb-4 m-nb-r m-nb-y">
     <div class="card-body">
         <h6 class="mb-3">
             用户资料
