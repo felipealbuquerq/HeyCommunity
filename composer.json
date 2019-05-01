@@ -11,7 +11,9 @@
         "fideloper/proxy": "~3.3",
         "guzzlehttp/guzzle": "^6.3",
         "intervention/image": "^2.4",
+        "ipip/db": "^1.0",
         "jenssegers/agent": "^2.6",
+        "jiguang/jsms": "^1.0",
         "laracasts/flash": "^3.0",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
@@ -22,6 +24,7 @@
         "simplesoftwareio/simple-qrcode": "^2.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
         "barryvdh/laravel-ide-helper": "^2.4",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",

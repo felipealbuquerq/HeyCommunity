@@ -31,6 +31,14 @@ class User extends Authenticatable
     ];
 
     /**
+     * Related Columnist
+     */
+    public function columnist()
+    {
+        return $this->hasOne('App\Columnist');
+    }
+
+    /**
      * Guest Avatar
      */
     public static function guestAvatar()
@@ -43,6 +51,26 @@ class User extends Authenticatable
      */
     public function getAvatarAttribute($value)
     {
-        return asset($value);
+        return makeCdnAssetPath($value, '?imageView2/2/w/400');
+    }
+
+    /**
+     * Get Avatar Attribute
+     */
+    public function getProfileBgImgAttribute($value)
+    {
+        return makeCdnAssetPath($value, '?imageView2/2/w/1500');
+    }
+
+    /**
+     * Get Bio Attribute
+     */
+    public function getBioAttribute($value)
+    {
+        if ($value) {
+            return $value;
+        } else {
+            return '暂无签名';
+        }
     }
 }

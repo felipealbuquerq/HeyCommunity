@@ -8,24 +8,37 @@ include_once 'web-view-share.php';
 //
 // Home
 Route::group([], function () {
+    // Route::get('/', 'HomeController@index')->name('home.index');
+
     Route::get('home', function () {
         return redirect()->route('news.index');
     })->name('home');
+
     Route::get('/', function () {
         return redirect()->route('news.index');
     })->name('index');
 
-    // Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('mini-app', function () {
+        return redirect()->route('site.weather-forecast');
+    });
 });
 
 
 //
 // Site
 Route::group([], function () {
+    Route::get('page/{id}', 'SiteController@page')->name('site.page')->where('id', '[0-9]+');
     Route::get('about', 'SiteController@about')->name('site.about');
     Route::get('help', 'SiteController@help')->name('site.help');
     Route::get('terms', 'SiteController@terms')->name('site.terms');
     Route::get('privacy', 'SiteController@privacy')->name('site.privacy');
+    Route::get('weather-forecast', 'SiteController@weatherForecast')->name('site.weather-forecast');
+    Route::get('weather-forecast-source', function () {
+        return '
+                <iframe src="//www.seniverse.com/weather/weather.aspx?uid=UEA0895246&cid=CHJX060000&l=&p=SMART&a=1&u=C&s=3&m=0&x=1&d=3&fc=&bgc=&bc=&ti=0&in=0&li="
+                        frameborder="0" scrolling="no" width="100%" height="110" allowTransparency="true"></iframe>
+        ';
+    });
 });
 
 
@@ -33,9 +46,15 @@ Route::group([], function () {
 // Other
 Route::group([], function () {
     Route::post('simditor-upload-images', 'UploadController@simditorUploadImages')->name('upload.simditor-upload-images');
-
-    Route::get('youth-space', 'HomeController@youthSpaceHome')->name('youth-space-home');
+    Route::post('ckeditor-upload-images', 'UploadController@ckeditorUploadImages')->name('upload.ckeditor-upload-images');
 });
+
+
+//
+// Timeline
+Route::post('timeline/upload-image', 'TimelineController@uploadImage')->name('timeline.upload-image');
+Route::resource('timeline', 'TimelineController');
+Route::resource('timeline-comment', 'TimelineCommentController');
 
 
 //
@@ -46,6 +65,11 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
         Route::get('login', 'UserController@login')->name('user.login');
         Route::get('signup', 'UserController@signup')->name('user.signup');
 
+        Route::post('get-forget-password-captcha', 'UserController@getForgetPasswordCaptcha')->name('user.get-forget-password-captcha');
+        Route::get('forget-password', 'UserController@forgetPassword')->name('user.forget-password');
+        Route::post('forget-password', 'UserController@forgetPasswordHandler')->name('user.forget-password-handler');
+
+        Route::post('get-signup-captcha', 'UserController@getSignupCaptcha')->name('user.get-signup-captcha');
         Route::get('default-signup', 'UserController@defaultSignup')->name('user.default-signup');
         Route::post('default-signup', 'UserController@defaultSignupHandler')->name('user.default-signup-handler');
         Route::get('default-login', 'UserController@defaultLogin')->name('user.default-login');
@@ -57,21 +81,30 @@ Route::group(['prefix' => 'user', 'middleware' => []], function () {
     Route::get('logout', 'UserController@logout')->name('user.logout');
     Route::get('login-by-wechat', 'UserController@loginByWechat')->middleware(['wechat.oauth', 'auth.wechat'])->name('user.login-by-wechat');
     Route::post('login-by-wechat-handler', 'UserController@loginByWechatHandler')->name('user.login-by-wechat-handler');
-    Route::get('login-by-wechat-success', 'UserController@loginByWechatSuccess')->name('user.login-by-wechat-success');
 
     Route::middleware(['auth'])->group(function () {
-        Route::get('ucenter', 'UserController@ucenter')->name('user.ucenter');
-        Route::get('ucenter/my-timelines', 'UserController@ucenter')->name('user.ucenter.my-timelines');
-        Route::get('ucenter/my-topics', 'UserController@ucenter')->name('user.ucenter.my-topics');
-        Route::get('ucenter/my-topic-comments', 'UserController@ucenter')->name('user.ucenter.my-topic-comments');
-        Route::get('ucenter/my-activities', 'UserController@ucenter')->name('user.ucenter.my-activities');
-        Route::get('ucenter/my-activity-signups', 'UserController@ucenter')->name('user.ucenter.my-activity-signups');
+        Route::get('ucenter/index', 'User\UCenterController@index')->name('user.ucenter');
+        Route::get('ucenter/profile', 'User\UCenterController@profile')->name('user.ucenter.profile');
+        Route::get('ucenter/profile-edit', 'User\UCenterController@profileEdit')->name('user.ucenter.profile-edit');
+        Route::post('ucenter/profile-update', 'User\UCenterController@profileUpdate')->name('user.ucenter.profile-update');
+        Route::get('ucenter/realname-verify', 'User\UCenterController@realnameVerify')->name('user.ucenter.realname-verify');
+        Route::get('ucenter/setting-notice', 'User\UCenterController@settingNotice')->name('user.ucenter.setting-notice');
+        Route::get('ucenter/security-center', 'User\UCenterController@securityCenter')->name('user.ucenter.security-center');
 
-        Route::get('profile', 'UserController@profile')->name('user.profile');
-        Route::post('profile', 'UserController@profileUpdate')->name('user.profile-update');
+        Route::post('ucenter/avatar-update', 'User\UCenterController@avatarUpdate')->name('user.ucenter.avatar-update');
+        Route::post('ucenter/profile-bg-img-update', 'User\UCenterController@profileBgImgUpdate')->name('user.ucenter.profile-bg-img-update');
+
+
+        Route::get('toggle-sock-puppet/{id}', 'UserController@toggleSockPuppet')
+            ->where('id', '[0-9]+')
+            ->name('user.toggle-sock-puppet');
     });
 
-    Route::get('uhome/{id}', 'UserController@uhome')->name('user.uhome');
+    Route::get('uhome/{id}/index', 'User\UhomeController@index')->name('user.uhome');
+    Route::get('uhome/{id}/timeline', 'User\UhomeController@timeline')->name('user.uhome.timeline');
+    Route::get('uhome/{id}/topic-published', 'User\UhomeController@topicPublished')->name('user.uhome.topic-published');
+    Route::get('uhome/{id}/topic-replies', 'User\UhomeController@topicReplies')->name('user.uhome.topic-replies');
+    Route::get('uhome/{id}/activity', 'User\UhomeController@activity')->name('user.uhome.activity');
 });
 
 
@@ -148,7 +181,14 @@ Route::group(['prefix' => 'activity', 'middleware' => ['wechat.oauth', 'auth.wec
 
 
 //
-// Activity
+// Activity Comment
+Route::group(['middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+    Route::resource('activity-comment', 'ActivityCommentController');
+});
+
+
+//
+// Daily
 Route::group(['prefix' => 'daily', 'middleware' => ['wechat.oauth', 'auth.wechat']], function () {
     Route::get('/', 'DailyPaperController@index')->name('daily.index');
 });
@@ -171,5 +211,19 @@ Route::group(['prefix' => 'column', 'middleware' => ['wechat.oauth', 'auth.wecha
 
 
 //
+// Comment
+Route::group(['middleware' => ['wechat.oauth', 'auth.wechat']], function () {
+    Route::resource('comment', 'CommentController');
+});
+
+
+//
 // web admin routes
 include_once 'web-admin.php';
+
+// dev routes
+if (env('APP_DEBUG')) {
+    Route::get('dev1', 'System\DevUtilityController@dev1');
+    Route::get('dev2', 'System\DevUtilityController@dev2');
+    Route::get('dev3', 'System\DevUtilityController@dev3');
+}

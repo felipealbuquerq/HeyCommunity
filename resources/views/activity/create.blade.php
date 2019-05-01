@@ -4,6 +4,10 @@
 发布一个活动 - {{ $system->site_title }}
 @endsection
 
+@section('description')
+在这里发起一个有趣有意义的活动，邀请大家来参加 ~
+@endsection
+
 @section('mainBody')
     <div id="section-mainbody" class="page-activity-create">
         <div class="container pt-4">

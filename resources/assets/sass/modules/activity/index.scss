@@ -2,6 +2,10 @@
   .carousel {
     background-color: #555;
 
+    .carousel-control-next, .carousel-control-prev {
+      top: -50px !important;
+    }
+
     .carousel-item {
       @media (max-width: 767px) {
         max-height: 200px !important;
@@ -22,6 +26,15 @@
             color: #fff;
           }
         }
+      }
+
+      .carousel-caption-bg {
+        position: absolute;
+        width: 100%;
+        top: 170px;
+        height: 130px;
+        background-color: #000;
+        opacity: 0.1;
       }
     }
 
@@ -51,21 +64,39 @@
   margin-bottom: 20px;
 
   .box-pic {
+    position: relative;
     max-height: 165px;
     overflow: hidden;
 
     .start-time {
+      border-bottom-left-radius: 16px;
       position: absolute;
       right: 0;
       top: 0;
       padding: 5px 10px;
       color: #fff;
-      background-color: rgba(60, 60, 60, 0.3);
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 6px 10px;
+      background-color: rgba(0, 0, 0, 0.4);
+      color: #fff;
+
+      .date, .local {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
 
     .card-img-top {
       background-color: #ddd;
-      min-height: 140px;
+      min-height: 165px;
     }
   }
 

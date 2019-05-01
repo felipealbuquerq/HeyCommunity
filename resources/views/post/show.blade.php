@@ -8,10 +8,6 @@
     {{ str_limit(strip_tags($post->content), 100) }}
 @endsection
 
-@section('avatar')
-    {{ $post->avatar }}
-@endsection
-
 @section('mainBody')
     <div id="section-mainbody" class="page-post-show">
         <div class="container pt-4">

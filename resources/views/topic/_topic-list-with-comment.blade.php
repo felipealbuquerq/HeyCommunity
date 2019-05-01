@@ -1,20 +1,22 @@
 @if ($topicComments->count())
     <div id="component-topic-list" class="list-group">
-        @foreach ($topicComments as $topicComment)
+        @foreach ($topicComments as $comment)
             <div class="list-group-item m-nb-y m-nb-r">
-                <a class="avatar" href="{{ route('user.uhome', $user->id) }}"><img class="avatar" src="{{ asset($topicComment->topic->author->avatar) }}"></a>
+                <a class="avatar" href="{{ route('user.uhome', $comment->author->id) }}"><img class="avatar" src="{{ asset($comment->author->avatar) }}"></a>
                 <div class="pull-left body">
                     <div class="title">
-                        <span class="info d-none d-sm-inline-block text-muted">
-                            <i class="fa fa-thumbs-o-up"></i> {{ $topicComment->thumb_up_num }}
-                            &nbsp; / &nbsp;&nbsp;
-                            {{ $topicComment->created_at->format('m-d') }}
-                        </span>
-                        <a href="{{ route('topic.show', $topicComment->topic->id) }}">{{ $topicComment->topic->title }}</a>
+                                                    <span class="info d-none d-sm-inline-block text-muted">
+                                                        &nbsp;&nbsp;&nbsp; {{ $comment->created_at->diffForHumans() }}
+                                                    </span>
+
+                        <a href="{{ route('topic.show', $comment->topic->id) }}">
+                            {{ $comment->topic->title }}
+                            <sup class="text-muted">#{{ $comment->floor_number }}</sup>
+                        </a>
                     </div>
 
                     <div class="content">
-                        {{ mb_substr(strip_tags($topicComment->content), 0, 150) }}
+                        {!! str_limit(strip_tags($comment->content), 220) !!}
                     </div>
                 </div>
             </div>

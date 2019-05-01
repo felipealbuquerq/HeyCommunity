@@ -2,16 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\SitePage;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
     /**
+     * SitePage
+     */
+    public function page($id)
+    {
+        $page = SitePage::findOrFail($id);
+
+        if (!$page) abort(404);
+
+        return view('site.page', compact('page'));
+    }
+
+    /**
      * About page
      */
     public function about()
     {
-        return view('site.about');
+        $page = SitePage::where('unique_name', 'about')->first();
+
+        if (!$page) abort(404);
+
+        return view('site.page', compact('page'));
     }
 
     /**
@@ -19,7 +36,11 @@ class SiteController extends Controller
      */
     public function help()
     {
-        return view('site.help');
+        $page = SitePage::where('unique_name', 'help')->first();
+
+        if (!$page) abort(404);
+
+        return view('site.page', compact('page'));
     }
 
     /**
@@ -27,7 +48,11 @@ class SiteController extends Controller
      */
     public function terms()
     {
-        return view('site.terms');
+        $page = SitePage::where('unique_name', 'terms')->first();
+
+        if (!$page) abort(404);
+
+        return view('site.page', compact('page'));
     }
 
     /**
@@ -35,6 +60,18 @@ class SiteController extends Controller
      */
     public function privacy()
     {
-        return view('site.privacy');
+        $page = SitePage::where('unique_name', 'privacy')->first();
+
+        if (!$page) abort(404);
+
+        return view('site.page', compact('page'));
+    }
+
+    /**
+     * Weather forecast page
+     */
+    public function weatherForecast()
+    {
+        return view('site.weather-forecast');
     }
 }

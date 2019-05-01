@@ -13,6 +13,14 @@ class News extends BaseModel
     }
 
     /**
+     * Relate Comment
+     */
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment', 'belong_entity')->whereNull('parent_id')->latest();
+    }
+
+    /**
      * Get In DailyPaper
      */
     public function getInDailyPaperAttribute()

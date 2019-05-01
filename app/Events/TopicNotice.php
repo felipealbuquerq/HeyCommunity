@@ -14,6 +14,10 @@ class TopicNotice
 
     public $entity;
 
+    public $user;
+
+    public $sender;
+
     public $userId;
 
     public $senderId;
@@ -27,8 +31,10 @@ class TopicNotice
     {
         $this->entityName = $entityName;
         $this->entity = $entity;
+        $this->user = $user;
+        $this->sender = $sender;
 
-        $this->userId = is_int($user) ? $user : $user->id;
-        $this->senderId = is_int($sender) ? $sender : $sender->id;
+        $this->userId = $user->id;
+        $this->senderId = $sender->id;
     }
 }

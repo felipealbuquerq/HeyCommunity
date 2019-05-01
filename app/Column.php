@@ -11,4 +11,13 @@ class Column extends BaseModel
     {
         return $this->belongsTo('App\Columnist', 'columnist_id', 'id');
     }
+
+    /**
+     * Relate Comment
+     */
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment', 'belong_entity')
+            ->whereNull('parent_id')->latest();
+    }
 }

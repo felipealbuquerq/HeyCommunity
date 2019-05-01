@@ -25,9 +25,10 @@ class ActivityController extends Controller
         $categories = ActivityCategory::sortOrder()->get();
         $areas = ActivityArea::sortOrder()->get();
 
-        $exhibits = Activity::inRandomOrder()->limit(3)->get();
+        $exhibits = Activity::where('is_exhibited', true)
+            ->latest()->limit(5)->get();
 
-        $activitiesQuery = Activity::latest();
+        $activitiesQuery = Activity::orderBy('pinned_at', 'desc')->latest();
         if ($request->category_id) $activitiesQuery->where('category_id', $request->category_id);
         if ($request->area_id) $activitiesQuery->where('area_id', $request->area_id);
         $activities = $activitiesQuery->paginate(12);

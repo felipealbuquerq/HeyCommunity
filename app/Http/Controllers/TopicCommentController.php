@@ -35,7 +35,7 @@ class TopicCommentController extends Controller
             $topic->increment('comment_num');
 
             // trigger notice
-            event(new \App\Events\TopicNotice('TopicComment', $topicComment, $topic->user_id, $topicComment->user_id));
+            event(new \App\Events\TopicNotice('TopicComment', $topicComment, $topic->user, $topicComment->user));
 
             return redirect()->route('topic.show', $topic->id);
         } else {
@@ -86,7 +86,7 @@ class TopicCommentController extends Controller
             $topicComment->topic->increment('comment_num');
 
             // trigger notice
-            event(new \App\Events\TopicNotice('TopicCommentReplay', $topicComment, $parentTopicComment->user_id, $topicComment->user_id));
+            event(new \App\Events\TopicNotice('TopicCommentReplay', $topicComment, $parentTopicComment->user, $topicComment->user));
 
             flash('回复成功')->success();
             return back();

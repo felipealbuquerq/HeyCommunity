@@ -81,8 +81,9 @@ class TopicController extends Controller
     public function create()
     {
         $rootNodes = TopicNode::roots()->with('childNodes')->get();
+        $topic = new Topic();
 
-        return view('topic.create', compact('rootNodes'));
+        return view('topic.create', compact('rootNodes', 'topic'));
     }
 
     /**

@@ -43,11 +43,27 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::group(['prefix' => 'activity'], function () {
         Route::get('/', 'ActivityController@index')->name('admin.activity.index');
         Route::post('destroy', 'ActivityController@destroy')->name('admin.activity.destroy');
+
+        Route::post('set-exhibit', 'ActivityController@setExhibitHandler')->name('admin.activity.set-exhibit-handler');
+        Route::post('set-pinned', 'ActivityController@setPinHandler')->name('admin.activity.set-pinned-handler');
     });
 
     //
     // Daily Paper
     Route::resource('daily-paper', 'DailyPaperController', ['as' => 'admin']);
+
+    //
+    // Operation & Analytics
+    Route::group([], function () {
+        Route::get('request-recorder/rank-index', 'RequestRecorderController@rankIndex')->name('admin.request-recorder.rank-index');
+        Route::resource('request-recorder', 'RequestRecorderController', ['as' => 'admin']);
+    });
+
+    //
+    // Site Page
+    Route::group([], function () {
+        Route::resource('site-page', 'SitePageController', ['as' => 'admin']);
+    });
 
     //
     // System

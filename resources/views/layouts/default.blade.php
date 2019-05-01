@@ -14,15 +14,17 @@
     <link rel="apple-touch-icon" href="{{ asset('images/icon.png') }}">
     <link rel="apple-touch-startup-image" href="{{ asset('images/splash.png') }}">
 
-    <title>@yield('title', $system->site_title . ' - ' . $system->site_subheading)</title>
+    <title>{{ trim($__env->yieldContent('title', $system->site_title . ' - ' . $system->site_subheading)) }}</title>
 
     <link href='https://fonts.lug.ustc.edu.cn/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('bower-assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bootstrap-application-theme/css/toolkit.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bootstrap-application-theme/css/application.css') }}" rel="stylesheet">
     <script src="{{ asset('assets/bootstrap-application-theme/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}?v=180104"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/entrycss/bin/entry.css') }}">
 
     <style>
         /* note: this is a hack for ios iframe for bootstrap themes shopify page */
@@ -72,36 +74,35 @@
                 <a class="nav-link {{ setNavActive('/') }}" href="{{ url('/') }}">首页</a>
             </li>
             -->
-
-            <li class="nav-item {{ setNavActive('news*') }}">
-                <a class="nav-link" href="{{ route('news.index') }}">新闻</a>
-            </li>
-            <li class="nav-item {{ setNavActive('post*') }}">
-                <a class="nav-link" href="{{ route('post.index') }}">资讯</a>
+            <li class="nav-item {{ setNavActive('timeline*') }}">
+                <a class="nav-link" href="{{ route('timeline.index') }}"><i class="d-inline-block d-md-none fa fa-feed"></i> 动态</a>
             </li>
             <li class="nav-item {{ setNavActive('column*') }}">
-                <a class="nav-link" href="{{ route('columnist.index') }}">专栏</a>
+                <a class="nav-link" href="{{ route('columnist.index') }}"><i class="d-inline-block d-md-none fa fa-file-text-o"></i> 专栏</a>
             </li>
             <li class="nav-item {{ setNavActive('topic*') }}">
-                <a class="nav-link" href="{{ route('topic.index') }}">话题</a>
+                <a class="nav-link" href="{{ route('topic.index') }}"><i class="d-inline-block d-md-none fa fa-quote-left"></i> 话题</a>
             </li>
             <li class="nav-item {{ setNavActive('activity*') }}">
-                <a class="nav-link" href="{{ url('activity') }}">活动</a>
+                <a class="nav-link" href="{{ url('activity') }}"><i class="d-inline-block d-md-none fa fa-calendar"></i> 活动</a>
             </li>
             <li class="nav-item {{ setNavActive(['about', 'help', 'terms', 'privacy']) }}">
-                <a class="nav-link" href="{{ url('about') }}">关于</a>
+                <a class="nav-link" href="{{ url('about') }}"><i class="d-inline-block d-md-none fa fa-info-circle"></i> 关于</a>
             </li>
 
             @if (Auth::check())
                 <li class="nav-item d-block d-md-none {{ setNavActive('*ucenter*') }}">
-                    <a class="nav-link" href="{{ route('user.ucenter') }}">用户中心</a>
+                    <a class="nav-link" href="{{ route('user.ucenter') }}"><i class="d-inline-block d-md-none fa fa-newspaper-o"></i> 用户中心</a>
                 </li>
                 <li class="nav-item d-block d-md-none">
-                    <a class="nav-link" href="{{ route('user.logout') }}">登出</a>
+                    <a class="nav-link" href="{{ route('user.logout') }}"><i class="d-inline-block d-md-none fa fa-sign-out"></i> 登出</a>
                 </li>
             @else
+                <li class="nav-item d-block d-md-none {{ setNavActive('*signup*') }}">
+                    <a class="nav-link" href="{{ route('user.signup') }}"><i class="d-inline-block d-md-none fa fa-user-plus"></i> 注册</a>
+                </li>
                 <li class="nav-item d-block d-md-none {{ setNavActive('*login*') }}">
-                    <a class="nav-link" href="{{ route('user.login') }}">登录</a>
+                    <a class="nav-link" href="{{ route('user.login') }}"><i class="d-inline-block d-md-none fa fa-sign-in"></i> 登录</a>
                 </li>
             @endif
         </ul>
@@ -139,10 +140,27 @@
                         <i class="fa fa-sign-out"></i> &nbsp; 登出
                     </a>
                 </li>
+                @if (Auth::user()->is_super_admin)
+                    <li class="nav-item mt-1">
+                        <a class="nav-link" href="{{ route('admin.home') }}" target="_blank">
+                            <i class="fa fa-cogs"></i> &nbsp; 管理后台
+                        </a>
+                    </li>
+                @endif
             @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('user.login') }}">
-                        <i class="fa fa-sign-in"></i> &nbsp; 登入
+                    <a class="nav-link" href="{{ route('user.login-wechat') }}">
+                        <i class="fa fa-weixin"></i> &nbsp; 微信登录
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.signup') }}">
+                        <i class="fa fa-user-plus"></i> &nbsp; 注册
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('user.default-login') }}">
+                        <i class="fa fa-sign-in"></i> &nbsp; 登录
                     </a>
                 </li>
             @endif
@@ -157,6 +175,10 @@
 
 <!-- Main Body -->
 @yield('mainBody')
+
+@include('layouts._switch_sock_puppet')
+@include('layouts._global_fixed_buttons')
+
 
 
 <script src="{{ asset('assets/bootstrap-application-theme/js/popper.min.js') }}"></script>

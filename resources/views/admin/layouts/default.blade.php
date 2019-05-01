@@ -21,7 +21,7 @@
 
     <script src="{{ asset('assets/webadmin/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/webadmin/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </head>
 
 
@@ -106,6 +106,9 @@
                         <li class="hidden-xs">
                             <a href="#" id="btn-fullscreen" class="waves-effect waves-light notification-icon-box"><i class="mdi mdi-fullscreen"></i></a>
                         </li>
+                        <li class="">
+                            <a href="{{ route('home') }}" class="waves-effect waves-light notification-icon-box" target="_blank"><i class="mdi mdi-web"></i></a>
+                        </li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">
                                 <img src="{{ asset(Auth::user()->avatar) }}" alt="user-img" class="img-circle">
@@ -143,7 +146,7 @@
 
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect">
-                            <i class="mdi mdi-book"></i>
+                            <i class="mdi mdi-bookmark"></i>
                             <span>今日管理</span>
                             <span class="pull-right"><i class="mdi mdi-plus"></i></span>
                         </a>
@@ -185,6 +188,7 @@
                             <li><a href="{{ route('admin.topic.node.index') }}">节点管理</a></li>
                         </ul>
                     </li>
+
                     <li class="has_sub">
                         <a href="javascript:void(0);" class="waves-effect">
                             <i class="mdi mdi-gnome"></i>
@@ -195,11 +199,40 @@
                             <li><a href="{{ route('admin.activity.index') }}">活动列表</a></li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="{{ route('admin.system.edit') }}" class="waves-effect">
-                            <i class="mdi mdi-wrench"></i>
-                            <span>系统配置</span>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect">
+                            <i class="mdi mdi-book"></i>
+                            <span>站点页面</span>
+                            <span class="pull-right"><i class="mdi mdi-chart-bubble"></i></span>
                         </a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('admin.site-page.index') }}">页面列表</a></li>
+                            <li><a href="{{ route('admin.site-page.create') }}">新增页面</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect">
+                            <i class="mdi mdi-chart-bubble"></i>
+                            <span>运营管理</span>
+                            <span class="pull-right"><i class="mdi mdi-chart-bubble"></i></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('admin.request-recorder.rank-index') }}">访客排名</a></li>
+                            <li><a href="{{ route('admin.request-recorder.index') }}">访客记录</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect">
+                            <i class="mdi mdi-settings"></i>
+                            <span>系统管理</span>
+                            <span class="pull-right"><i class="mdi mdi-chart-bubble"></i></span>
+                        </a>
+                        <ul class="list-unstyled">
+                            <li><a href="{{ route('admin.system.edit') }}">系统配置</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>

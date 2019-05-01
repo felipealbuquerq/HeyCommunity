@@ -42,19 +42,16 @@ if (!isset($activity)) {
 <div class="form-group row">
     <label class="col-sm-2 col-form-label">活动时间</label>
     <div class="col-sm-10">
-        <div class="input-group">
-            <input name="start_time" type="text" class="form-control" id="input-start_time" value="{{ old('start_time', formValue($activity, 'start_time')) }}" placeholder="开始时间">
+        <div class="input-group input-daterange"  data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-language="zh-CN">
+            <input name="start_time" type="text" class="form-control d-datepicker" id="input-start_time" value="{{ old('start_time', formValue($activity, 'start_time')) }}" placeholder="开始时间">
 
             <div class="input-group-prepend">
                 <span class="input-group-text">至</span>
             </div>
 
-            <input name="end_time" type="text" class="form-control" id="input-end_time" value="{{ old('end_time', formValue($activity, 'end_time')) }}" placeholder="结束时间">
+            <input name="end_time" type="text" class="form-control d-datepicker" id="input-end_time" value="{{ old('end_time', formValue($activity, 'end_time')) }}" placeholder="结束时间">
         </div>
 
-        @if (!$errors->has('start_time'))
-            <div class="text-dark">格式如: {{ date('Y-m-d H:i:s', \Carbon\Carbon::today()->addHours(10)->timestamp) }}</div>
-        @endif
         <div class="text-danger">{{ $errors->first('start_time') }}</div>
         <div class="text-danger">{{ $errors->first('end_time') }}</div>
     </div>
@@ -105,10 +102,11 @@ if (!isset($activity)) {
 <div class="form-group row">
     <label for="input-content" class="col-sm-2 col-form-label">活动详情</label>
     <div class="col-sm-10">
-        <textarea name="content" class="form-control simditor-editor" id="input-content" rows="8">{{ old('content', formValue($activity, 'content')) }}</textarea>
+        <textarea name="content" class="form-control" id="ckeditor" rows="8">{{ old('content', formValue($activity, 'content')) }}</textarea>
 
         <div class="text-danger">{{ $errors->first('content') }}</div>
     </div>
 </div>
 
-@include('layouts._simditor')
+@include('layouts.ckeditor5.ckeditor-classic')
+@include('layouts.plugins.datepicker')

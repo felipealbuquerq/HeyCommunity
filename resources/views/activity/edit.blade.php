@@ -1,7 +1,11 @@
 @extends('layouts.default')
 
 @section('title')
-更新活动 - {{ $system->site_title }}
+更新活动 - {{ $activity->title }}
+@endsection
+
+@section('description')
+在这里发起一个有趣有意义的活动，邀请大家来参加 ~
 @endsection
 
 @section('mainBody')

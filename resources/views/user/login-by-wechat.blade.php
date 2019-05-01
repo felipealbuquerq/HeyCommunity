@@ -4,25 +4,29 @@
 微信登录 - {{ $system->site_title }}
 @endsection
 
+@php
+    $wxShareDisable = true;
+@endphp
+
 @section('mainBody')
 <div id="section-mainbody" class="page-user-login-wechat-transfer">
-    <div class="container container-fill-height">
-
-        <br>
-        <br>
-        <br>
-        <br>
-
+    <div class="container">
         <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6 text-center">
-                <h2>{{ Auth::user()->nickname }}, 欢迎您登录 {{ $system->site_title }}</h2>
+            <div class="col-md-6 offset-md-3 m-np">
+                <div class="card" style="margin-top:100px;">
+                    <div class="card-body p-5">
+                        <h2>欢迎登录到 {{ $system->site_title }}</h2>
 
-                <br>
-                <p>
-                    {{ $system->site_title }} 是一个开放、平等、高质量的交流社区 ~
-                    <br>
-                </p>
+                        <p class="mt-3">
+                            正在为您跳转到首页 ...
+                            <script>
+                                setTimeout(function() {
+                                  window.location.assign("{{ route('home') }}");
+                                }, 3000)
+                            </script>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

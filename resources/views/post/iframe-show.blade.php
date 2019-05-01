@@ -8,11 +8,7 @@
     {{ str_limit(strip_tags($post->content), 100) }}
 @endsection
 
-@section('avatar')
-    {{ $post->avatar }}
-@endsection
-
 @section('mainBody')
-<iframe src="{{ $post->origin_url }}"  height="600" frameborder="2" scrolling="auto" style="width:96%; margin:20px 2% 0;">
-</iframe>
+    <iframe src="{{ $post->origin_url }}" height="600" frameborder="2" scrolling="auto" style="width:96%; margin:20px 2% 0;">
+    </iframe>
 @endsection

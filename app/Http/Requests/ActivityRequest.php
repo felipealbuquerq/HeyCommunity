@@ -30,8 +30,8 @@ class ActivityRequest extends FormRequest
             'content'       =>  'required|string',
             'category_id'   =>  'required|integer',
             'area_id'       =>  'required|integer',
-            'start_time'    =>  'required|string|date_format:"Y-m-d H:i:s"|before:end_time',
-            'end_time'      =>  'required|string|date_format:"Y-m-d H:i:s"|after:start_time',
+            'start_time'    =>  'required|string|date_format:"Y-m-d"|before:end_time',
+            'end_time'      =>  'required|string|date_format:"Y-m-d"|after:start_time',
             'local'         =>  'required|string',
             'redirect_url'  =>  'nullable|string',
         ];
@@ -49,10 +49,8 @@ class ActivityRequest extends FormRequest
     {
         return [
             'start_time.request'        =>  '开始时间不能为空',
-            'start_time.date_format'    =>  '开始时间格式如 ' . date('Y-m-d H:i:s', Carbon::today()->addHours(10)->timestamp),
             'start_time.before'         =>  '开始时间必须在结束时间之前',
             'end_time.request'          =>  '结束时间不能为空',
-            'end_time.date_format'      =>  '结束时间格式如 ' . date('Y-m-d H:i:s', Carbon::today()->addHours(16)->addMinutes(30)->timestamp),
             'end_time.after'            =>  '结束时间必须在开始时间之后',
 
             'category_id.integer'       =>  '请选择活动分类',

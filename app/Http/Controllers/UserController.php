@@ -41,7 +41,7 @@ class UserController extends Controller
             return redirect()->route('user.login-by-wechat');
         } else {
             if (Agent::isDesktop()) {
-                return redirect()->route('user.login-wechat');
+                return redirect()->route('user.default-signup');
             } else {
                 return redirect()->route('user.default-signup');
             }
@@ -84,7 +84,7 @@ class UserController extends Controller
             session('after-login-redirect-route') &&
             (strpos(Agent::getUserAgent(), 'MicroMessenger') !== false)
         ) {
-            $route = session('after-login-redirect-route') ?: 'index';
+            $route = session()->pull('after-login-redirect-route') ?: 'home';
             return redirect()->route($route);
         }
 
@@ -110,16 +110,8 @@ class UserController extends Controller
         Auth::loginUsingId($request->user_id);
 
         flash('登录成功')->success();
-        $route = session('after-login-redirect-route') ?: 'index';
+        $route = session()->pull('after-login-redirect-route') ?: 'home';
         return redirect()->route($route);
-    }
-
-    /**
-     * Login page with wechat
-     */
-    public function loginByWechatSuccess()
-    {
-        return view('user.login-by-wechat-success');
     }
 
     /**
@@ -141,9 +133,41 @@ class UserController extends Controller
         ]);
 
         if (Auth::attempt(['phone' => $request->phone, 'password' => $request->password])) {
-            return redirect()->back();
+            $route = session()->pull('after-login-redirect-route') ?: 'home';
+            return redirect()->route($route);
         } else {
-            return back()->withInput()->withErrors(['fail' => '手机号码或密码不正确']);
+            return back()->withInput()->withErrors(['password' => ['手机号码或密码不正确']]);
+        }
+    }
+
+    /**
+     *  Send Signup Captcha
+     */
+    public function getSignupCaptcha(Request $request)
+    {
+        $this->validate($request, [
+            'phone'     =>  'required|string|size:11',
+        ]);
+
+        if (User::where('phone', $request->phone)->exists()) {
+            return response([
+                'status_code'   =>  403,
+                'message'       =>  '手机号已被使用，请使用其他手机号码注册！'
+            ], 403);
+        }
+
+        // get captcha
+        $result = getJiGuangSmsCode($request->phone, 'captcha-signup-jiguang-smgId');
+
+        if ($result['http_code'] == 200) {
+            return response()->json([
+                'status_code'   =>  200,
+            ]);
+        } else {
+            return response([
+                'status_code'   =>  403,
+                'message'       =>  $result['body']['error']['message'],
+            ], 403);
         }
     }
 
@@ -161,10 +185,16 @@ class UserController extends Controller
     public function defaultSignupHandler(Request $request)
     {
         $this->validate($request, [
-            'nickname'  =>  'required|string',
+            'nickname'  =>  'required|string|min:3',
             'phone'     =>  'required|string|unique:users',
-            'password'  =>  'required',
+            'captcha'   =>  'required|string',
+            'password'  =>  'required|confirmed|string|min:8',
         ]);
+
+        // check captcha
+        if (!checkJiGuangSmsCode($request->phone, $request->captcha, 'captcha-signup-jiguang-smgId')) {
+            return back()->withInput()->withErrors(['captcha' => ['短信验证码不正确']]);
+        }
 
         $user = new User;
         $user->nickname     =   $request->nickname;
@@ -175,50 +205,78 @@ class UserController extends Controller
         if ($user->save()) {
             Auth::login($user);
 
-            return redirect()->back();
+            $route = session()->pull('after-login-redirect-route') ?: 'home';
+            return redirect()->route($route);
         } else {
-            return back();
+            return back()->withInput()->withErrors();
         }
     }
 
     /**
-     * User center
+     *  Get Forget Password Captcha
      */
-    public function ucenter(Request $request)
+    public function getForgetPasswordCaptcha(Request $request)
     {
-        if ($request->is('*ucenter')) {
-            return redirect()->route('user.ucenter.my-topics');
+        $this->validate($request, [
+            'phone'     =>  'required|string|size:11',
+        ]);
+
+        if (!User::where('phone', $request->phone)->exists()) {
+            return response([
+                'status_code'   =>  403,
+                'message'       =>  '手机号已未注册，请尝试其他号码！'
+            ], 403);
         }
 
-        $user = Auth::user();
+        // get captcha
+        $result = getJiGuangSmsCode($request->phone, 'captcha-forget-password-jiguang-smgId');
 
-        $myTopics = Topic::mine()->latest()->paginate();
-        $myTopicComments = TopicComment::mine()->latest()->paginate();
-        $myActivities = Activity::paginate();
-
-        return view('user.ucenter', compact('user', 'myTopics', 'myTopicComments', 'myActivities'));
+        if ($result['http_code'] == 200) {
+            return response()->json([
+                'status_code'   =>  200,
+            ]);
+        } else {
+            return response([
+                'status_code'   =>  403,
+                'message'       =>  $result['body']['error']['message'],
+            ], 403);
+        }
     }
 
     /**
-     * User home
+     * Forget Password Page
      */
-    public function uhome($id)
+    public function forgetPassword()
     {
-        $user = User::findOrFail($id);
-        $myTopics = Topic::where(['user_id' => $user->id])->paginate(10);
-        $myActivities = Activity::paginate(12);
-
-        return view('user.uhome', compact('user', 'myTopics', 'myActivities'));
+        return view('user.forget-password');
     }
 
     /**
-     *  User profile
+     * Sign up handler
      */
-    public function profile()
+    public function forgetPasswordHandler(Request $request)
     {
-        $user = Auth::user();
+        $this->validate($request, [
+            'phone'     =>  'required|string|exists:users',
+            'captcha'   =>  'required|string',
+            'password'  =>  'required|confirmed|string|min:8',
+        ]);
 
-        return view('user.profile', compact('user'));
+        // check captcha
+        if (!checkJiGuangSmsCode($request->phone, $request->captcha, 'captcha-forget-password-jiguang-smgId')) {
+            return back()->withInput()->withErrors(['captcha' => ['短信验证码不正确']]);
+        }
+
+        $user = User::where('phone', $request->phone)->first();
+        $user->password     =   Hash::make($request->password);
+
+        if ($user->save()) {
+            flash('密码修改成功，使用新密码进行登录')->success();
+
+            return redirect()->route('user.default-login');
+        } else {
+            return back()->withInput()->withErrors();
+        }
     }
 
     /**
@@ -249,5 +307,24 @@ class UserController extends Controller
             flash('更新失败')->error()->important();
             return back()->withInput();
         }
+    }
+
+    /**
+     * Toggle sock puppet
+     */
+    public function toggleSockPuppet($id)
+    {
+        if (
+            env('SOCK_PUPPET_ENABLE') &&
+            isset($_COOKIE['sockPuppetHash']) && $_COOKIE['sockPuppetHash'] == env('SOCK_PUPPET_HASH')
+        ) {
+            Auth::loginUsingId($id);
+
+            flash('操作成功')->success();
+            return back();
+        }
+
+        flash('您无权执行此操作')->error()->important();
+        return back();
     }
 }

@@ -1,6 +1,6 @@
 <div class="card card-profile mb-4">
     <div class="card-header" style="background-image: url('{{ asset($columnist->user->profile_bg_img) }}');"></div>
-    <div class="card-body text-center">
+    <div class="card-body text-center pb-0">
         <img class="card-profile-img" src="{{ asset($columnist->user->avatar) }}">
 
         <h6 class="card-title">
@@ -17,27 +17,30 @@
             <p class="mb-4">{{ $columnist->description }}</p>
         @endif
 
-        <div class="row">
+        <div class="row bg-light pt-2 pb-2">
             <div class="col-4">
                 <span>{{ $columnist->article_num }}</span>
                 <div class="h5">
-                    <span class="badge badge-primary">文章</span>
+                    <span class="badge badge-dark text-white">文章</span>
                 </div>
             </div>
             <div class="col-4">
                 <span>{{ $columnist->comment_num }}</span>
                 <div class="h5">
-                    <span class="badge badge-primary">评论</span>
+                    <span class="badge badge-dark text-white">评论</span>
                 </div>
             </div>
             <div class="col-4">
                 <span>{{ $columnist->read_num }}</span>
                 <div class="h5">
-                    <span class="badge badge-primary">阅读</span>
+                    <span class="badge badge-dark text-white">阅读</span>
                 </div>
             </div>
         </div>
     </div>
     <div class="card-footer">
+        <small class="text-muted">
+            最新文章创作于: {{ $columnist->columns()->latest()->first()->created_at }}
+        </small>
     </div>
 </div>

@@ -7,6 +7,7 @@ use Agent;
 use App\User;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Storage;
 
 class AuthenticateWithWechat
 {
@@ -45,8 +46,7 @@ class AuthenticateWithWechat
                     $user = session('wechat.oauth_user');
                     $userInfo['wx_open_id'] =  $user->id;
                     $userInfo['nickname']   =  $user->nickname;
-                    // $userInfo['avatar']     =  $this->saveAvatar($user);
-                    $userInfo['avatar']     =  $user->avatar;
+                    $userInfo['avatar']     =  $this->saveAvatar($user);
 
                     $user = User::firstOrCreate($userInfo);
                 }
@@ -60,12 +60,16 @@ class AuthenticateWithWechat
 
     public function saveAvatar($user)
     {
-        $path = 'uploads/avatars/' . $user->id . '.jpg';
+        try {
+            $path = 'uploads/users/avatars/' . $user->id . '.jpg';
 
-        ini_set('default_socket_timeout', 1);
-        $content = file_get_contents($user->avatar);
-        file_put_contents($path, $content);
+            ini_set('default_socket_timeout', 1);
+            $content = file_get_contents($user->avatar);
+            Storage::put($path, $content);
 
-        return $path;
+            return $path;
+        } catch (\Exception $exception) {
+            return $user->avatar;
+        }
     }
 }

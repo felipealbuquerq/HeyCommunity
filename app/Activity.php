@@ -2,8 +2,6 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Activity extends BaseModel
 {
     /**
@@ -15,11 +13,28 @@ class Activity extends BaseModel
     }
 
     /**
+     * Related Comment
+     */
+    public function comments()
+    {
+        return $this->morphMany('App\Models\Comment', 'belong_entity')
+            ->whereNull('parent_id')->latest();
+    }
+
+    /**
      * Relate DailyPaper
      */
     public function dailyPapers()
     {
         return $this->morphMany(DailyPaper::class, 'entity');
+    }
+
+    /**
+     * Relate Area
+     */
+    public function area()
+    {
+        return $this->belongsTo(ActivityArea::class, 'area_id');
     }
 
     /**
@@ -35,6 +50,6 @@ class Activity extends BaseModel
      */
     public function getAvatarAttribute($value)
     {
-        return asset($value);
+        return makeCdnAssetPath($value, '?imageView2/2/w/1000');
     }
 }
