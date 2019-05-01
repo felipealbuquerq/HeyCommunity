@@ -30,69 +30,84 @@ $wxShareDisable = true;
                             我的资料
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('user.ucenter.profile-update') }}" method="post">
-                                {{ csrf_field() }}
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <form action="{{ route('user.ucenter.profile-update') }}" method="post">
+                                        {{ csrf_field() }}
 
-                                <div class="form-group row">
-                                    <label class="offset-md-1 col-md-1 col-form-label">头像</label>
-                                    <div class="col-md-6">
-                                        <img class="rounded align-bottom" src="{{ asset($user->avatar) }}" style="width:80px;">
-                                        <button type="button" onclick="$('#cropper-input-avatar').click()" class="btn btn-secondary btn-sm ml-3">更换头像</button>
-                                    </div>
+                                        <div class="form-group row">
+                                            <label for="input-nickname" class="text-right col-2 col-form-label">昵称</label>
+                                            <div class="col-10">
+                                                <input disabled name="nickname" type="text" class="form-control" id="input-nickname" value="{{ old('nickname', $user->nickname) }}">
+
+                                                <div class="text-danger">{{ $errors->first('nickname') }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="input-bio" class="text-right col-2 col-form-label">签名</label>
+                                            <div class="col-10">
+                                                <textarea disabled name="bio" class="form-control" id="input-bio">{{ old('bio', $user->bio) }}</textarea>
+
+                                                <div class="text-danger">{{ $errors->first('bio') }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="input-gender" class="text-right col-2 col-form-label">性别</label>
+                                            <div class="col-10">
+                                                <select disabled name="gender" class="custom-select form-control">
+                                                    <option selected>请选择性别</option>
+                                                    @foreach (\App\User::$genders as $value => $name)
+                                                        <option value="{{ $value }}" {{ $value == old('gender', $user->gender) ? 'selected' : '' }}>
+                                                            {{ $name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+
+                                                <div class="text-danger">{{ $errors->first('gender') }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="input-phone" class="text-right col-2 col-form-label">电话</label>
+                                            <div class="col-10">
+                                                <input disabled name="phone" type="text" class="form-control" id="input-phone" value="{{ old('phone', $user->phone) }}">
+
+                                                <div class="text-danger">{{ $errors->first('phone') }}</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="input-email" class="text-right col-2">邮箱</label>
+                                            <div class="col-10">
+                                                <input disabled name="email" type="text" class="form-control" id="input-email" value="{{ old('email', $user->email) }}">
+
+                                                <div class="text-danger">{{ $errors->first('email') }}</div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="input-nickname" class="offset-md-1 col-md-1 col-form-label">昵称</label>
-                                    <div class="col-md-6">
-                                        <input disabled name="nickname" type="text" class="form-control" id="input-nickname" value="{{ old('nickname', $user->nickname) }}">
+                                <div class="col-md-4 offset-md-1">
+                                    <a href="{{ route('user.ucenter.profile-edit') }}" class="btn btn-secondary btn-block d-none d-md-inline-block">
+                                        <i class="fa fa-edit"></i>
+                                        更新资料
+                                    </a>
 
-                                        <div class="text-danger">{{ $errors->first('nickname') }}</div>
+                                    <div class="card mt-3">
+                                        <div class="card-body">
+                                            <div>
+                                                <i class="fa fa-user"></i> U{{ $user->id }}
+                                                <small class="text-muted">社区第{{ $user->id }}名用户</small>
+                                            </div>
+                                            <div>
+                                                <i class="fa fa-calendar"></i> 注册于{{ date('Y年m月d日') }}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="form-group row">
-                                    <label for="input-bio" class="offset-md-1 col-md-1 col-form-label">签名</label>
-                                    <div class="col-md-6">
-                                        <textarea disabled name="bio" class="form-control" id="input-bio">{{ old('bio', $user->bio) }}</textarea>
-
-                                        <div class="text-danger">{{ $errors->first('bio') }}</div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="input-gender" class="offset-md-1 col-md-1 col-form-label">性别</label>
-                                    <div class="col-md-6">
-                                        <select disabled name="gender" class="custom-select form-control">
-                                            <option selected>请选择性别</option>
-                                            @foreach (\App\User::$genders as $value => $name)
-                                                <option value="{{ $value }}" {{ $value == old('gender', $user->gender) ? 'selected' : '' }}>
-                                                    {{ $name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-
-                                        <div class="text-danger">{{ $errors->first('gender') }}</div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="input-phone" class="offset-md-1 col-md-1 col-form-label">电话</label>
-                                    <div class="col-md-6">
-                                        <input disabled name="phone" type="text" class="form-control" id="input-phone" value="{{ old('phone', $user->phone) }}">
-
-                                        <div class="text-danger">{{ $errors->first('phone') }}</div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="input-email" class="offset-md-1 col-md-1">邮箱</label>
-                                    <div class="col-md-6">
-                                        <input disabled name="email" type="text" class="form-control" id="input-email" value="{{ old('email', $user->email) }}">
-
-                                        <div class="text-danger">{{ $errors->first('email') }}</div>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
 
