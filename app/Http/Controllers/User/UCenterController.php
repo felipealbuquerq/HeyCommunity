@@ -49,15 +49,11 @@ class UCenterController extends Controller
         $this->validate($request, [
             'nickname'      =>  'required|string|max:10',
             'gender'        =>  'required|integer',
-            'phone'         =>  'nullable|string|size:11|unique:users,phone,' . $user->id,
-            'email'         =>  'nullable|string|email|unique:users,email,' . $user->id,
             'bio'           =>  'nullable|string|max:100',
         ]);
 
         $user->nickname = $request->nickname;
         $user->gender = $request->gender;
-        $user->phone = $request->phone;
-        $user->email = $request->email;
         $user->bio = $request->bio;
 
         if ($user->save()) {

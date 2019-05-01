@@ -66,24 +66,6 @@ $wxShareDisable = true;
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="input-phone" class="offset-md-1 col-md-1 col-form-label">电话</label>
-                                    <div class="col-md-6">
-                                        <input name="phone" type="text" class="form-control" id="input-phone" value="{{ old('phone', $user->phone) }}">
-
-                                        <div class="text-danger">{{ $errors->first('phone') }}</div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="input-email" class="offset-md-1 col-md-1">邮箱</label>
-                                    <div class="col-md-6">
-                                        <input name="email" type="text" class="form-control" id="input-email" value="{{ old('email', $user->email) }}">
-
-                                        <div class="text-danger">{{ $errors->first('email') }}</div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
                                     <label for="input-email" class="offset-md-1 col-md-1"></label>
                                     <div class="col-md-6">
                                         <button type="submit" class="btn btn-primary btn-block">提交</button>
