@@ -16,10 +16,6 @@ $wxShareDisable = true;
             <div class="row">
                 <div class="col-md-3 m-np">
                     @include('user.ucenter._nav')
-
-                    <div class="d-none d-md-block">
-                        @include('layouts._tail')
-                    </div>
                 </div>
 
                 <div class="col-md-9 m-np">
@@ -74,10 +70,10 @@ $wxShareDisable = true;
                             </form>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-12 mt-3 d-block d-md-none m-np">
-                    @include('layouts._tail')
+                    <div class="mt-3">
+                        @include('layouts._tail')
+                    </div>
                 </div>
             </div>
         </div>
