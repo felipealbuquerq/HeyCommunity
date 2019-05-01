@@ -77,9 +77,6 @@
             <li class="nav-item {{ setNavActive('timeline*') }}">
                 <a class="nav-link" href="{{ route('timeline.index') }}"><i class="d-inline-block d-md-none fa fa-feed"></i> 动态</a>
             </li>
-            <li class="nav-item {{ setNavActive('column*') }}">
-                <a class="nav-link" href="{{ route('columnist.index') }}"><i class="d-inline-block d-md-none fa fa-file-text-o"></i> 专栏</a>
-            </li>
             <li class="nav-item {{ setNavActive('topic*') }}">
                 <a class="nav-link" href="{{ route('topic.index') }}"><i class="d-inline-block d-md-none fa fa-quote-left"></i> 话题</a>
             </li>
