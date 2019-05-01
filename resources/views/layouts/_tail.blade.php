@@ -2,10 +2,7 @@
     <div class="card-body">
         <!-- Site Map -->
         <div class="">
-            <a class="ml-0" href="{{ route('news.index') }}">新闻</a>
-            <a href="{{ route('daily.index') }}">今日</a>
-            <a href="{{ route('post.index') }}">资讯</a>
-            <a href="{{ route('columnist.index') }}">专栏</a>
+            <a class="ml-0" href="{{ route('timeline.index') }}">动态</a>
             <a href="{{ route('topic.index') }}">话题</a>
             <a href="{{ route('activity.index') }}">活动</a>
         </div>
