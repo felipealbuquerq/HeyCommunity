@@ -71,4 +71,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
         Route::get('edit', 'SystemController@edit')->name('admin.system.edit');
         Route::post('update', 'SystemController@update')->name('admin.system.update');
     });
+
+    //
+    // Laravel logs
+    Route::get('laravel-logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 });
