@@ -14,15 +14,11 @@ $wxShareDisable = true;
 
         <div class="container pt-4">
             <div class="row">
-                <div class="col-lg-3 col-md-3 m-np">
+                <div class="col-md-3 m-np">
                     @include('user.ucenter._nav')
-
-                    <div class="d-none d-md-block">
-                        @include('layouts._tail')
-                    </div>
                 </div>
 
-                <div class="col-lg-9 col-md-9 m-np">
+                <div class="col-md-9 m-np">
                     <div class="card">
                         <div class="card-header">安全中心</div>
                         <div class="card-body">
@@ -34,18 +30,18 @@ $wxShareDisable = true;
 
                             <hr>
 
-                            <div class="h5">验证邮箱和手机</div>
-                            <p>验证邮箱和手机有助于保障你的帐户安全，如果需要修改邮箱或手机，请点击这里</p>
+                            <div class="h5">手机和邮箱</div>
+                            <p>绑定手机和邮箱有助于保障你的帐户安全，如果需要修改或绑定手机/邮箱，<a href="{{ route('user.ucenter.profile') }}">请点击这里</a></p>
                             <p>
-                                你的邮箱是: {{ $user->email }}，<a todo-href="">点击这里进行验证</a> <br>
-                                你的手机是: {{ $user->phone }}，<a todo-href="">点击这里进行验证</a> <br>
+                                你当前的手机是: {{ $user->phone }} <br>
+                                你当前的邮箱是: {{ $user->email }} <br>
                             </p>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-12 mt-3 d-block d-md-none m-np">
-                    @include('layouts._tail')
+                    <div class="mt-3">
+                        @include('layouts._tail')
+                    </div>
                 </div>
             </div>
         </div>
