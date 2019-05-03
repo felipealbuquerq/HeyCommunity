@@ -37,6 +37,8 @@ class UserReadingListener
             'entity_id'         =>  $entity->id,
         ];
         if (Auth::check()) $data['user_id'] = Auth::id();
+
+        // recording
         Read::create($data);
 
         // increment read_num

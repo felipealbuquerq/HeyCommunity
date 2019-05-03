@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserReadingEvent;
 use App\SitePage;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,9 @@ class SiteController extends Controller
     public function page($id)
     {
         $page = SitePage::findOrFail($id);
+
+        // user reading
+        event(new UserReadingEvent($page));
 
         if (!$page) abort(404);
 
@@ -26,6 +30,9 @@ class SiteController extends Controller
     {
         $page = SitePage::where('unique_name', 'about')->first();
 
+        // user reading
+        event(new UserReadingEvent($page));
+
         if (!$page) abort(404);
 
         return view('site.page', compact('page'));
@@ -37,6 +44,9 @@ class SiteController extends Controller
     public function help()
     {
         $page = SitePage::where('unique_name', 'help')->first();
+
+        // user reading
+        event(new UserReadingEvent($page));
 
         if (!$page) abort(404);
 
@@ -50,6 +60,9 @@ class SiteController extends Controller
     {
         $page = SitePage::where('unique_name', 'terms')->first();
 
+        // user reading
+        event(new UserReadingEvent($page));
+
         if (!$page) abort(404);
 
         return view('site.page', compact('page'));
@@ -61,6 +74,9 @@ class SiteController extends Controller
     public function privacy()
     {
         $page = SitePage::where('unique_name', 'privacy')->first();
+
+        // user reading
+        event(new UserReadingEvent($page));
 
         if (!$page) abort(404);
 

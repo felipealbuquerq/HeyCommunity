@@ -44,6 +44,7 @@ class ActivityController extends Controller
     {
         $activity = Activity::findOrFail($id);
 
+        // user reading
         event(new UserReadingEvent($activity));
 
         return view('activity.show', compact('activity'));

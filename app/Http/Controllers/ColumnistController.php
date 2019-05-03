@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Column;
 use App\Columnist;
+use App\Events\UserReadingEvent;
 use Illuminate\Http\Request;
 
 class ColumnistController extends Controller
@@ -46,6 +47,9 @@ class ColumnistController extends Controller
     public function show(Request $request, $domain)
     {
         $columnist = Columnist::where('domain', $domain)->firstOrFail();
+
+        // user reading
+        event(new UserReadingEvent($columnist));
 
         $query = $columnist->columns();
 

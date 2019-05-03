@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserReadingEvent;
 use Auth;
 use Gate;
 use App\Column;
@@ -18,8 +19,9 @@ class ColumnController extends Controller
         $column = Column::findOrFail($id);
         $columnist = $column->author;
 
-        $column->increment('read_num');
-        $columnist->increment('read_num');
+        // user reading
+        event(new UserReadingEvent($column));
+        event(new UserReadingEvent($columnist));
 
         return view('column.show', compact('column', 'columnist'));
     }
@@ -61,7 +63,7 @@ class ColumnController extends Controller
             'user_id'           =>  $columnist->user_id,
             'columnist_id'      =>  $columnist->id,
             'title'             =>  $request->title,
-            'content'           =>  $request->content,
+            'content'           =>  $request->get('content'),
         ]);
 
         if ($column) {
@@ -110,7 +112,7 @@ class ColumnController extends Controller
         }
 
         $column->title = $request->title;
-        $column->content = $request->content;
+        $column->content = $request->get('content');
 
 
         if ($column->save()) {
