@@ -15,10 +15,11 @@ class CreateReadsTable extends Migration
     {
         Schema::create('reads', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->index()->unsigned()->comment('User ID');
+            $table->integer('user_id')->index()->unsigned()->nullable()->comment('User ID');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('entity_type')->index()->comment('Belong Entity Type');
-            $table->integer('entity_id')->index()->unsigned()->comment('Belong Entity ID');
+            $table->string('user_session_id')->index()->nullable()->comment('user_session_id');
+            $table->string('entity_type')->index()->comment('Entity Type');
+            $table->integer('entity_id')->index()->unsigned()->comment('Entity ID');
 
             $table->timestamps();
             $table->softDeletes();
