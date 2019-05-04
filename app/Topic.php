@@ -28,7 +28,8 @@ class Topic extends BaseModel
      */
     public function rootComments()
     {
-        return $this->hasMany('App\TopicComment', 'topic_id')->whereNull('root_id')->latest();
+        return $this->morphMany('App\Models\Comment', 'entity')
+            ->whereNull('parent_id')->latest();
     }
 
     /**
@@ -36,7 +37,8 @@ class Topic extends BaseModel
      */
     public function comments()
     {
-        return $this->hasMany('App\TopicComment', 'topic_id')->latest();
+        return $this->morphMany('App\Models\Comment', 'entity')
+            ->whereNull('parent_id')->latest();
     }
 
     /**

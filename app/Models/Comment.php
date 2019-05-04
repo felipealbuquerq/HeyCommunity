@@ -9,7 +9,7 @@ class Comment extends BaseModel
     /**
      * Relation Entity
      */
-    public function belongEntity()
+    public function entity()
     {
         return $this->morphTo('entity', 'entity_type', 'entity_id');
     }

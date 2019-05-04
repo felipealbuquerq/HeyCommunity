@@ -77,18 +77,21 @@
                 {!! ($comment->content) !!}
             </div>
 
-            @if ($comment->childComments()->count())
+            @if ($comment->comments()->count())
                 <div class="child-comments mt-4">
-                    @foreach($comment->childComments as $childComment)
+                    @foreach($comment->comments as $childComment)
                         @include('topic._topic_comment', ['comment' => $childComment])
                     @endforeach
                 </div>
             @endif
 
 
-            <form onsubmit="replyTopicComment(event)" method="post" class="d-none d-md-block form-topic-reply-box" id="form-topic-reply-{{ $comment->id }}">
+            <form onsubmit="replyTopicComment(event)" action="{{ route('comment.store') }}" method="post" class="d-none d-md-block form-topic-reply-box" id="form-topic-reply-{{ $comment->id }}">
                 <hr class="mt-4">
-                <input type="hidden" name="parent_id">
+                <input type="hidden" name="entity_type" value="{{ get_class($comment->entity) }}">
+                <input type="hidden" name="entity_id" value="{{ $comment->entity->id }}">
+                <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+
                 <div class="form-group">
                     <textarea name="content" class="form-control" placeholder="输入你的回复内容"></textarea>
                 </div>
@@ -101,9 +104,12 @@
 
         <div class="clearfix"></div>
 
-        <form onsubmit="replyTopicComment(event)" method="post" class="d-block d-md-none form-topic-reply-box" id="m-form-topic-reply-{{ $comment->id }}">
+        <form onsubmit="replyTopicComment(event)" action="{{ route('comment.store') }}" method="post" class="d-block d-md-none form-topic-reply-box" id="m-form-topic-reply-{{ $comment->id }}">
             <hr class="mt-4">
-            <input type="hidden" name="parent_id">
+            <input type="hidden" name="entity_type" value="{{ get_class($comment->entity) }}">
+            <input type="hidden" name="entity_id" value="{{ $comment->entity->id }}">
+            <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+
             <div class="form-group">
                 <textarea name="content" class="form-control" placeholder="输入你的回复内容"></textarea>
             </div>
