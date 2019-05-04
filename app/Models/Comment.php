@@ -11,7 +11,7 @@ class Comment extends BaseModel
      */
     public function belongEntity()
     {
-        return $this->morphTo('belong_entity', 'belong_entity_type', 'belong_entity_id');
+        return $this->morphTo('entity', 'entity_type', 'entity_id');
     }
 
     /**

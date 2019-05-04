@@ -37,15 +37,15 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'belong_entity_type'        =>  'required|string',
-            'belong_entity_id'          =>  'required|integer',
-            'content'                   =>  'required|string',
-            'parent_id'                 =>  'nullable|integer',
+            'entity_type'       =>  'required|string',
+            'entity_id'         =>  'required|integer',
+            'content'           =>  'required|string',
+            'parent_id'         =>  'nullable|integer',
         ]);
 
-        $belongEntity = with(new $request->belong_entity_type())->query()->findOrFail($request->belong_entity_id);
+        $belongEntity = with(new $request->entity_type())->query()->findOrFail($request->entity_id);
 
-        $data = $request->only(['belong_entity_type', 'belong_entity_id', 'content', 'parent_id']);
+        $data = $request->only(['entity_type', 'entity_id', 'content', 'parent_id']);
         $data['user_id'] = Auth::id();
         $data['floor_number'] = $belongEntity->comments()->withTrashed()->count() + 1;
 
