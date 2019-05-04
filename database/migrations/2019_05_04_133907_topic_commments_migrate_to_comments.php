@@ -28,9 +28,6 @@ class TopicCommmentsMigrateToComments extends Migration
                 }
             }
         }
-
-        Schema::dropIfExists('topic_comment_thumbs');
-        Schema::dropIfExists('topic_comments');
     }
 
     /*
@@ -60,6 +57,5 @@ class TopicCommmentsMigrateToComments extends Migration
      */
     public function down()
     {
-        //
     }
 }
