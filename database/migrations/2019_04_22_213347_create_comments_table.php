@@ -15,15 +15,15 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent_id')->index()->unsigned()->nullable()->comment('Activity Comment ID');
-            $table->integer('floor_number')->comment('Activity Comment Floor Number');
+            $table->integer('parent_id')->index()->unsigned()->nullable()->comment('Comment ID');
+            $table->integer('floor_number')->comment('Comment Floor Number');
 
             $table->integer('user_id')->index()->unsigned()->comment('User ID');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('belong_entity_type')->index()->comment('Belong Entity Type');
             $table->integer('belong_entity_id')->index()->unsigned()->comment('Belong Entity ID');
 
-            $table->text('content')->comment('Activity Comment Content');
+            $table->text('content')->comment('Comment Content');
 
             $table->integer('thumb_up_num')->comment('Thumb Up Num');
             $table->integer('thumb_down_num')->comment('Thumb Up Num');
