@@ -213,9 +213,12 @@ Route::group(['prefix' => 'column', 'middleware' => ['wechat.oauth', 'auth.wecha
 
 
 //
-// Comment
+// Common Modules
 Route::group(['middleware' => ['wechat.oauth', 'auth.wechat']], function () {
     Route::resource('comment', 'CommentController');
+    Route::resource('read', 'Common\ReadController');
+    Route::resource('thumb', 'Common\ThumbController');
+    Route::resource('favorite', 'Common\FavoriteController');
 });
 
 

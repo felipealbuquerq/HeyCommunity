@@ -1,8 +1,8 @@
 <form action="{{ route('comment.store') }}" method="post">
     {{ csrf_field() }}
 
-    <input type="hidden" name="belong_entity_type" value="{{ $entityType }}">
-    <input type="hidden" name="belong_entity_id" value="{{ $entityId }}">
+    <input type="hidden" name="entity_type" value="{{ $entityType }}">
+    <input type="hidden" name="entity_id" value="{{ $entityId }}">
 
     <div class="input-group">
         <textarea name="content" class="form-control" placeholder="请输入评论内容" rows="3"></textarea>

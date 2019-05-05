@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserReadingEvent;
 use App\News;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,9 @@ class NewsController extends Controller
     public function show($id)
     {
         $news = News::findOrFail($id);
+
+        // user reading
+        event(new UserReadingEvent($news));
 
         return view('news.show', compact('news'));
     }

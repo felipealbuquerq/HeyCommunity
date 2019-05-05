@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserActiveRecordEvent' => [
             'App\Listeners\UserActiveRecordListener',
         ],
+        'App\Events\UserReadingEvent' => [
+            'App\Listeners\UserReadingListener',
+        ],
         'App\Events\UserLoggedByWechatTransferBroadcast' => [
         ],
     ];

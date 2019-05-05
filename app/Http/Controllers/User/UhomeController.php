@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Activity;
+use App\Events\UserReadingEvent;
 use App\Models\User\UserActiveRecord;
 use App\Timeline;
 use App\Topic;
@@ -20,6 +21,9 @@ class UhomeController extends Controller
     {
         $user = User::findOrFail($id);
         $records = UserActiveRecord::where('user_id', $user->id)->latest()->paginate(10);
+
+        // user reading
+        event(new UserReadingEvent($user));
 
         return view('user.uhome.index', compact('user', 'records'));
     }

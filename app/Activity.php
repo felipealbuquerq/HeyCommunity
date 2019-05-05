@@ -17,7 +17,7 @@ class Activity extends BaseModel
      */
     public function comments()
     {
-        return $this->morphMany('App\Models\Comment', 'belong_entity')
+        return $this->morphMany('App\Models\Comment', 'entity')
             ->whereNull('parent_id')->latest();
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserReadingEvent;
 use Gate;
 use Illuminate\Http\Request;
 use Auth;
@@ -70,7 +71,9 @@ class TopicController extends Controller
     public function show($id)
     {
         $topic = Topic::findOrFail($id);
-        $topic->increment('read_num');
+
+        // user reading
+        event(new UserReadingEvent($topic));
 
         return view('topic.show', compact('topic'));
     }

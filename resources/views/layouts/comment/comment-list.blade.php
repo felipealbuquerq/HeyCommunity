@@ -46,8 +46,8 @@
                             @endunless
 
                             {{ csrf_field() }}
-                            <input type="hidden" name="belong_entity_type" value="{{ get_class($comment->belongEntity) }}">
-                            <input type="hidden" name="belong_entity_id" value="{{ $comment->belongEntity->id }}">
+                            <input type="hidden" name="entity_type" value="{{ get_class($comment->belongEntity) }}">
+                            <input type="hidden" name="entity_id" value="{{ $comment->belongEntity->id }}">
                             <input type="hidden" name="parent_id" value="{{ $comment->id }}">
 
                             <div class="input-group mb-3">

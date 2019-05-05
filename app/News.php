@@ -17,7 +17,7 @@ class News extends BaseModel
      */
     public function comments()
     {
-        return $this->morphMany('App\Models\Comment', 'belong_entity')->whereNull('parent_id')->latest();
+        return $this->morphMany('App\Models\Comment', 'entity')->whereNull('parent_id')->latest();
     }
 
     /**

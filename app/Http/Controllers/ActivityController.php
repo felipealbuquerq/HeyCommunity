@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ActivityArea;
 use App\ActivityCategory;
+use App\Events\UserReadingEvent;
 use App\Http\Requests\ActivityRequest;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -42,6 +43,9 @@ class ActivityController extends Controller
     public function show($id)
     {
         $activity = Activity::findOrFail($id);
+
+        // user reading
+        event(new UserReadingEvent($activity));
 
         return view('activity.show', compact('activity'));
     }

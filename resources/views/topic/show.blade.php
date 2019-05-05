@@ -158,7 +158,7 @@
                     </div>
 
                     <div id="section-comment-list">
-                        <h3><span class="badge badge-secondary">讨论列表 <small>({{ $topic->comments()->count() }})</small></span></h3>
+                        <h3><span class="badge badge-secondary">讨论列表 <small>({{ $topic->comment_num }})</small></span></h3>
                         @foreach ($topic->rootComments as $comment)
                             @include('topic._topic_comment', ['comment' => $comment])
                         @endforeach
@@ -176,8 +176,9 @@
                         <h3><span class="badge badge-secondary">我要讨论</span></h3>
                         <div class="card m-nb-r m-nb-y">
                             <div class="card-body">
-                                <form action="{{ route('topic.comment.store') }}" method="post">
-                                    <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+                                <form action="{{ route('comment.store') }}" method="post" style="position:relative;">
+                                    <input type="hidden" name="entity_type" value="{{ get_class($topic) }}">
+                                    <input type="hidden" name="entity_id" value="{{ $topic->id }}">
                                     {{ csrf_field() }}
 
                                     <div class="form-group">
@@ -281,13 +282,13 @@
     function replyTopicComment(event) {
         event.preventDefault();
 
-        var url = '{{ route('topic.comment.reply') }}';
+        var url = $(event.target).attr('action');
         var params = {};
 
         var data = $(event.target).serializeArray();
         data.forEach(function(item) {
             params[item.name] = item.value;
-        })
+        });
 
         postSubmit(url, params);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserReadingEvent;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -24,6 +25,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
+
+        // user reading
+        event(new UserReadingEvent($post));
 
         $view = 'post.show';
 
