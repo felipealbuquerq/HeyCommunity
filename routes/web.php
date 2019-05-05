@@ -19,7 +19,8 @@ Route::group([], function () {
     })->name('index');
 
     Route::get('mini-app', function () {
-        return redirect()->route('topic.index');
+        return view('mini-app');
+        // return redirect()->route('topic.index');
         // return redirect()->route('site.weather-forecast');
     });
 });
